@@ -27,7 +27,7 @@
 <meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pagesgithub_pages_step1.png">
 <meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step3.png">
 <meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step4.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step5.png"添加公钥到github"">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step5.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="github pages">
 <meta name="twitter:description" content="github 上搭建博客现在很流行在github上建立静态blog. 诸如hexo 、jekyll等建立blog的工具的介绍也非常多.今天简单搜索看了一下github pages的介绍， 按照教程简单操作了一遍，实现了再github上搭建hello world的过程操作系统 Centos 6
@@ -130,7 +130,7 @@
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">error:</span> The requested URL returned <span class="string">error:</span> <span class="number">403</span> Forbidden <span class="keyword">while</span> accessing <span class="string">https:</span><span class="comment">//github.com/mihenkii/mihenkii.github.io.git/info/refs</span></span><br></pre></td></tr></table></figure>
 <p>1  修改当前资源库下的.git/config文件如下：<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step4.png" alt="修改.git/config" title="修改.git/config"></p>
 <p>2 此时如果还是提示失败，那么可能就是ssh证书有问题了. 可以尝试重做证书<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -<span class="tag">b</span> <span class="number">4096</span> -C <span class="string">"mihenkii@github.com"</span></span><br></pre></td></tr></table></figure></p>
-<p>然后把公钥添加到github上，再重试， 如果使用git的windows客户度，此时需要重启ssh-agent<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step5.png&quot;添加公钥到github&quot;" alt="添加公钥到github"> </p>
+<p>然后把公钥添加到github上，再重试， 如果使用git的windows客户度，此时需要重启ssh-agent<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step5.png" alt="添加公钥到github" title="添加公钥到github"> </p>
 <p>关于详细的添加公钥到github的过程可以参考官网帮助连接<br><a href="https://help.github.com/articles/generating-ssh-keys/" target="_blank" rel="external">help.github.com</a></p>
   
 	</div>
