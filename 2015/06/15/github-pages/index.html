@@ -4,22 +4,36 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Mihenkii&#39;s tech blog</title>
+    <title>github pages | Mihenkii&#39;s tech blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="mihenkii">
     
 
     
-    <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mihenkii's tech blog">
-<meta property="og:url" content="http://mihenkii.github.io/index.html">
+    <meta name="description" content="github 上搭建博客现在很流行在github上建立静态blog. 诸如hexo 、jekyll等建立blog的工具的介绍也非常多.今天简单搜索看了一下github pages的介绍， 按照教程简单操作了一遍，实现了再github上搭建hello world的过程操作系统 Centos 6
+准备1， github账号2， git工具
+操作过程
+1 登录pages.github.com/,  点击">
+<meta property="og:type" content="article">
+<meta property="og:title" content="github pages">
+<meta property="og:url" content="http://mihenkii.github.io/2015/06/15/github-pages/index.html">
 <meta property="og:site_name" content="Mihenkii's tech blog">
-<meta property="og:description">
+<meta property="og:description" content="github 上搭建博客现在很流行在github上建立静态blog. 诸如hexo 、jekyll等建立blog的工具的介绍也非常多.今天简单搜索看了一下github pages的介绍， 按照教程简单操作了一遍，实现了再github上搭建hello world的过程操作系统 Centos 6
+准备1， github账号2， git工具
+操作过程
+1 登录pages.github.com/,  点击">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pagesgithub_pages_step1.png">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pagesgithub_pages_step1.png">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step3.png">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step4.png">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step5.png"添加公钥到github"">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mihenkii's tech blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="github pages">
+<meta name="twitter:description" content="github 上搭建博客现在很流行在github上建立静态blog. 诸如hexo 、jekyll等建立blog的工具的介绍也非常多.今天简单搜索看了一下github pages的介绍， 按照教程简单操作了一遍，实现了再github上搭建hello world的过程操作系统 Centos 6
+准备1， github账号2， git工具
+操作过程
+1 登录pages.github.com/,  点击">
 
     
     <link rel="alternative" href="/atom.xml" title="Mihenkii&#39;s tech blog" type="application/atom+xml">
@@ -73,12 +87,10 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
   <h1 itemprop="name">
     
       <a href="/2015/06/15/github-pages/" title="github pages" itemprop="url">github pages</a>
@@ -92,9 +104,16 @@
     
   </p>
 </header>
-    <div class="article-content">
-        
-        <h1 id="github_上搭建博客">github 上搭建博客</h1><p>现在很流行在github上建立静态blog. 诸如hexo 、jekyll等建立blog的工具的介绍也非常多.<br>今天简单搜索看了一下github pages的介绍， 按照教程简单操作了一遍，实现了再github上<br>搭建hello world的过程<br>操作系统 Centos 6</p>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#github_上搭建博客"><span class="toc-number">1.</span> <span class="toc-text">github 上搭建博客</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="github_上搭建博客">github 上搭建博客</h1><p>现在很流行在github上建立静态blog. 诸如hexo 、jekyll等建立blog的工具的介绍也非常多.<br>今天简单搜索看了一下github pages的介绍， 按照教程简单操作了一遍，实现了再github上<br>搭建hello world的过程<br>操作系统 Centos 6</p>
 <p>准备<br>1， github账号<br>2， git工具</p>
 <p>操作过程</p>
 <p>1 登录<a href="https://pages.github.com/" title="github pages" target="_blank" rel="external">pages.github.com/</a>,<br>  点击”create a new repository”<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pagesgithub_pages_step1.png" alt="pages.github.com step1" title="pages.github.com step1"> </p>
@@ -113,14 +132,9 @@
 <p>2 此时如果还是提示失败，那么可能就是ssh证书有问题了. 可以尝试重做证书<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -<span class="tag">b</span> <span class="number">4096</span> -C <span class="string">"mihenkii@github.com"</span></span><br></pre></td></tr></table></figure></p>
 <p>然后把公钥添加到github上，再重试， 如果使用git的windows客户度，此时需要重启ssh-agent<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step5.png&quot;添加公钥到github&quot;" alt="添加公钥到github"> </p>
 <p>关于详细的添加公钥到github的过程可以参考官网帮助连接<br><a href="https://help.github.com/articles/generating-ssh-keys/" target="_blank" rel="external">help.github.com</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
+  
+	</div>
+		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 
@@ -133,82 +147,43 @@
 
 
 
-
-<div class="comments-count">
+	<div class="article-share" id="share">
 	
-</div>
+	  <div data-url="http://mihenkii.github.io/2015/06/15/github-pages/" data-title="github pages | Mihenkii&#39;s tech blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
 
 </footer>
 
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/06/14/hello-world/" title="Hello World" itemprop="url">Hello World</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
-		
-  <p class="article-time">
-    <time datetime="2015-06-15T02:07:28.000Z" itemprop="datePublished"> 發表於 2015-06-14</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
+   	       
+	</article>
 	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/06/14/hello-world/"  title="Hello World">
+ <strong>下一篇：</strong><br/> 
+ <span>Hello World
+</span>
+</a>
 </div>
 
-</footer>
+</nav>
 
+	
 
-    </article>
-
-
-
-
-
-
-
-</div>
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#github_上搭建博客"><span class="toc-number">1.</span> <span class="toc-text">github 上搭建博客</span></a></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
@@ -338,10 +313,68 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
 </script>
 
 
@@ -352,6 +385,26 @@ $(document).ready(function(){
 
 
 
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
 
 
 
@@ -383,4 +436,4 @@ $(document).ready(function(){
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
