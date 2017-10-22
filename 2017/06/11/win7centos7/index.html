@@ -4,28 +4,52 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>关于创业热潮 | Mihenkii&#39;s tech blog</title>
+    <title>win7上安装centos7双系统 | Mihenkii&#39;s tech blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="mihenkii">
     
 
     
-    <meta name="description" content="对于任何编程的人来说，编程是世界上最有趣的事，比下棋有乐趣得多，因为你可以自己制订游戏规则。而你制定什么样的规则，也就会导出与此规则相符合的结果。 —linus
+    <meta name="description" content="09年的笔记本电脑，CPU: 奔腾T4200不支持vt-x, 无法在Virtual Box中安装64位Centos系统
 
-缘起14年8月从Inspur浪潮软件离职，本计划独自去川渝旅行一次，放松一下，可惜办理手续耽误时间较长.提前三天来京找房子，临时定居西北旺，房子挺大，和哥们一起住，经常去爬百望山，吃米线.后入职sogou，搬家，工作节奏瞬间飙升. 和之">
+准备
+8G U盘
+UltraISO 用来制作启动盘
+CentOS.iso
+分区助手(其实没有真正用到)
+
+操作过程
+清理一块硬盘分区来安装系统1.1 [计算机]-右键[管理]-[磁盘管理]-[删除卷]. 这个删除的卷，就是准备安装Centos的位置
+制作U盘系统盘2.1 将Ce">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于创业热潮">
-<meta property="og:url" content="http://mihenkii.github.io/2015/08/25/chuangye/index.html">
+<meta property="og:title" content="win7上安装centos7双系统">
+<meta property="og:url" content="http://mihenkii.github.io/2017/06/11/win7centos7/index.html">
 <meta property="og:site_name" content="Mihenkii's tech blog">
-<meta property="og:description" content="对于任何编程的人来说，编程是世界上最有趣的事，比下棋有乐趣得多，因为你可以自己制订游戏规则。而你制定什么样的规则，也就会导出与此规则相符合的结果。 —linus
+<meta property="og:description" content="09年的笔记本电脑，CPU: 奔腾T4200不支持vt-x, 无法在Virtual Box中安装64位Centos系统
 
-缘起14年8月从Inspur浪潮软件离职，本计划独自去川渝旅行一次，放松一下，可惜办理手续耽误时间较长.提前三天来京找房子，临时定居西北旺，房子挺大，和哥们一起住，经常去爬百望山，吃米线.后入职sogou，搬家，工作节奏瞬间飙升. 和之">
+准备
+8G U盘
+UltraISO 用来制作启动盘
+CentOS.iso
+分区助手(其实没有真正用到)
+
+操作过程
+清理一块硬盘分区来安装系统1.1 [计算机]-右键[管理]-[磁盘管理]-[删除卷]. 这个删除的卷，就是准备安装Centos的位置
+制作U盘系统盘2.1 将Ce">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于创业热潮">
-<meta name="twitter:description" content="对于任何编程的人来说，编程是世界上最有趣的事，比下棋有乐趣得多，因为你可以自己制订游戏规则。而你制定什么样的规则，也就会导出与此规则相符合的结果。 —linus
+<meta name="twitter:title" content="win7上安装centos7双系统">
+<meta name="twitter:description" content="09年的笔记本电脑，CPU: 奔腾T4200不支持vt-x, 无法在Virtual Box中安装64位Centos系统
 
-缘起14年8月从Inspur浪潮软件离职，本计划独自去川渝旅行一次，放松一下，可惜办理手续耽误时间较长.提前三天来京找房子，临时定居西北旺，房子挺大，和哥们一起住，经常去爬百望山，吃米线.后入职sogou，搬家，工作节奏瞬间飙升. 和之">
+准备
+8G U盘
+UltraISO 用来制作启动盘
+CentOS.iso
+分区助手(其实没有真正用到)
+
+操作过程
+清理一块硬盘分区来安装系统1.1 [计算机]-右键[管理]-[磁盘管理]-[删除卷]. 这个删除的卷，就是准备安装Centos的位置
+制作U盘系统盘2.1 将Ce">
 
     
     <link rel="alternative" href="/atom.xml" title="Mihenkii&#39;s tech blog" type="application/atom+xml">
@@ -85,14 +109,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/08/25/chuangye/" title="关于创业热潮" itemprop="url">关于创业热潮</a>
+      <a href="/2017/06/11/win7centos7/" title="win7上安装centos7双系统" itemprop="url">win7上安装centos7双系统</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-25T05:27:43.000Z" itemprop="datePublished"> 發表於 2015-08-25</time>
+    <time datetime="2017-06-11T03:04:57.000Z" itemprop="datePublished"> 發表於 2017-06-11</time>
     
   </p>
 </header>
@@ -101,29 +125,37 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#缘起"><span class="toc-number">1.</span> <span class="toc-text">缘起</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#故事开始"><span class="toc-number">2.</span> <span class="toc-text">故事开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搞起,_从html开始"><span class="toc-number">3.</span> <span class="toc-text">搞起, 从html开始</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#准备"><span class="toc-number">1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#操作过程"><span class="toc-number">2.</span> <span class="toc-text">操作过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#遇到问题"><span class="toc-number">3.</span> <span class="toc-text">遇到问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置grub2"><span class="toc-number">4.</span> <span class="toc-text">设置grub2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考链接"><span class="toc-number">5.</span> <span class="toc-text">参考链接</span></a></li></ol>
 		
 		</div>
 		
 		<blockquote>
-<p>对于任何编程的人来说，编程是世界上最有趣的事，比下棋有乐趣得多，因为你可以自己制订游戏规则。而你制定什么样的规则，也就会导出与此规则相符合的结果。 —linus</p>
+<p>09年的笔记本电脑，CPU: 奔腾T4200不支持vt-x, 无法在Virtual Box中安装64位Centos系统</p>
 </blockquote>
-<h2 id="缘起">缘起</h2><p>14年8月从Inspur浪潮软件离职，本计划独自去川渝旅行一次，放松一下，可惜办理手续耽误时间较长.<br>提前三天来京找房子，临时定居西北旺，房子挺大，和哥们一起住，经常去爬百望山，吃米线.<br>后入职sogou，搬家，工作节奏瞬间飙升. 和之前完全不一样的工作节奏.<br>两个月后习惯了sogou的节奏，习惯了帝都的节奏.</p>
-<p>14年前后，投资者目光转向了互联网。导致小创业公司如雨后春笋般冒出，许多开发团队都轻松拿到融资.<br>壕多了，他们财大气粗，用过分高的薪水去招人，去加快开发节奏，烧钱去推广，得到用户量后，继续融资.<br>融到B轮后，理论上就会有部分人赚到钱了，团队此时可以宣告失败.  继续开展其他项目，继续融资.<br>导致如我一般的码农嘴上骂着“就这狗屎般的app的竟然能给这么高工资，这是扰乱互联网市场的节奏”，<br>看着眼馋，也想趁机干他一票. 奈何能力有限. </p>
-<p>but…</p>
-<h2 id="故事开始">故事开始</h2><p>在浪潮软件的两年，做私有云平台. 当时”云计算，大数据”等高大上的词非常火. 当然，依然很火，不过已经是大多数公司的标配，<br>现在卖狗屎的，都会说自己的是”云狗屎”, 哎，言论自由. </p>
-<p>在过程中，学到了一些东西，比如LNMP, <a href="https://www.vagrantup.com/" target="_blank" rel="external">Vagrant</a><br>当时想做一个社交网站，积累点用户量，积累点经验，但是没有找到合适的方向.</p>
-<p>后来到了sogou，做广告系统运维. 期间用CI做了一个小的管理系统，可惜没有用起来. 期间有想做娱乐app的想法.<br>但是不会Android，不会ios， 也不想投入时间去搞了， 就放弃了.</p>
-<p>随后入我场, 工作中需用用到yaf，然不会，所以想用yaf框架来练练手,<br>此时，朋友的创业公司已经融到了A轮. 羡慕不已.<br>刚好又从微信看到外国一个婚恋网站卖了很高价钱的新闻. </p>
+<h4 id="准备">准备</h4><ol>
+<li>8G U盘</li>
+<li>UltraISO 用来制作启动盘</li>
+<li>CentOS.iso</li>
+<li>分区助手(其实没有真正用到)</li>
+</ol>
+<h4 id="操作过程">操作过程</h4><ol>
+<li>清理一块硬盘分区来安装系统<br>1.1 [计算机]-右键[管理]-[磁盘管理]-[删除卷]. 这个删除的卷，就是准备安装Centos的位置</li>
+<li>制作U盘系统盘<br>2.1 将CentOS镜像下载到本地, 我选择的是：CentOS-7-x86_64-DVD-1611.iso<br>2.2 将U盘插到电脑，打开UltraISO, 打开下载的ISO文件, 然后选择[启动] - [写入硬盘映像] 写入方式选择[USB-HDD+]<br>2.3 等待10分钟左右系统盘制作完成</li>
+<li>安装系统<br>3.1 开启按F2, 进入Bios页面, boot选择从usb启动, 如果运气好，就可以直接安装系统</li>
+</ol>
+<h4 id="遇到问题">遇到问题</h4><ol>
+<li>centos7 failed to start switch root</li>
+</ol>
+<p>安装系统遇到上面的错误很常见, 网上给出的解决办法：<br>将 vmlinuz initrd=initrd.img inst.stage2=hd:LABEL=CentOS\x207\x20x86_64 quiet<br>改为 vmlinuz initrd=initrd.img inst.stage2=hd:/dev/sdb4 quiet</p>
 <blockquote>
-<p>相对而言，程序员算是非常公平竞争的职位，如果有实力就应该指着别的代码说”你写的这坨是啥！！”<br>所以，打算搞点什么，结束生活除了上班就是睡觉的生活.</p>
+<p>/dev/sdb4代表你的U盘(有的文章说是准备安装系统的盘，描述不准确)<br>Note 引用RedHat官网介绍<br>By default, the inst.stage2= boot option is used on the installation media and set to a specific label (for example, inst.stage2=hd:LABEL=RHEL7\x20Server.x86_64). If you modify the default label of the file system containing the runtime image, or if using a customized procedure to boot the installation system, you must ensure this option is set to the correct value.</p>
 </blockquote>
-<h2 id="搞起,_从html开始">搞起, 从html开始</h2><p>没有规划， 没有美工， 没有CXO，只有周末和晚上下班的时间， 就开始搞起了.<br>在app盛行的时代， 我却开始搞起了web，只因为我不会搞app…<br>现在html+css+js的时代已经过去，已然是node bootstrap angular sass 等高大上的时代.<br>工作换进： win7电脑virtual box下安装了Centos， Centos上搭建了LNMP, putty + vim + filezilla.<br>目标：</p>
-<p>眼高手低，这句话只有在真正动手的时候才能体会到.<br>一个简单的css样式，会花费半天的时间.<br>一个路由规则，可能会花费一天的时间都搞不定.<br>一个js特效，就必须百度、google到足够好的方法才会去用.<br>IE8，最终放弃了这货，可以判断如果是这货的时候，提示用别的方式浏览. twitter是这样做的.<br>一个合适的图片，都可能占用一个小时甚至更多的时间.<br>……</p>
-<p>用了差不多两个月的时间，才做了首页给朋友看， 得到“这是啥啊”的回复.<br>重做， 又不忍心将已有的代码删除， 此时，才真正体会到一个svn的重要性。<br>用了两个小时，自己搭建了个svn，自己用，不需要考虑权限等问题.</p>
-<p>putty + vim + filezilla + svn + bootstrap + gimp</p>
-<p>再次起航，希望可以走到更远.</p>
-<p>  2015/09/05 阅兵后第二天</p>
+<p>如果不确定U盘到底是/dev/sdxx, 可以用另一种解决方法：<br>inst.stage2=hd:LABEL=分区卷标(注意LABEL这单词不能删除掉)<br>通过上面提到的分区助手可以修改[分区卷标], 打开软件，在U盘上[右键]-[设置卷标]即可</p>
+<p>我用的命令是：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vmlinuz <span class="variable">initrd=</span>initrd.img inst.<span class="variable">stage2=</span>hd:<span class="variable">LABEL=</span>CentOS7 quiet   <span class="comment"># 区分大小写</span></span><br></pre></td></tr></table></figure>
+<h4 id="设置grub2">设置grub2</h4><p>在centos的/boot/grub2/grub.cfg</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">menuentry <span class="string">"Windows 7"</span> &#123;   <span class="built_in">set</span> root=<span class="string">'(hd0,1)'</span></span><br><span class="line">   chainloader +<span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="参考链接">参考链接</h4><p><a href="http://www.osyunwei.com/archives/7829.html" target="_blank" rel="external">http://www.osyunwei.com/archives/7829.html</a><br><a href="http://blog.csdn.net/txl199106/article/details/41344399" target="_blank" rel="external">http://blog.csdn.net/txl199106/article/details/41344399</a><br><a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/chap-anaconda-boot-options.html#list-boot-options-sources" target="_blank" rel="external">redhat</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -132,7 +164,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/创业-关于创业-网站开发工具-业余时间创业/">创业 关于创业 网站开发工具 业余时间创业</a>
+  <span></span> <a href="/tags/win7-centos7/">win7 centos7</a>
   </div>
 
 </div>
@@ -141,7 +173,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://mihenkii.github.io/2015/08/25/chuangye/" data-title="关于创业热潮 | Mihenkii&#39;s tech blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://mihenkii.github.io/2017/06/11/win7centos7/" data-title="win7上安装centos7双系统 | Mihenkii&#39;s tech blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -155,18 +187,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/09/14/use-gimp/" title="gimp">
+ <a href="/2017/06/11/dir-color/" title="Linux 目录颜色">
   <strong>上一篇：</strong><br/>
   <span>
-  gimp</span>
+  Linux 目录颜色</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/06/15/how-to-use-hexo/"  title="使用hexo创建静态blog">
+<a href="/2015/10/02/favicon/"  title="favicon">
  <strong>下一篇：</strong><br/> 
- <span>使用hexo创建静态blog
+ <span>favicon
 </span>
 </a>
 </div>
@@ -181,7 +213,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#缘起"><span class="toc-number">1.</span> <span class="toc-text">缘起</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#故事开始"><span class="toc-number">2.</span> <span class="toc-text">故事开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搞起,_从html开始"><span class="toc-number">3.</span> <span class="toc-text">搞起, 从html开始</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#准备"><span class="toc-number">1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#操作过程"><span class="toc-number">2.</span> <span class="toc-text">操作过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#遇到问题"><span class="toc-number">3.</span> <span class="toc-text">遇到问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置grub2"><span class="toc-number">4.</span> <span class="toc-text">设置grub2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考链接"><span class="toc-number">5.</span> <span class="toc-text">参考链接</span></a></li></ol>
  
   </div>
 
@@ -201,7 +233,7 @@
 			
 		
 			
-				<li><a href="/tags/创业-关于创业-网站开发工具-业余时间创业/" title="创业 关于创业 网站开发工具 业余时间创业">创业 关于创业 网站开发工具 业余时间创业<sup>1</sup></a></li>
+				<li><a href="/tags/linux/" title="linux">linux<sup>2</sup></a></li>
 			
 		
 			
@@ -218,6 +250,16 @@
 		
 			
 				<li><a href="/tags/github-blog-hexo-jekyll/" title="github blog hexo jekyll">github blog hexo jekyll<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/win7-centos7/" title="win7 centos7">win7 centos7<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/favicon/" title="favicon">favicon<sup>1</sup></a></li>
+			
+		
 			
 		
 		</ul>
@@ -282,7 +324,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
 		
 		<a href="http://mihenkii.github.io/about" target="_blank" title="mihenkii">mihenkii</a>
 		

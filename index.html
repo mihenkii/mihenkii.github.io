@@ -81,6 +81,289 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2017/07/15/su-user-nopassword/" title="Linux su nopassword" itemprop="url">Linux su nopassword</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2017-07-15T03:24:57.000Z" itemprop="datePublished"> 發表於 2017-07-15</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h4 id="Linux_普通用户su到另一个普通用户">Linux 普通用户su到另一个普通用户</h4><blockquote>
+<p>工作中很少使用root用户，存在使用个人用户，切换到work账户的场景<br>比如我的个人账户是mihenkii， 要切换的目标账户是work</p>
+</blockquote>
+<h4 id="实现">实现</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo vim /etc/pam.d/su</span><br><span class="line"></span><br><span class="line">auth       [success=ignore default=<span class="number">1</span>] pam_succeed_if.so user = work</span><br><span class="line">auth       sufficient   pam_succeed_if.so use_uid user = mihenkii</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解释:  第一行是确定目标用户是work，如果是work，且调用的用户是mihenkii，那么第二行mihenkii会成功授权切换到work</span></span><br></pre></td></tr></table></figure>
+<h4 id="参考连接">参考连接</h4><p><a href="https://unix.stackexchange.com/questions/113754/allow-user1-to-su-user2-without-password" target="_blank" rel="external">stackexchange</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/linux/">linux</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/06/11/dir-color/" title="Linux 目录颜色" itemprop="url">Linux 目录颜色</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2017-06-11T03:24:57.000Z" itemprop="datePublished"> 發表於 2017-06-11</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h4 id="Linux_终端ls目录带有颜色">Linux 终端ls目录带有颜色</h4><blockquote>
+<p>新装的Linux系统， 执行ls的时候默认没有颜色，不够美观</p>
+</blockquote>
+<h4 id="实现">实现</h4><p>ls增加 —color=auto 参数</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"alias ls='ls --color=auto'"</span> &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p>—color=auto 这种方式会使部分文件显示带有色彩，但是仍然不够</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"LS_COLORS=<span class="variable">$LS_COLORS</span>:'fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.exe=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:*.md=00;32:'"</span> &gt;&gt; ~/.bashrc &amp;&amp; <span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+<h4 id="说明">说明</h4><p>di=00;34:<br>[文件类型]=[字体];[颜色]:<br>详细可选参数列表<br>di = directory<br>fi = file<br>ln = symbolic link<br>pi = fifo file<br>so = socket file<br>bd = block (buffered) special file<br>cd = character (unbuffered) special file<br>or = symbolic link pointing to a non-existent file (orphan)<br>mi = non-existent file pointed to by a symbolic link (visible when you type ls -l)<br>ex = file which is executable (ie. has ‘x’ set in permissions).<br>0 = default colour<br>1 = bold<br>4 = underlined<br>5 = flashing text<br>7 = reverse field<br>31 = red<br>32 = green<br>33 = orange<br>34 = blue<br>35 = purple<br>36 = cyan<br>37 = grey<br>40 = black background<br>41 = red background<br>42 = green background<br>43 = orange background<br>44 = blue background<br>45 = purple background<br>46 = cyan background<br>47 = grey background<br>90 = dark grey<br>91 = light red<br>92 = light green<br>93 = yellow<br>94 = light blue<br>95 = light purple<br>96 = turquoise<br>100 = dark grey background<br>101 = light red background<br>102 = light green background<br>103 = yellow background<br>104 = light blue background<br>105 = light purple background<br>106 = turquoise background</p>
+<h4 id="参考连接">参考连接</h4><p><a href="https://askubuntu.com/questions/466198/how-do-i-change-the-color-for-directories-with-ls-in-the-console" target="_blank" rel="external">askubuntu</a></p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_0.png" alt="gimp文字倒影"></p>
+<p>本文用了相对简单易懂的方式实现了文字倒影。<br>还有一种方式是在“倒影”图像是用“橡皮”擦出倒影效果，这里不推荐。</p>
+<h2 id="Step_by_step">Step by step</h2><p>1 Ctrl + n  新建一个空白图形，设置合适的大小</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_1.png" alt="gimp 新建图像"></p>
+<p>2 选择文字工具， 写下自己想要设计的文字，并调整大小，个人喜欢用75的大小</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_2.png" alt="gimp文字工具"></p>
+<p>3 选中文字，设置文字颜色，并记住文字颜色(这个颜色后面会用到)</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_3.png" alt="gimp设置文字颜色"></p>
+<p>4 复制图层，用来做”倒影”</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_4.png" alt="复制图层"></p>
+<p>5 移动复制的图层到原图的正下方</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_5.png" alt="gimp移动工具"></p>
+<p>6 翻转图形， 并在此调整文字位置，移动翻转后的图形到原图的正下方</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_6.png" alt="gimp翻转图形"></p>
+<p>7 制作倒影, 如图：首先在倒影的图层上点击”锁定Alpha通道”, 然后点击”左侧黑色”, 设置颜色和文字一致。</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_7.png" alt="gimp混合工具"></p>
+<p>8 图像合并</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_8.png" alt="合并图像"></p>
+<p>参考连接：<br><a href="http://gimp-tutorials.net/node/236" target="_blank" rel="external">gimp-tutorials.net</a></p>
+<p><a href="http://gimp-tutorials.net/node/91" target="_blank" rel="external">gimp-tutorials.net</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/linux/">linux</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/06/11/win7centos7/" title="win7上安装centos7双系统" itemprop="url">win7上安装centos7双系统</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2017-06-11T03:04:57.000Z" itemprop="datePublished"> 發表於 2017-06-11</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <blockquote>
+<p>09年的笔记本电脑，CPU: 奔腾T4200不支持vt-x, 无法在Virtual Box中安装64位Centos系统</p>
+</blockquote>
+<h4 id="准备">准备</h4><ol>
+<li>8G U盘</li>
+<li>UltraISO 用来制作启动盘</li>
+<li>CentOS.iso</li>
+<li>分区助手(其实没有真正用到)</li>
+</ol>
+<h4 id="操作过程">操作过程</h4><ol>
+<li>清理一块硬盘分区来安装系统<br>1.1 [计算机]-右键[管理]-[磁盘管理]-[删除卷]. 这个删除的卷，就是准备安装Centos的位置</li>
+<li>制作U盘系统盘<br>2.1 将CentOS镜像下载到本地, 我选择的是：CentOS-7-x86_64-DVD-1611.iso<br>2.2 将U盘插到电脑，打开UltraISO, 打开下载的ISO文件, 然后选择[启动] - [写入硬盘映像] 写入方式选择[USB-HDD+]<br>2.3 等待10分钟左右系统盘制作完成</li>
+<li>安装系统<br>3.1 开启按F2, 进入Bios页面, boot选择从usb启动, 如果运气好，就可以直接安装系统</li>
+</ol>
+<h4 id="遇到问题">遇到问题</h4><ol>
+<li>centos7 failed to start switch root</li>
+</ol>
+<p>安装系统遇到上面的错误很常见, 网上给出的解决办法：<br>将 vmlinuz initrd=initrd.img inst.stage2=hd:LABEL=CentOS\x207\x20x86_64 quiet<br>改为 vmlinuz initrd=initrd.img inst.stage2=hd:/dev/sdb4 quiet</p>
+<blockquote>
+<p>/dev/sdb4代表你的U盘(有的文章说是准备安装系统的盘，描述不准确)<br>Note 引用RedHat官网介绍<br>By default, the inst.stage2= boot option is used on the installation media and set to a specific label (for example, inst.stage2=hd:LABEL=RHEL7\x20Server.x86_64). If you modify the default label of the file system containing the runtime image, or if using a customized procedure to boot the installation system, you must ensure this option is set to the correct value.</p>
+</blockquote>
+<p>如果不确定U盘到底是/dev/sdxx, 可以用另一种解决方法：<br>inst.stage2=hd:LABEL=分区卷标(注意LABEL这单词不能删除掉)<br>通过上面提到的分区助手可以修改[分区卷标], 打开软件，在U盘上[右键]-[设置卷标]即可</p>
+<p>我用的命令是：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vmlinuz <span class="variable">initrd=</span>initrd.img inst.<span class="variable">stage2=</span>hd:<span class="variable">LABEL=</span>CentOS7 quiet   <span class="comment"># 区分大小写</span></span><br></pre></td></tr></table></figure>
+<h4 id="设置grub2">设置grub2</h4><p>在centos的/boot/grub2/grub.cfg</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">menuentry <span class="string">"Windows 7"</span> &#123;   <span class="built_in">set</span> root=<span class="string">'(hd0,1)'</span></span><br><span class="line">   chainloader +<span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="参考链接">参考链接</h4><p><a href="http://www.osyunwei.com/archives/7829.html" target="_blank" rel="external">http://www.osyunwei.com/archives/7829.html</a><br><a href="http://blog.csdn.net/txl199106/article/details/41344399" target="_blank" rel="external">http://blog.csdn.net/txl199106/article/details/41344399</a><br><a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/chap-anaconda-boot-options.html#list-boot-options-sources" target="_blank" rel="external">redhat</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/win7-centos7/">win7 centos7</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/02/favicon/" title="favicon" itemprop="url">favicon</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-02T03:33:32.000Z" itemprop="datePublished"> 發表於 2015-10-02</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="本文介绍如何使用gimp制作favcion">本文介绍如何使用gimp制作favcion</h2><p>1, 选取素材, 在网上随便找一个截图</p>
+<p>2, 通过”剪刀”工具将所需的部分剪切出来， 并复制到一个透明的面板上</p>
+<p>2, 点击”图像” -&gt; “scale image” :将素材制作成多种大小的，比如：128x128 64x64 32x32 24x4 16x16<br>   我这里只是网站需要，就做成了32x32  24x24 16x16 三种大小的</p>
+<p>3,打开32*32的图像，然后通过”Open as Layers”的方式同时打开另外两个图片， 从大到小排列</p>
+<p>4, export as 选择ico格式， 上传都网站即可</p>
+<p>参考<a href="http://thenewcode.com/467/Creating-Multi-Resolution-Favicons-For-Web-Pages-With-GIMP" target="_blank" rel="external">Creating Multi-Resolution Favicons For Web Pages With GIMP</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/favicon/">favicon</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/09/28/gimp-golden-font/" title="gimp土豪金字体" itemprop="url">gimp土豪金字体</a>
   </h1>
   <p class="article-author">By
@@ -88,7 +371,7 @@
 		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
 		
   <p class="article-time">
-    <time datetime="2015-09-28T15:03:13.000Z" itemprop="datePublished"> 發表於 2015-09-28</time>
+    <time datetime="2015-09-28T03:03:13.000Z" itemprop="datePublished"> 發表於 2015-09-28</time>
     
   </p>
 </header>
@@ -162,7 +445,7 @@
 		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
 		
   <p class="article-time">
-    <time datetime="2015-09-27T15:24:57.000Z" itemprop="datePublished"> 發表於 2015-09-27</time>
+    <time datetime="2015-09-27T03:24:57.000Z" itemprop="datePublished"> 發表於 2015-09-27</time>
     
   </p>
 </header>
@@ -237,7 +520,7 @@
 		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
 		
   <p class="article-time">
-    <time datetime="2015-09-14T15:23:03.000Z" itemprop="datePublished"> 發表於 2015-09-14</time>
+    <time datetime="2015-09-14T03:23:03.000Z" itemprop="datePublished"> 發表於 2015-09-14</time>
     
   </p>
 </header>
@@ -246,8 +529,28 @@
         <h2 id="GIMP_羽化">GIMP 羽化</h2><p>羽化，就是将图片的四周制作成模糊的效果，感觉更柔和，类似PPT淡出(fade out)效果</p>
 <h4 id="step_by_step">step by step</h4><ol>
 <li>Ctrl + o 打开需要制作的图片</li>
+</ol>
+<p><img src="" alt=""></p>
+<ol>
 <li>Ctrl + d 复制需要制作的图片(一般都不直接编辑原图，都编辑复制的)</li>
 </ol>
+<p><img src="" alt=""></p>
+<ol>
+<li>在工具箱，选择”矩形”工具, 然后在图片上选择想要实现效果的区域<br>注意： 双击鼠标才是选择了区域</li>
+</ol>
+<p><img src="" alt=""></p>
+<ol>
+<li>“选择” -&gt; “反转”</li>
+</ol>
+<p><img src="" alt=""></p>
+<ol>
+<li>“选择” -&gt; “羽化”</li>
+</ol>
+<p><img src="" alt=""></p>
+<ol>
+<li>删除其他区域</li>
+</ol>
+<p><img src="" alt=""></p>
 
         
         
@@ -296,7 +599,7 @@
 		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
 		
   <p class="article-time">
-    <time datetime="2015-09-14T14:10:48.000Z" itemprop="datePublished"> 發表於 2015-09-14</time>
+    <time datetime="2015-09-14T02:10:48.000Z" itemprop="datePublished"> 發表於 2015-09-14</time>
     
   </p>
 </header>
@@ -350,161 +653,14 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/08/25/chuangye/" title="关于创业热潮" itemprop="url">关于创业热潮</a>
+      <a href="/2015/06/16/hello-world/" title="Hello World" itemprop="url">Hello World</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-25T05:27:43.000Z" itemprop="datePublished"> 發表於 2015-08-25</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <blockquote>
-<p>对于任何编程的人来说，编程是世界上最有趣的事，比下棋有乐趣得多，因为你可以自己制订游戏规则。而你制定什么样的规则，也就会导出与此规则相符合的结果。 —linus</p>
-</blockquote>
-<h2 id="缘起">缘起</h2><p>14年8月从Inspur浪潮软件离职，本计划独自去川渝旅行一次，放松一下，可惜办理手续耽误时间较长.<br>提前三天来京找房子，临时定居西北旺，房子挺大，和哥们一起住，经常去爬百望山，吃米线.<br>后入职sogou，搬家，工作节奏瞬间飙升. 和之前完全不一样的工作节奏.<br>两个月后习惯了sogou的节奏，习惯了帝都的节奏.</p>
-<p>14年前后，投资者目光转向了互联网。导致小创业公司如雨后春笋般冒出，许多开发团队都轻松拿到融资.<br>壕多了，他们财大气粗，用过分高的薪水去招人，去加快开发节奏，烧钱去推广，得到用户量后，继续融资.<br>融到B轮后，理论上就会有部分人赚到钱了，团队此时可以宣告失败.  继续开展其他项目，继续融资.<br>导致如我一般的码农嘴上骂着“就这狗屎般的app的竟然能给这么高工资，这是扰乱互联网市场的节奏”，<br>看着眼馋，也想趁机干他一票. 奈何能力有限. </p>
-<p>but…</p>
-<h2 id="故事开始">故事开始</h2><p>在浪潮软件的两年，做私有云平台. 当时”云计算，大数据”等高大上的词非常火. 当然，依然很火，不过已经是大多数公司的标配，<br>现在卖狗屎的，都会说自己的是”云狗屎”, 哎，言论自由. </p>
-<p>在过程中，学到了一些东西，比如LNMP, <a href="https://www.vagrantup.com/" target="_blank" rel="external">Vagrant</a><br>当时想做一个社交网站，积累点用户量，积累点经验，但是没有找到合适的方向.</p>
-<p>后来到了sogou，做广告系统运维. 期间用CI做了一个小的管理系统，可惜没有用起来. 期间有想做娱乐app的想法.<br>但是不会Android，不会ios， 也不想投入时间去搞了， 就放弃了.</p>
-<p>随后入我场, 工作中需用用到yaf，然不会，所以想用yaf框架来练练手,<br>此时，朋友的创业公司已经融到了A轮. 羡慕不已.<br>刚好又从微信看到外国一个婚恋网站卖了很高价钱的新闻. </p>
-<blockquote>
-<p>相对而言，程序员算是非常公平竞争的职位，如果有实力就应该指着别的代码说”你写的这坨是啥！！”<br>所以，打算搞点什么，结束生活除了上班就是睡觉的生活.</p>
-</blockquote>
-<h2 id="搞起,_从html开始">搞起, 从html开始</h2><p>没有规划， 没有美工， 没有CXO，只有周末和晚上下班的时间， 就开始搞起了.<br>在app盛行的时代， 我却开始搞起了web，只因为我不会搞app…<br>现在html+css+js的时代已经过去，已然是node bootstrap angular sass 等高大上的时代.<br>工作换进： win7电脑virtual box下安装了Centos， Centos上搭建了LNMP, putty + vim + filezilla.<br>目标：</p>
-<p>眼高手低，这句话只有在真正动手的时候才能体会到.<br>一个简单的css样式，会花费半天的时间.<br>一个路由规则，可能会花费一天的时间都搞不定.<br>一个js特效，就必须百度、google到足够好的方法才会去用.<br>IE8，最终放弃了这货，可以判断如果是这货的时候，提示用别的方式浏览. twitter是这样做的.<br>一个合适的图片，都可能占用一个小时甚至更多的时间.<br>……</p>
-<p>用了差不多两个月的时间，才做了首页给朋友看， 得到“这是啥啊”的回复.<br>重做， 又不忍心将已有的代码删除， 此时，才真正体会到一个svn的重要性。<br>用了两个小时，自己搭建了个svn，自己用，不需要考虑权限等问题.</p>
-<p>putty + vim + filezilla + svn + bootstrap + gimp</p>
-<p>再次起航，希望可以走到更远.</p>
-<p>  2015/09/05 阅兵后第二天</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/创业-关于创业-网站开发工具-业余时间创业/">创业 关于创业 网站开发工具 业余时间创业</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/06/15/how-to-use-hexo/" title="使用hexo创建静态blog" itemprop="url">使用hexo创建静态blog</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
-		
-  <p class="article-time">
-    <time datetime="2015-06-16T00:44:07.000Z" itemprop="datePublished"> 發表於 2015-06-15</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="使用hexo创建blog">使用hexo创建blog</h1><p>上一篇 <a href="http://www.mihenkii.tk/" target="_blank" rel="external">github pages</a>， 说明了如何在github pages上挂一个自己的”Hello World”页面， 了解最基本的以后，接下来就尝试使用hexo这个工具来搭建静态博客了.</p>
-<h3 id="名词解释：">名词解释：</h3><p>静态博客 : 全部由静态页面组成的blog， 不需要和数据库交互的页面<br>hexo:  一个管理静态blog的工具<br>post:  发的一个文章，就是一个post<br>pages: 每一个单独的页面， 就是一个pages， 比如 个人介绍页面, </p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/blog_hexo_step4.png" alt="posts pages"></p>
-<p>首先，简单介绍一下hexo， 这个一个台湾同胞创建的工具， 可以方便的管理静态blog， 当然，最主要的功能，是这货支持Markdown.</p>
-<h3 id="系统要求：">系统要求：</h3><p>git<br>node.js</p>
-<p>hexo的安装非常简单，就一条命令：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -<span class="keyword">g</span> hexo-<span class="keyword">cli</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="具体操作">具体操作</h3><p>如果你是第一次搭建blog， 那么请理解下面的步骤：</p>
-<h5 id="1，_创建工作空间(非必须)，_个人习惯，_我习惯把一些和代码相关的东西放到/opt/workspace">1， 创建工作空间(非必须)， 个人习惯， 我习惯把一些和代码相关的东西放到/opt/workspace</h5><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -pv /<span class="keyword">opt</span>/workspace</span><br><span class="line"><span class="keyword">cd</span> /<span class="keyword">opt</span>/workspace</span><br></pre></td></tr></table></figure>
-<h5 id="2,_初始化blog空间">2,  初始化blog空间</h5><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">hexo</span> init blogtest</span><br></pre></td></tr></table></figure>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/blog_hexo_step1.png" alt="初始化blog"></p>
-<h5 id="3,_使用hexo创建第一篇hellowold">3,  使用hexo创建第一篇hellowold</h5><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 进入到blog目录</span></span><br><span class="line">cd blogtest</span><br><span class="line">hexo <span class="keyword">new</span> helloworld</span><br></pre></td></tr></table></figure>
-<p>如果看到下面的提示， 说明目前一切OK<br><img src="http://7xij29.com1.z0.glb.clouddn.com/blog_hexo_step2.png" alt="创建post"></p>
-<p>如果提示了hexo的usage， 请检查是否进入到了blog目录内，如果是，可能是hexo安装时没有加-g参数<br>执行下面命令，然后再重试<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> hexo <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure></p>
-<h5 id="4,_编辑post-">4, 编辑post.</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim <span class="built_in">source</span>/_posts/helloworld.md</span><br></pre></td></tr></table></figure>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/blog_hexo_step3.png" alt="编辑文件，写下Hello World">5</p>
-<h5 id="5,_下面是生成阶段，_也就是把你写的markdown文件转化成html文件-">5, 下面是生成阶段， 也就是把你写的markdown文件转化成html文件.</h5><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">ge</span><span class="label">nerate</span></span><br></pre></td></tr></table></figure>
-<h5 id="6,_本地预览">6,  本地预览</h5><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 会在本地建立一个server， 端口一般是4000， 可以在浏览器访问看效果</span></span><br><span class="line">hexo <span class="keyword">server</span></span><br></pre></td></tr></table></figure>
-<h5 id="7,_生成完以后提交到github_pages就完成了">7, 生成完以后提交到github pages就完成了</h5><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">hexo</span> deploy</span><br></pre></td></tr></table></figure>
-<p>此时，blog就被put到github pages上了.<br>如果不是在图形界面执行，此步骤可能出现git提交失败的问题，可以参考<a href="http://www.mihenkii.tk/" target="_blank" rel="external">上篇</a></p>
-<p>更多关于hexo的命令， 可以参考官网<a href="https://hexo.io/docs/commands.html" target="_blank" rel="external">https://hexo.io/docs/commands.html</a><br>个人建议不要把hexo命令都搞懂， 没必要，常用的命令熟悉了，其他的自然也就熟悉了.</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/hexo-posts-pages/">hexo posts pages</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/06/15/hello-world/" title="Hello World" itemprop="url">Hello World</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
-		
-  <p class="article-time">
-    <time datetime="2015-06-15T19:46:38.000Z" itemprop="datePublished"> 發表於 2015-06-15</time>
+    <time datetime="2015-06-15T19:46:38.000Z" itemprop="datePublished"> 發表於 2015-06-16</time>
     
   </p>
 </header>
@@ -571,37 +727,39 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/06/15/github-pages/" title="github pages" itemprop="url">github pages</a>
+      <a href="/2015/06/15/how-to-use-hexo/" title="使用hexo创建静态blog" itemprop="url">使用hexo创建静态blog</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
 		
   <p class="article-time">
-    <time datetime="2015-06-15T16:54:37.000Z" itemprop="datePublished"> 發表於 2015-06-15</time>
+    <time datetime="2015-06-15T12:44:07.000Z" itemprop="datePublished"> 發表於 2015-06-15</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <h1 id="github_上搭建博客">github 上搭建博客</h1><p>现在很流行在github上建立静态blog。 诸如hexo 、jekyll等工具，可以很方便的实现在github上建立静态blog的功能，<br>但是这些工具如何在github上建立blog的？之前一直没有弄明白。(PS: 之前git小白，一直没有真正用github)<br>今天简单看了一下github pages的介绍， 按照教程简单操作了一遍，实现了在github上<br>搭建hello world的过程，这里把过程记录下来。<br>操作系统 Centos 6</p>
-<h3 id="准备">准备</h3><p>1， github账号<br>2， git工具</p>
-<h3 id="操作过程">操作过程</h3><p>1 登录<a href="https://pages.github.com/" title="github pages" target="_blank" rel="external">pages.github.com/</a>,<br>  点击”create a new repository”<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pagesgithub_pages_step1.png" alt="pages.github.com step1" title="pages.github.com step1"> </p>
-<p>2 填写blog的入口地址yoursite.github.io<br>注意yoursite的名字要和你的github名字一致<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pagesgithub_pages_step1.png" alt="pages.github.com step2" title="pages github.com step2">  </p>
-<p>3 在工作空间执行git clone命令，把新建的资源库clone到本地</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step3.png" alt="git clone 到本地" title="git clone 资源库到本地"></p>
-<p>4 cd进入到资源库里面， 创建一个index.html</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="string">"Hello World"</span> &gt; <span class="built_in">index</span>.html</span><br></pre></td></tr></table></figure>
-<p>5 提交到github</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add <span class="comment">--all</span></span><br><span class="line">git <span class="operator"><span class="keyword">commit</span> -m <span class="string">"hello world"</span></span><br><span class="line">git push -u origin <span class="keyword">master</span></span></span><br></pre></td></tr></table></figure>
-<p>此时访问<a href="http://mihenkii.github.io/" target="_blank" rel="external">mihenkii.github.io</a> 如果看到了无比可亲的“Hello World”。 你就可以下一步了.</p>
-<p>因为我们默认提交的是index.html， 所以不需要些文件名. 所以，此时可以联想到，hexo 、jekyll 应该是在index.html上做了些文章，给全站都加上了url路由.   下一步计划，搞起hexo.</p>
-<p>如果提示如下403 错误， 按照如下步骤解决:</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">error:</span> The requested URL returned <span class="string">error:</span> <span class="number">403</span> Forbidden <span class="keyword">while</span> accessing <span class="string">https:</span><span class="comment">//github.com/mihenkii/mihenkii.github.io.git/info/refs</span></span><br></pre></td></tr></table></figure>
-<p>1  修改当前资源库下的.git/config文件如下：<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step4.png" alt="修改.git/config" title="修改.git/config"></p>
-<p>2 此时如果还是提示失败，那么可能就是ssh证书有问题了. 可以尝试重做证书<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -<span class="tag">b</span> <span class="number">4096</span> -C <span class="string">"mihenkii@github.com"</span></span><br></pre></td></tr></table></figure></p>
-<p>然后把公钥添加到github上，再重试， 如果使用git的windows客户度，此时需要重启ssh-agent<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step5.png" alt="添加公钥到github" title="添加公钥到github"> </p>
-<p>关于详细的添加公钥到github的过程可以参考官网帮助连接<br><a href="https://help.github.com/articles/generating-ssh-keys/" target="_blank" rel="external">help.github.com</a></p>
+        <h1 id="使用hexo创建blog">使用hexo创建blog</h1><p>上一篇 <a href="http://www.mihenkii.tk/" target="_blank" rel="external">github pages</a>， 说明了如何在github pages上挂一个自己的”Hello World”页面， 了解最基本的以后，接下来就尝试使用hexo这个工具来搭建静态博客了.</p>
+<h3 id="名词解释：">名词解释：</h3><p>静态博客 : 全部由静态页面组成的blog， 不需要和数据库交互的页面<br>hexo:  一个管理静态blog的工具<br>post:  发的一个文章，就是一个post<br>pages: 每一个单独的页面， 就是一个pages， 比如 个人介绍页面, </p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/blog_hexo_step4.png" alt="posts pages"></p>
+<p>首先，简单介绍一下hexo， 这个一个台湾同胞创建的工具， 可以方便的管理静态blog， 当然，最主要的功能，是这货支持Markdown.</p>
+<h3 id="系统要求：">系统要求：</h3><p>git<br>node.js</p>
+<p>hexo的安装非常简单，就一条命令：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -<span class="keyword">g</span> hexo-<span class="keyword">cli</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="具体操作">具体操作</h3><p>如果你是第一次搭建blog， 那么请理解下面的步骤：</p>
+<h5 id="1，_创建工作空间(非必须)，_个人习惯，_我习惯把一些和代码相关的东西放到/opt/workspace">1， 创建工作空间(非必须)， 个人习惯， 我习惯把一些和代码相关的东西放到/opt/workspace</h5><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -pv /<span class="keyword">opt</span>/workspace</span><br><span class="line"><span class="keyword">cd</span> /<span class="keyword">opt</span>/workspace</span><br></pre></td></tr></table></figure>
+<h5 id="2,_初始化blog空间">2,  初始化blog空间</h5><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">hexo</span> init blogtest</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/blog_hexo_step1.png" alt="初始化blog"></p>
+<h5 id="3,_使用hexo创建第一篇hellowold">3,  使用hexo创建第一篇hellowold</h5><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 进入到blog目录</span></span><br><span class="line">cd blogtest</span><br><span class="line">hexo <span class="keyword">new</span> helloworld</span><br></pre></td></tr></table></figure>
+<p>如果看到下面的提示， 说明目前一切OK<br><img src="http://7xij29.com1.z0.glb.clouddn.com/blog_hexo_step2.png" alt="创建post"></p>
+<p>如果提示了hexo的usage， 请检查是否进入到了blog目录内，如果是，可能是hexo安装时没有加-g参数<br>执行下面命令，然后再重试<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> hexo <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure></p>
+<h5 id="4,_编辑post-">4, 编辑post.</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim <span class="built_in">source</span>/_posts/helloworld.md</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/blog_hexo_step3.png" alt="编辑文件，写下Hello World">5</p>
+<h5 id="5,_下面是生成阶段，_也就是把你写的markdown文件转化成html文件-">5, 下面是生成阶段， 也就是把你写的markdown文件转化成html文件.</h5><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">ge</span><span class="label">nerate</span></span><br></pre></td></tr></table></figure>
+<h5 id="6,_本地预览">6,  本地预览</h5><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 会在本地建立一个server， 端口一般是4000， 可以在浏览器访问看效果</span></span><br><span class="line">hexo <span class="keyword">server</span></span><br></pre></td></tr></table></figure>
+<h5 id="7,_生成完以后提交到github_pages就完成了">7, 生成完以后提交到github pages就完成了</h5><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">hexo</span> deploy</span><br></pre></td></tr></table></figure>
+<p>此时，blog就被put到github pages上了.<br>如果不是在图形界面执行，此步骤可能出现git提交失败的问题，可以参考<a href="http://www.mihenkii.tk/" target="_blank" rel="external">上篇</a></p>
+<p>更多关于hexo的命令， 可以参考官网<a href="https://hexo.io/docs/commands.html" target="_blank" rel="external">https://hexo.io/docs/commands.html</a><br>个人建议不要把hexo命令都搞懂， 没必要，常用的命令熟悉了，其他的自然也就熟悉了.</p>
 
         
         
@@ -615,7 +773,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/github-blog-hexo-jekyll/">github blog hexo jekyll</a>
+  <span></span> <a href="/tags/hexo-posts-pages/">hexo posts pages</a>
   </div>
 
 </div>
@@ -638,6 +796,10 @@
 
 
 
+  <nav id="page-nav" class="clearfix">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+  </nav>
+
 </div>
       <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
 
@@ -657,7 +819,7 @@
 			
 		
 			
-				<li><a href="/tags/创业-关于创业-网站开发工具-业余时间创业/" title="创业 关于创业 网站开发工具 业余时间创业">创业 关于创业 网站开发工具 业余时间创业<sup>1</sup></a></li>
+				<li><a href="/tags/linux/" title="linux">linux<sup>2</sup></a></li>
 			
 		
 			
@@ -674,6 +836,16 @@
 		
 			
 				<li><a href="/tags/github-blog-hexo-jekyll/" title="github blog hexo jekyll">github blog hexo jekyll<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/win7-centos7/" title="win7 centos7">win7 centos7<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/favicon/" title="favicon">favicon<sup>1</sup></a></li>
+			
+		
 			
 		
 		</ul>
@@ -738,7 +910,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
 		
 		<a href="http://mihenkii.github.io/about" target="_blank" title="mihenkii">mihenkii</a>
 		

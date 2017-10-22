@@ -4,76 +4,49 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>gimp 羽化 | Mihenkii&#39;s tech blog</title>
+    <title>Linux 目录颜色 | Mihenkii&#39;s tech blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="mihenkii">
     
 
     
-    <meta name="description" content="GIMP 羽化羽化，就是将图片的四周制作成模糊的效果，感觉更柔和，类似PPT淡出(fade out)效果
-step by step
-Ctrl + o 打开需要制作的图片
+    <meta name="description" content="Linux 终端ls目录带有颜色
+新装的Linux系统， 执行ls的时候默认没有颜色，不够美观
 
-
-
-Ctrl + d 复制需要制作的图片(一般都不直接编辑原图，都编辑复制的)
-
-
-
-在工具箱，选择”矩形”工具, 然后在图片上选择想要实现效果的区域注意： 双击鼠标才是选择了区域
-
-
-
-“选择” -&amp;gt; “反转”
-
-
-
-“">
+实现ls增加 —color=auto 参数
+1echo &quot;alias ls=&apos;ls --color=auto&apos;&quot; &amp;gt;&amp;gt; ~/.bashrc
+—color=auto 这种方式会使部分文件显示带有色彩，但是仍然不够
+1echo &quot;LS_COLORS=$LS_COLORS:&apos;fi=00:di=0">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gimp 羽化">
-<meta property="og:url" content="http://mihenkii.github.io/2015/09/14/gimp-feather/index.html">
+<meta property="og:title" content="Linux 目录颜色">
+<meta property="og:url" content="http://mihenkii.github.io/2017/06/11/dir-color/index.html">
 <meta property="og:site_name" content="Mihenkii's tech blog">
-<meta property="og:description" content="GIMP 羽化羽化，就是将图片的四周制作成模糊的效果，感觉更柔和，类似PPT淡出(fade out)效果
-step by step
-Ctrl + o 打开需要制作的图片
+<meta property="og:description" content="Linux 终端ls目录带有颜色
+新装的Linux系统， 执行ls的时候默认没有颜色，不够美观
 
-
-
-Ctrl + d 复制需要制作的图片(一般都不直接编辑原图，都编辑复制的)
-
-
-
-在工具箱，选择”矩形”工具, 然后在图片上选择想要实现效果的区域注意： 双击鼠标才是选择了区域
-
-
-
-“选择” -&amp;gt; “反转”
-
-
-
-“">
+实现ls增加 —color=auto 参数
+1echo &quot;alias ls=&apos;ls --color=auto&apos;&quot; &amp;gt;&amp;gt; ~/.bashrc
+—color=auto 这种方式会使部分文件显示带有色彩，但是仍然不够
+1echo &quot;LS_COLORS=$LS_COLORS:&apos;fi=00:di=0">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_0.png">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_1.png">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_2.png">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_3.png">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_4.png">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_5.png">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_6.png">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_7.png">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_8.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="gimp 羽化">
-<meta name="twitter:description" content="GIMP 羽化羽化，就是将图片的四周制作成模糊的效果，感觉更柔和，类似PPT淡出(fade out)效果
-step by step
-Ctrl + o 打开需要制作的图片
+<meta name="twitter:title" content="Linux 目录颜色">
+<meta name="twitter:description" content="Linux 终端ls目录带有颜色
+新装的Linux系统， 执行ls的时候默认没有颜色，不够美观
 
-
-
-Ctrl + d 复制需要制作的图片(一般都不直接编辑原图，都编辑复制的)
-
-
-
-在工具箱，选择”矩形”工具, 然后在图片上选择想要实现效果的区域注意： 双击鼠标才是选择了区域
-
-
-
-“选择” -&amp;gt; “反转”
-
-
-
-“">
+实现ls增加 —color=auto 参数
+1echo &quot;alias ls=&apos;ls --color=auto&apos;&quot; &amp;gt;&amp;gt; ~/.bashrc
+—color=auto 这种方式会使部分文件显示带有色彩，但是仍然不够
+1echo &quot;LS_COLORS=$LS_COLORS:&apos;fi=00:di=0">
 
     
     <link rel="alternative" href="/atom.xml" title="Mihenkii&#39;s tech blog" type="application/atom+xml">
@@ -133,14 +106,14 @@ Ctrl + d 复制需要制作的图片(一般都不直接编辑原图，都编辑�
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/09/14/gimp-feather/" title="gimp 羽化" itemprop="url">gimp 羽化</a>
+      <a href="/2017/06/11/dir-color/" title="Linux 目录颜色" itemprop="url">Linux 目录颜色</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
 		
   <p class="article-time">
-    <time datetime="2015-09-14T03:23:03.000Z" itemprop="datePublished"> 發表於 2015-09-14</time>
+    <time datetime="2017-06-11T03:24:57.000Z" itemprop="datePublished"> 發表於 2017-06-11</time>
     
   </p>
 </header>
@@ -149,35 +122,39 @@ Ctrl + d 复制需要制作的图片(一般都不直接编辑原图，都编辑�
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#GIMP_羽化"><span class="toc-number">1.</span> <span class="toc-text">GIMP 羽化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#step_by_step"><span class="toc-number">1.0.1.</span> <span class="toc-text">step by step</span></a></li></ol></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux_终端ls目录带有颜色"><span class="toc-number">1.</span> <span class="toc-text">Linux 终端ls目录带有颜色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实现"><span class="toc-number">2.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#说明"><span class="toc-number">3.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考连接"><span class="toc-number">4.</span> <span class="toc-text">参考连接</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step_by_step"><span class="toc-number"></span> <span class="toc-text">Step by step</span></a>
 		
 		</div>
 		
-		<h2 id="GIMP_羽化">GIMP 羽化</h2><p>羽化，就是将图片的四周制作成模糊的效果，感觉更柔和，类似PPT淡出(fade out)效果</p>
-<h4 id="step_by_step">step by step</h4><ol>
-<li>Ctrl + o 打开需要制作的图片</li>
-</ol>
-<p><img src="" alt=""></p>
-<ol>
-<li>Ctrl + d 复制需要制作的图片(一般都不直接编辑原图，都编辑复制的)</li>
-</ol>
-<p><img src="" alt=""></p>
-<ol>
-<li>在工具箱，选择”矩形”工具, 然后在图片上选择想要实现效果的区域<br>注意： 双击鼠标才是选择了区域</li>
-</ol>
-<p><img src="" alt=""></p>
-<ol>
-<li>“选择” -&gt; “反转”</li>
-</ol>
-<p><img src="" alt=""></p>
-<ol>
-<li>“选择” -&gt; “羽化”</li>
-</ol>
-<p><img src="" alt=""></p>
-<ol>
-<li>删除其他区域</li>
-</ol>
-<p><img src="" alt=""></p>
+		<h4 id="Linux_终端ls目录带有颜色">Linux 终端ls目录带有颜色</h4><blockquote>
+<p>新装的Linux系统， 执行ls的时候默认没有颜色，不够美观</p>
+</blockquote>
+<h4 id="实现">实现</h4><p>ls增加 —color=auto 参数</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"alias ls='ls --color=auto'"</span> &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p>—color=auto 这种方式会使部分文件显示带有色彩，但是仍然不够</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"LS_COLORS=<span class="variable">$LS_COLORS</span>:'fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.exe=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:*.md=00;32:'"</span> &gt;&gt; ~/.bashrc &amp;&amp; <span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+<h4 id="说明">说明</h4><p>di=00;34:<br>[文件类型]=[字体];[颜色]:<br>详细可选参数列表<br>di = directory<br>fi = file<br>ln = symbolic link<br>pi = fifo file<br>so = socket file<br>bd = block (buffered) special file<br>cd = character (unbuffered) special file<br>or = symbolic link pointing to a non-existent file (orphan)<br>mi = non-existent file pointed to by a symbolic link (visible when you type ls -l)<br>ex = file which is executable (ie. has ‘x’ set in permissions).<br>0 = default colour<br>1 = bold<br>4 = underlined<br>5 = flashing text<br>7 = reverse field<br>31 = red<br>32 = green<br>33 = orange<br>34 = blue<br>35 = purple<br>36 = cyan<br>37 = grey<br>40 = black background<br>41 = red background<br>42 = green background<br>43 = orange background<br>44 = blue background<br>45 = purple background<br>46 = cyan background<br>47 = grey background<br>90 = dark grey<br>91 = light red<br>92 = light green<br>93 = yellow<br>94 = light blue<br>95 = light purple<br>96 = turquoise<br>100 = dark grey background<br>101 = light red background<br>102 = light green background<br>103 = yellow background<br>104 = light blue background<br>105 = light purple background<br>106 = turquoise background</p>
+<h4 id="参考连接">参考连接</h4><p><a href="https://askubuntu.com/questions/466198/how-do-i-change-the-color-for-directories-with-ls-in-the-console" target="_blank" rel="external">askubuntu</a></p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_0.png" alt="gimp文字倒影"></p>
+<p>本文用了相对简单易懂的方式实现了文字倒影。<br>还有一种方式是在“倒影”图像是用“橡皮”擦出倒影效果，这里不推荐。</p>
+<h2 id="Step_by_step">Step by step</h2><p>1 Ctrl + n  新建一个空白图形，设置合适的大小</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_1.png" alt="gimp 新建图像"></p>
+<p>2 选择文字工具， 写下自己想要设计的文字，并调整大小，个人喜欢用75的大小</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_2.png" alt="gimp文字工具"></p>
+<p>3 选中文字，设置文字颜色，并记住文字颜色(这个颜色后面会用到)</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_3.png" alt="gimp设置文字颜色"></p>
+<p>4 复制图层，用来做”倒影”</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_4.png" alt="复制图层"></p>
+<p>5 移动复制的图层到原图的正下方</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_5.png" alt="gimp移动工具"></p>
+<p>6 翻转图形， 并在此调整文字位置，移动翻转后的图形到原图的正下方</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_6.png" alt="gimp翻转图形"></p>
+<p>7 制作倒影, 如图：首先在倒影的图层上点击”锁定Alpha通道”, 然后点击”左侧黑色”, 设置颜色和文字一致。</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_7.png" alt="gimp混合工具"></p>
+<p>8 图像合并</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_8.png" alt="合并图像"></p>
+<p>参考连接：<br><a href="http://gimp-tutorials.net/node/236" target="_blank" rel="external">gimp-tutorials.net</a></p>
+<p><a href="http://gimp-tutorials.net/node/91" target="_blank" rel="external">gimp-tutorials.net</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -186,7 +163,7 @@ Ctrl + d 复制需要制作的图片(一般都不直接编辑原图，都编辑�
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/gimp/">gimp</a>
+  <span></span> <a href="/tags/linux/">linux</a>
   </div>
 
 </div>
@@ -195,7 +172,7 @@ Ctrl + d 复制需要制作的图片(一般都不直接编辑原图，都编辑�
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://mihenkii.github.io/2015/09/14/gimp-feather/" data-title="gimp 羽化 | Mihenkii&#39;s tech blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://mihenkii.github.io/2017/06/11/dir-color/" data-title="Linux 目录颜色 | Mihenkii&#39;s tech blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -209,18 +186,18 @@ Ctrl + d 复制需要制作的图片(一般都不直接编辑原图，都编辑�
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/09/27/gimp-reflection/" title="gimp 倒影效果">
+ <a href="/2017/07/15/su-user-nopassword/" title="Linux su nopassword">
   <strong>上一篇：</strong><br/>
   <span>
-  gimp 倒影效果</span>
+  Linux su nopassword</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/09/14/use-gimp/"  title="gimp">
+<a href="/2017/06/11/win7centos7/"  title="win7上安装centos7双系统">
  <strong>下一篇：</strong><br/> 
- <span>gimp
+ <span>win7上安装centos7双系统
 </span>
 </a>
 </div>
@@ -235,7 +212,7 @@ Ctrl + d 复制需要制作的图片(一般都不直接编辑原图，都编辑�
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#GIMP_羽化"><span class="toc-number">1.</span> <span class="toc-text">GIMP 羽化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#step_by_step"><span class="toc-number">1.0.1.</span> <span class="toc-text">step by step</span></a></li></ol></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux_终端ls目录带有颜色"><span class="toc-number">1.</span> <span class="toc-text">Linux 终端ls目录带有颜色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实现"><span class="toc-number">2.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#说明"><span class="toc-number">3.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考连接"><span class="toc-number">4.</span> <span class="toc-text">参考连接</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step_by_step"><span class="toc-number"></span> <span class="toc-text">Step by step</span></a>
  
   </div>
 
