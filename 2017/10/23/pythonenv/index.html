@@ -4,49 +4,43 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Linux 目录颜色 | Mihenkii&#39;s tech blog</title>
+    <title>python 环境搭建 | Mihenkii&#39;s tech blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="mihenkii">
     
 
     
-    <meta name="description" content="Linux 终端ls目录带有颜色
-新装的Linux系统， 执行ls的时候默认没有颜色，不够美观
+    <meta name="description" content="准备
+pyenv : 管理多个Python版本， 是从rbevn(管理多个ruby版本)改造来的virtualenv: 管理工作空间的python环境， 可以让每个app的python环境相互隔离, 相当于给每个app都复制一份python
 
-实现ls增加 —color=auto 参数
-1echo &quot;alias ls=&apos;ls --color=auto&apos;&quot; &amp;gt;&amp;gt; ~/.bashrc
-—color=auto 这种方式会使部分文件显示带有色彩，但是仍然不够
-1echo &quot;LS_COLORS=$LS_COLORS:&apos;fi=00:di=0">
+安装
+pyenv 已经集成了 virtualenv， 所以不需要单独安装virtualenv了.
+
+安装pyenv比较简单
+1234567# 下载到本地:g">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux 目录颜色">
-<meta property="og:url" content="http://mihenkii.github.io/2017/06/11/dir-color/index.html">
+<meta property="og:title" content="python 环境搭建">
+<meta property="og:url" content="http://mihenkii.github.io/2017/10/23/pythonenv/index.html">
 <meta property="og:site_name" content="Mihenkii's tech blog">
-<meta property="og:description" content="Linux 终端ls目录带有颜色
-新装的Linux系统， 执行ls的时候默认没有颜色，不够美观
+<meta property="og:description" content="准备
+pyenv : 管理多个Python版本， 是从rbevn(管理多个ruby版本)改造来的virtualenv: 管理工作空间的python环境， 可以让每个app的python环境相互隔离, 相当于给每个app都复制一份python
 
-实现ls增加 —color=auto 参数
-1echo &quot;alias ls=&apos;ls --color=auto&apos;&quot; &amp;gt;&amp;gt; ~/.bashrc
-—color=auto 这种方式会使部分文件显示带有色彩，但是仍然不够
-1echo &quot;LS_COLORS=$LS_COLORS:&apos;fi=00:di=0">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_0.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_1.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_2.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_3.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_4.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_5.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_6.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_7.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_8.png">
+安装
+pyenv 已经集成了 virtualenv， 所以不需要单独安装virtualenv了.
+
+安装pyenv比较简单
+1234567# 下载到本地:g">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux 目录颜色">
-<meta name="twitter:description" content="Linux 终端ls目录带有颜色
-新装的Linux系统， 执行ls的时候默认没有颜色，不够美观
+<meta name="twitter:title" content="python 环境搭建">
+<meta name="twitter:description" content="准备
+pyenv : 管理多个Python版本， 是从rbevn(管理多个ruby版本)改造来的virtualenv: 管理工作空间的python环境， 可以让每个app的python环境相互隔离, 相当于给每个app都复制一份python
 
-实现ls增加 —color=auto 参数
-1echo &quot;alias ls=&apos;ls --color=auto&apos;&quot; &amp;gt;&amp;gt; ~/.bashrc
-—color=auto 这种方式会使部分文件显示带有色彩，但是仍然不够
-1echo &quot;LS_COLORS=$LS_COLORS:&apos;fi=00:di=0">
+安装
+pyenv 已经集成了 virtualenv， 所以不需要单独安装virtualenv了.
+
+安装pyenv比较简单
+1234567# 下载到本地:g">
 
     
     <link rel="alternative" href="/atom.xml" title="Mihenkii&#39;s tech blog" type="application/atom+xml">
@@ -106,14 +100,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/11/dir-color/" title="Linux 目录颜色" itemprop="url">Linux 目录颜色</a>
+      <a href="/2017/10/23/pythonenv/" title="python 环境搭建" itemprop="url">python 环境搭建</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-11T03:24:57.000Z" itemprop="datePublished"> 發表於 2017-06-11</time>
+    <time datetime="2017-10-23T15:04:57.000Z" itemprop="datePublished"> 發表於 2017-10-23</time>
     
   </p>
 </header>
@@ -122,39 +116,23 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux_终端ls目录带有颜色"><span class="toc-number">1.</span> <span class="toc-text">Linux 终端ls目录带有颜色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实现"><span class="toc-number">2.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#说明"><span class="toc-number">3.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考连接"><span class="toc-number">4.</span> <span class="toc-text">参考连接</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step_by_step"><span class="toc-number"></span> <span class="toc-text">Step by step</span></a>
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#准备"><span class="toc-number">1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#virtualenv"><span class="toc-number">3.</span> <span class="toc-text">virtualenv</span></a></li></ol>
 		
 		</div>
 		
-		<h4 id="Linux_终端ls目录带有颜色">Linux 终端ls目录带有颜色</h4><blockquote>
-<p>新装的Linux系统， 执行ls的时候默认没有颜色，不够美观</p>
+		<h4 id="准备">准备</h4><blockquote>
+<p>pyenv : 管理多个Python版本， 是从rbevn(管理多个ruby版本)改造来的<br>virtualenv: 管理工作空间的python环境， 可以让每个app的python环境相互隔离, 相当于给每个app都复制一份python</p>
 </blockquote>
-<h4 id="实现">实现</h4><p>ls增加 —color=auto 参数</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"alias ls='ls --color=auto'"</span> &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure>
-<p>—color=auto 这种方式会使部分文件显示带有色彩，但是仍然不够</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"LS_COLORS=<span class="variable">$LS_COLORS</span>:'fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.exe=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:*.md=00;32:'"</span> &gt;&gt; ~/.bashrc &amp;&amp; <span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
-<h4 id="说明">说明</h4><p>di=00;34:<br>[文件类型]=[字体];[颜色]:<br>详细可选参数列表<br>di = directory<br>fi = file<br>ln = symbolic link<br>pi = fifo file<br>so = socket file<br>bd = block (buffered) special file<br>cd = character (unbuffered) special file<br>or = symbolic link pointing to a non-existent file (orphan)<br>mi = non-existent file pointed to by a symbolic link (visible when you type ls -l)<br>ex = file which is executable (ie. has ‘x’ set in permissions).<br>0 = default colour<br>1 = bold<br>4 = underlined<br>5 = flashing text<br>7 = reverse field<br>31 = red<br>32 = green<br>33 = orange<br>34 = blue<br>35 = purple<br>36 = cyan<br>37 = grey<br>40 = black background<br>41 = red background<br>42 = green background<br>43 = orange background<br>44 = blue background<br>45 = purple background<br>46 = cyan background<br>47 = grey background<br>90 = dark grey<br>91 = light red<br>92 = light green<br>93 = yellow<br>94 = light blue<br>95 = light purple<br>96 = turquoise<br>100 = dark grey background<br>101 = light red background<br>102 = light green background<br>103 = yellow background<br>104 = light blue background<br>105 = light purple background<br>106 = turquoise background</p>
-<h4 id="参考连接">参考连接</h4><p><a href="https://askubuntu.com/questions/466198/how-do-i-change-the-color-for-directories-with-ls-in-the-console" target="_blank" rel="external">askubuntu</a></p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_0.png" alt="gimp文字倒影"></p>
-<p>本文用了相对简单易懂的方式实现了文字倒影。<br>还有一种方式是在“倒影”图像是用“橡皮”擦出倒影效果，这里不推荐。</p>
-<h2 id="Step_by_step">Step by step</h2><p>1 Ctrl + n  新建一个空白图形，设置合适的大小</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_1.png" alt="gimp 新建图像"></p>
-<p>2 选择文字工具， 写下自己想要设计的文字，并调整大小，个人喜欢用75的大小</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_2.png" alt="gimp文字工具"></p>
-<p>3 选中文字，设置文字颜色，并记住文字颜色(这个颜色后面会用到)</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_3.png" alt="gimp设置文字颜色"></p>
-<p>4 复制图层，用来做”倒影”</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_4.png" alt="复制图层"></p>
-<p>5 移动复制的图层到原图的正下方</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_5.png" alt="gimp移动工具"></p>
-<p>6 翻转图形， 并在此调整文字位置，移动翻转后的图形到原图的正下方</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_6.png" alt="gimp翻转图形"></p>
-<p>7 制作倒影, 如图：首先在倒影的图层上点击”锁定Alpha通道”, 然后点击”左侧黑色”, 设置颜色和文字一致。</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_7.png" alt="gimp混合工具"></p>
-<p>8 图像合并</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_8.png" alt="合并图像"></p>
-<p>参考连接：<br><a href="http://gimp-tutorials.net/node/236" target="_blank" rel="external">gimp-tutorials.net</a></p>
-<p><a href="http://gimp-tutorials.net/node/91" target="_blank" rel="external">gimp-tutorials.net</a></p>
+<h4 id="安装">安装</h4><blockquote>
+<p>pyenv 已经集成了 virtualenv， 所以不需要单独安装virtualenv了.</p>
+</blockquote>
+<p>安装pyenv比较简单</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载到本地:</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/pyenv/pyenv.git ~/.pyenv</span><br><span class="line"><span class="comment"># 设置环境变量</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'export PYENV_ROOT="$HOME/.pyenv"'</span> &gt;&gt; ~/.bash_profile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'export PATH="$PYENV_ROOT/bin:$PATH"'</span> &gt;&gt; ~/.bash_profile</span><br><span class="line"><span class="comment"># 加载环境变量</span></span><br><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pyenv install --list <span class="comment">#查看可安装python版本</span></span><br><span class="line">pyenv install <span class="number">2.7</span>.<span class="number">12</span></span><br><span class="line">pyenv <span class="built_in">local</span> <span class="number">2.7</span>.<span class="number">12</span> <span class="comment"># 将本地设置成2.7.12版本</span></span><br><span class="line">pyenv global <span class="number">2.7</span>.<span class="number">12</span> <span class="comment"># 将系统设置成2.7.12版本</span></span><br><span class="line">pyenv <span class="built_in">local</span> system <span class="comment"># 将本地设置成系统默认版本</span></span><br></pre></td></tr></table></figure>
+<p>卸载 pyenv</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf <span class="variable">$(</span>pyenv root)</span><br></pre></td></tr></table></figure>
+<h4 id="virtualenv">virtualenv</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pyenv virtualenv <span class="number">2.7</span>.<span class="number">12</span> VENV27 <span class="comment"># 将会在pyenv的version目录下新建一个VENV27的python环境</span></span><br><span class="line"></span><br><span class="line">pyenv activate VENV27 <span class="comment"># 使用VENV27环境</span></span><br><span class="line">pyenv deactivate VENV27 <span class="comment"># 退出VENV27环境</span></span><br></pre></td></tr></table></figure>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -163,7 +141,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/linux/">linux</a>
+  <span></span> <a href="/tags/pyenv-virtualenv/">pyenv virtualenv</a>
   </div>
 
 </div>
@@ -172,7 +150,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://mihenkii.github.io/2017/06/11/dir-color/" data-title="Linux 目录颜色 | Mihenkii&#39;s tech blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://mihenkii.github.io/2017/10/23/pythonenv/" data-title="python 环境搭建 | Mihenkii&#39;s tech blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -185,19 +163,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/07/15/su-user-nopassword/" title="Linux su nopassword">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Linux su nopassword</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/11/win7centos7/"  title="win7上安装centos7双系统">
+<a href="/2017/07/15/su-user-nopassword/"  title="Linux su nopassword">
  <strong>下一篇：</strong><br/> 
- <span>win7上安装centos7双系统
+ <span>Linux su nopassword
 </span>
 </a>
 </div>
@@ -212,7 +182,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux_终端ls目录带有颜色"><span class="toc-number">1.</span> <span class="toc-text">Linux 终端ls目录带有颜色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实现"><span class="toc-number">2.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#说明"><span class="toc-number">3.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考连接"><span class="toc-number">4.</span> <span class="toc-text">参考连接</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step_by_step"><span class="toc-number"></span> <span class="toc-text">Step by step</span></a>
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#准备"><span class="toc-number">1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#virtualenv"><span class="toc-number">3.</span> <span class="toc-text">virtualenv</span></a></li></ol>
  
   </div>
 
