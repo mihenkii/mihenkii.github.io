@@ -107,6 +107,10 @@
 <p>卸载 pyenv</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf <span class="variable">$(</span>pyenv root)</span><br></pre></td></tr></table></figure>
 <h4 id="virtualenv">virtualenv</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pyenv virtualenv <span class="number">2.7</span>.<span class="number">12</span> VENV27 <span class="comment"># 将会在pyenv的version目录下新建一个VENV27的python环境</span></span><br><span class="line"></span><br><span class="line">pyenv activate VENV27 <span class="comment"># 使用VENV27环境</span></span><br><span class="line">pyenv deactivate VENV27 <span class="comment"># 退出VENV27环境</span></span><br></pre></td></tr></table></figure>
+<h4 id="设置pip源">设置pip源</h4><blockquote>
+<p>国内访问pip默认源超时严重， 建议设置阿里或豆瓣的pip源</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.pip/pip.conf</span><br><span class="line">[global]</span><br><span class="line">    trusted-host =  mirrors.aliyun.com</span><br><span class="line">    index-url = http://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
 
         
         
