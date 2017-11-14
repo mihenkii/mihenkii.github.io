@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>python 环境搭建 | Mihenkii&#39;s tech blog</title>
+    <title>Docker配置 | Mihenkii&#39;s tech blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="mihenkii">
@@ -12,35 +12,23 @@
 
     
     <meta name="description" content="准备
-pyenv : 管理多个Python版本， 是从rbevn(管理多个ruby版本)改造来的virtualenv: 管理工作空间的python环境， 可以让每个app的python环境相互隔离, 相当于给每个app都复制一份python
+配置docker registry 加速docker
 
-安装
-pyenv 已经集成了 virtualenv， 所以不需要单独安装virtualenv了.
-
-安装pyenv比较简单
-1234567# 下载到本地:g">
+配置12345678910sudo vim /etc/docker/daemon.json&amp;#123;  &quot;registry-mirrors&quot;: [&quot;https://registry.docker-cn.com&quot;]&amp;#125;# 重启dockersudo systemctl restart docker# 查看镜像是否加载，我本机没有加">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python 环境搭建">
-<meta property="og:url" content="http://mihenkii.github.io/2017/10/23/pythonenv/index.html">
+<meta property="og:title" content="Docker配置">
+<meta property="og:url" content="http://mihenkii.github.io/2017/11/13/docker_config/index.html">
 <meta property="og:site_name" content="Mihenkii's tech blog">
 <meta property="og:description" content="准备
-pyenv : 管理多个Python版本， 是从rbevn(管理多个ruby版本)改造来的virtualenv: 管理工作空间的python环境， 可以让每个app的python环境相互隔离, 相当于给每个app都复制一份python
+配置docker registry 加速docker
 
-安装
-pyenv 已经集成了 virtualenv， 所以不需要单独安装virtualenv了.
-
-安装pyenv比较简单
-1234567# 下载到本地:g">
+配置12345678910sudo vim /etc/docker/daemon.json&amp;#123;  &quot;registry-mirrors&quot;: [&quot;https://registry.docker-cn.com&quot;]&amp;#125;# 重启dockersudo systemctl restart docker# 查看镜像是否加载，我本机没有加">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python 环境搭建">
+<meta name="twitter:title" content="Docker配置">
 <meta name="twitter:description" content="准备
-pyenv : 管理多个Python版本， 是从rbevn(管理多个ruby版本)改造来的virtualenv: 管理工作空间的python环境， 可以让每个app的python环境相互隔离, 相当于给每个app都复制一份python
+配置docker registry 加速docker
 
-安装
-pyenv 已经集成了 virtualenv， 所以不需要单独安装virtualenv了.
-
-安装pyenv比较简单
-1234567# 下载到本地:g">
+配置12345678910sudo vim /etc/docker/daemon.json&amp;#123;  &quot;registry-mirrors&quot;: [&quot;https://registry.docker-cn.com&quot;]&amp;#125;# 重启dockersudo systemctl restart docker# 查看镜像是否加载，我本机没有加">
 
     
     <link rel="alternative" href="/atom.xml" title="Mihenkii&#39;s tech blog" type="application/atom+xml">
@@ -100,14 +88,14 @@ pyenv 已经集成了 virtualenv， 所以不需要单独安装virtualenv了.
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/10/23/pythonenv/" title="python 环境搭建" itemprop="url">python 环境搭建</a>
+      <a href="/2017/11/13/docker_config/" title="Docker配置" itemprop="url">Docker配置</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
 		
   <p class="article-time">
-    <time datetime="2017-10-23T15:04:57.000Z" itemprop="datePublished"> 發表於 2017-10-23</time>
+    <time datetime="2017-11-13T14:04:57.000Z" itemprop="datePublished"> 發表於 2017-11-13</time>
     
   </p>
 </header>
@@ -116,27 +104,21 @@ pyenv 已经集成了 virtualenv， 所以不需要单独安装virtualenv了.
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#准备"><span class="toc-number">1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#virtualenv"><span class="toc-number">3.</span> <span class="toc-text">virtualenv</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置pip源"><span class="toc-number">4.</span> <span class="toc-text">设置pip源</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#准备"><span class="toc-number">1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置"><span class="toc-number">2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#拉取镜像"><span class="toc-number">3.</span> <span class="toc-text">拉取镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启动实例"><span class="toc-number">4.</span> <span class="toc-text">启动实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#退出实例"><span class="toc-number">5.</span> <span class="toc-text">退出实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#登录实例"><span class="toc-number">6.</span> <span class="toc-text">登录实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#制作镜像"><span class="toc-number">7.</span> <span class="toc-text">制作镜像</span></a></li></ol>
 		
 		</div>
 		
 		<h4 id="准备">准备</h4><blockquote>
-<p>pyenv : 管理多个Python版本， 是从rbevn(管理多个ruby版本)改造来的<br>virtualenv: 管理工作空间的python环境， 可以让每个app的python环境相互隔离, 相当于给每个app都复制一份python</p>
+<p>配置docker registry 加速docker</p>
 </blockquote>
-<h4 id="安装">安装</h4><blockquote>
-<p>pyenv 已经集成了 virtualenv， 所以不需要单独安装virtualenv了.</p>
-</blockquote>
-<p>安装pyenv比较简单</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载到本地:</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/pyenv/pyenv.git ~/.pyenv</span><br><span class="line"><span class="comment"># 设置环境变量</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'export PYENV_ROOT="$HOME/.pyenv"'</span> &gt;&gt; ~/.bash_profile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'export PATH="$PYENV_ROOT/bin:$PATH"'</span> &gt;&gt; ~/.bash_profile</span><br><span class="line"><span class="comment"># 加载环境变量</span></span><br><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br></pre></td></tr></table></figure>
-<p>使用</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pyenv install --list <span class="comment">#查看可安装python版本</span></span><br><span class="line">pyenv install <span class="number">2.7</span>.<span class="number">12</span></span><br><span class="line">pyenv <span class="built_in">local</span> <span class="number">2.7</span>.<span class="number">12</span> <span class="comment"># 将本地设置成2.7.12版本</span></span><br><span class="line">pyenv global <span class="number">2.7</span>.<span class="number">12</span> <span class="comment"># 将系统设置成2.7.12版本</span></span><br><span class="line">pyenv <span class="built_in">local</span> system <span class="comment"># 将本地设置成系统默认版本</span></span><br></pre></td></tr></table></figure>
-<p>卸载 pyenv</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf <span class="variable">$(</span>pyenv root)</span><br></pre></td></tr></table></figure>
-<h4 id="virtualenv">virtualenv</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pyenv virtualenv <span class="number">2.7</span>.<span class="number">12</span> VENV27 <span class="comment"># 将会在pyenv的version目录下新建一个VENV27的python环境</span></span><br><span class="line"></span><br><span class="line">pyenv activate VENV27 <span class="comment"># 使用VENV27环境</span></span><br><span class="line">pyenv deactivate VENV27 <span class="comment"># 退出VENV27环境</span></span><br></pre></td></tr></table></figure>
-<h4 id="设置pip源">设置pip源</h4><blockquote>
-<p>国内访问pip默认源超时严重， 建议设置阿里或豆瓣的pip源</p>
-</blockquote>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.pip/pip.conf</span><br><span class="line">[global]</span><br><span class="line">    trusted-host =  mirrors.aliyun.com</span><br><span class="line">    index-url = http://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
+<h4 id="配置">配置</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/docker/daemon.json</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"registry-mirrors"</span>: [<span class="string">"https://registry.docker-cn.com"</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启docker</span></span><br><span class="line">sudo systemctl restart docker</span><br><span class="line"><span class="comment"># 查看镜像是否加载，我本机没有加载成功</span></span><br><span class="line">sudo docker info</span><br></pre></td></tr></table></figure>
+<h4 id="拉取镜像">拉取镜像</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker pull ubuntu:<span class="number">14.04</span></span><br><span class="line">docker image ls <span class="comment"># 查看本地镜像</span></span><br></pre></td></tr></table></figure>
+<h4 id="启动实例">启动实例</h4><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="command">run</span> ubuntu:<span class="number">14.04</span> <span class="comment"># 如果本地没有这个image， 会从镜像仓库拉取并启动</span></span><br><span class="line">docker <span class="command">run</span> -<span class="keyword">it</span> ubuntu:<span class="number">14.04</span> /bin/bash  <span class="comment"># 启动并进入到实例</span></span><br></pre></td></tr></table></figure>
+<h4 id="退出实例">退出实例</h4><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入<span class="keyword">exit</span> 或者ctrl+<span class="keyword">d</span> 都会退出实例</span><br><span class="line">如果想退出且不停止实例， 使用ctrl+p+q组合键退出</span><br></pre></td></tr></table></figure>
+<h4 id="登录实例">登录实例</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker [container] <span class="built_in">exec</span> -it <span class="variable">$containerId</span> /bin/bash <span class="comment"># 新启动一个bash</span></span><br><span class="line">docker [container] attach <span class="variable">$containerId</span>  <span class="comment">#登录到旧的tty</span></span><br></pre></td></tr></table></figure>
+<h4 id="制作镜像">制作镜像</h4><p>新建一个目录，创建 Dockerfile</p>
+<p>docker build -t 镜像名 .<br>docker run -p4000:80 镜像名<br>docker tag 镜像名 用户名/repository:tag<br>docker login # 输入用户名不带邮箱后缀</p>
+<p>docker push 用户名/repository:tag</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -145,7 +127,7 @@ pyenv 已经集成了 virtualenv， 所以不需要单独安装virtualenv了.
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/pyenv-virtualenv/">pyenv virtualenv</a>
+  <span></span> <a href="/tags/docker-centos/">docker centos</a>
   </div>
 
 </div>
@@ -154,7 +136,7 @@ pyenv 已经集成了 virtualenv， 所以不需要单独安装virtualenv了.
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://mihenkii.github.io/2017/10/23/pythonenv/" data-title="python 环境搭建 | Mihenkii&#39;s tech blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://mihenkii.github.io/2017/11/13/docker_config/" data-title="Docker配置 | Mihenkii&#39;s tech blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -167,19 +149,11 @@ pyenv 已经集成了 virtualenv， 所以不需要单独安装virtualenv了.
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/11/13/docker_install/" title="Docker环境搭建">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Docker环境搭建</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/07/15/su-user-nopassword/"  title="Linux su nopassword">
+<a href="/2017/11/13/docker_install/"  title="Docker环境搭建">
  <strong>下一篇：</strong><br/> 
- <span>Linux su nopassword
+ <span>Docker环境搭建
 </span>
 </a>
 </div>
@@ -194,7 +168,7 @@ pyenv 已经集成了 virtualenv， 所以不需要单独安装virtualenv了.
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#准备"><span class="toc-number">1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#virtualenv"><span class="toc-number">3.</span> <span class="toc-text">virtualenv</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置pip源"><span class="toc-number">4.</span> <span class="toc-text">设置pip源</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#准备"><span class="toc-number">1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置"><span class="toc-number">2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#拉取镜像"><span class="toc-number">3.</span> <span class="toc-text">拉取镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启动实例"><span class="toc-number">4.</span> <span class="toc-text">启动实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#退出实例"><span class="toc-number">5.</span> <span class="toc-text">退出实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#登录实例"><span class="toc-number">6.</span> <span class="toc-text">登录实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#制作镜像"><span class="toc-number">7.</span> <span class="toc-text">制作镜像</span></a></li></ol>
  
   </div>
 
