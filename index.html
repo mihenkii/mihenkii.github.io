@@ -81,6 +81,70 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2018/07/28/linux_history/" title="linux history 添加时间" itemprop="url">linux history 添加时间</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2018-07-28T13:04:57.000Z" itemprop="datePublished"> 發表於 2018-07-28</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h4 id="背景">背景</h4><blockquote>
+<p>在Linux上执行history命令默认不现实命令执行时间，对于问题排查不是很友好.<br>通过设置，可以在history命令前面加上命令执行时间</p>
+</blockquote>
+<h4 id="安装">安装</h4><p>bash</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HISTTIMEFORMAT=%Y-%m-%d %H:%M:%S</span><br><span class="line">HISTSIZE=<span class="number">1000</span> <span class="comment"># 历史命令数量</span></span><br></pre></td></tr></table></figure>
+<p>zsh</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HIST_STAMPS=<span class="string">"%Y-%m-%d %H:%M:%S"</span></span><br><span class="line">HISTSIZE=<span class="number">50000</span></span><br></pre></td></tr></table></figure>
+<p>加载配置</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bash</span></span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br><span class="line"></span><br><span class="line"><span class="comment">#zsh</span></span><br><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+<h4 id="效果">效果</h4><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">history</span><br><span class="line"><span class="number">1</span>  <span class="number">2018</span>-<span class="number">07</span>-<span class="number">28</span> <span class="number">16</span>:<span class="number">36</span>:<span class="number">10</span>  <span class="built_in">cd</span> /opt/workspace</span><br><span class="line"><span class="number">2</span>  <span class="number">2018</span>-<span class="number">07</span>-<span class="number">28</span> <span class="number">16</span>:<span class="number">36</span>:<span class="number">20</span>  vim linux_history.<span class="built_in">md</span></span><br><span class="line"><span class="number">3</span>  <span class="number">2018</span>-<span class="number">07</span>-<span class="number">28</span> <span class="number">16</span>:<span class="number">36</span>:<span class="number">33</span>  env</span><br><span class="line"><span class="number">4</span>  <span class="number">2018</span>-<span class="number">07</span>-<span class="number">28</span> <span class="number">16</span>:<span class="number">36</span>:<span class="number">40</span>  vim linux_history.<span class="built_in">md</span></span><br><span class="line"><span class="number">5</span>  <span class="number">2018</span>-<span class="number">07</span>-<span class="number">28</span> <span class="number">16</span>:<span class="number">37</span>:<span class="number">52</span>  ls</span><br><span class="line"><span class="number">6</span>  <span class="number">2018</span>-<span class="number">07</span>-<span class="number">28</span> <span class="number">16</span>:<span class="number">37</span>:<span class="number">56</span>  hexo server</span><br><span class="line"><span class="number">7</span>  <span class="number">2018</span>-<span class="number">07</span>-<span class="number">28</span> <span class="number">16</span>:<span class="number">38</span>:<span class="number">19</span>  ls</span><br><span class="line"><span class="number">8</span>  <span class="number">2018</span>-<span class="number">07</span>-<span class="number">28</span> <span class="number">16</span>:<span class="number">38</span>:<span class="number">21</span>  vim linux_history.<span class="built_in">md</span></span><br></pre></td></tr></table></figure>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/linux-history-stamp/">linux history stamp</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2017/11/13/docker_config/" title="Docker配置" itemprop="url">Docker配置</a>
   </h1>
   <p class="article-author">By
@@ -716,85 +780,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/09/14/gimp-feather/" title="gimp 羽化" itemprop="url">gimp 羽化</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
-		
-  <p class="article-time">
-    <time datetime="2015-09-14T03:23:03.000Z" itemprop="datePublished"> 發表於 2015-09-14</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="GIMP_羽化">GIMP 羽化</h2><p>羽化，就是将图片的四周制作成模糊的效果，感觉更柔和，类似PPT淡出(fade out)效果</p>
-<h4 id="step_by_step">step by step</h4><ol>
-<li>Ctrl + o 打开需要制作的图片</li>
-</ol>
-<p><img src="" alt=""></p>
-<ol>
-<li>Ctrl + d 复制需要制作的图片(一般都不直接编辑原图，都编辑复制的)</li>
-</ol>
-<p><img src="" alt=""></p>
-<ol>
-<li>在工具箱，选择”矩形”工具, 然后在图片上选择想要实现效果的区域<br>注意： 双击鼠标才是选择了区域</li>
-</ol>
-<p><img src="" alt=""></p>
-<ol>
-<li>“选择” -&gt; “反转”</li>
-</ol>
-<p><img src="" alt=""></p>
-<ol>
-<li>“选择” -&gt; “羽化”</li>
-</ol>
-<p><img src="" alt=""></p>
-<ol>
-<li>删除其他区域</li>
-</ol>
-<p><img src="" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/gimp/">gimp</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -819,19 +804,11 @@
 			
 		
 			
-				<li><a href="/tags/linux/" title="linux">linux<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/docker-centos/" title="docker centos">docker centos<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/win7-centos7/" title="win7 centos7">win7 centos7<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/gimp-GIMP-教程/" title="gimp GIMP 教程">gimp GIMP 教程<sup>1</sup></a></li>
+				<li><a href="/tags/linux/" title="linux">linux<sup>2</sup></a></li>
 			
 		
 			
@@ -839,7 +816,11 @@
 			
 		
 			
-				<li><a href="/tags/hexo-posts-pages/" title="hexo posts pages">hexo posts pages<sup>1</sup></a></li>
+				<li><a href="/tags/linux-history-stamp/" title="linux history stamp">linux history stamp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gimp-GIMP-教程/" title="gimp GIMP 教程">gimp GIMP 教程<sup>1</sup></a></li>
 			
 		
 			
@@ -851,7 +832,15 @@
 			
 		
 			
+				<li><a href="/tags/win7-centos7/" title="win7 centos7">win7 centos7<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/favicon/" title="favicon">favicon<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo-posts-pages/" title="hexo posts pages">hexo posts pages<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -916,7 +905,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
 		
 		<a href="http://mihenkii.github.io/about" target="_blank" title="mihenkii">mihenkii</a>
 		

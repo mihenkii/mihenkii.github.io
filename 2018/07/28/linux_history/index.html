@@ -4,31 +4,46 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Docker配置 | Mihenkii&#39;s tech blog</title>
+    <title>linux history 添加时间 | Mihenkii&#39;s tech blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="mihenkii">
     
 
     
-    <meta name="description" content="准备
-配置docker registry 加速docker
+    <meta name="description" content="背景
+在Linux上执行history命令默认不现实命令执行时间，对于问题排查不是很友好.通过设置，可以在history命令前面加上命令执行时间
 
-配置12345678910sudo vim /etc/docker/daemon.json&amp;#123;  &quot;registry-mirrors&quot;: [&quot;https://registry.docker-cn.com&quot;]&amp;#125;# 重启dockersudo systemctl restart docker# 查看镜像是否加载，我本机没有加">
+安装bash
+12HISTTIMEFORMAT=%Y-%m-%d %H:%M:%SHISTSIZE=1000 # 历史命令数量
+zsh
+12HIST_STAMPS=&quot;%Y-%m-%d %H:%M:%S&quot;HISTSIZE=50000
+加载配置
+12345">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker配置">
-<meta property="og:url" content="http://mihenkii.github.io/2017/11/13/docker_config/index.html">
+<meta property="og:title" content="linux history 添加时间">
+<meta property="og:url" content="http://mihenkii.github.io/2018/07/28/linux_history/index.html">
 <meta property="og:site_name" content="Mihenkii's tech blog">
-<meta property="og:description" content="准备
-配置docker registry 加速docker
+<meta property="og:description" content="背景
+在Linux上执行history命令默认不现实命令执行时间，对于问题排查不是很友好.通过设置，可以在history命令前面加上命令执行时间
 
-配置12345678910sudo vim /etc/docker/daemon.json&amp;#123;  &quot;registry-mirrors&quot;: [&quot;https://registry.docker-cn.com&quot;]&amp;#125;# 重启dockersudo systemctl restart docker# 查看镜像是否加载，我本机没有加">
+安装bash
+12HISTTIMEFORMAT=%Y-%m-%d %H:%M:%SHISTSIZE=1000 # 历史命令数量
+zsh
+12HIST_STAMPS=&quot;%Y-%m-%d %H:%M:%S&quot;HISTSIZE=50000
+加载配置
+12345">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker配置">
-<meta name="twitter:description" content="准备
-配置docker registry 加速docker
+<meta name="twitter:title" content="linux history 添加时间">
+<meta name="twitter:description" content="背景
+在Linux上执行history命令默认不现实命令执行时间，对于问题排查不是很友好.通过设置，可以在history命令前面加上命令执行时间
 
-配置12345678910sudo vim /etc/docker/daemon.json&amp;#123;  &quot;registry-mirrors&quot;: [&quot;https://registry.docker-cn.com&quot;]&amp;#125;# 重启dockersudo systemctl restart docker# 查看镜像是否加载，我本机没有加">
+安装bash
+12HISTTIMEFORMAT=%Y-%m-%d %H:%M:%SHISTSIZE=1000 # 历史命令数量
+zsh
+12HIST_STAMPS=&quot;%Y-%m-%d %H:%M:%S&quot;HISTSIZE=50000
+加载配置
+12345">
 
     
     <link rel="alternative" href="/atom.xml" title="Mihenkii&#39;s tech blog" type="application/atom+xml">
@@ -88,14 +103,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/11/13/docker_config/" title="Docker配置" itemprop="url">Docker配置</a>
+      <a href="/2018/07/28/linux_history/" title="linux history 添加时间" itemprop="url">linux history 添加时间</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
 		
   <p class="article-time">
-    <time datetime="2017-11-13T14:04:57.000Z" itemprop="datePublished"> 發表於 2017-11-13</time>
+    <time datetime="2018-07-28T13:04:57.000Z" itemprop="datePublished"> 發表於 2018-07-28</time>
     
   </p>
 </header>
@@ -104,21 +119,20 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#准备"><span class="toc-number">1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置"><span class="toc-number">2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#拉取镜像"><span class="toc-number">3.</span> <span class="toc-text">拉取镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启动实例"><span class="toc-number">4.</span> <span class="toc-text">启动实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#退出实例"><span class="toc-number">5.</span> <span class="toc-text">退出实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#登录实例"><span class="toc-number">6.</span> <span class="toc-text">登录实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#制作镜像"><span class="toc-number">7.</span> <span class="toc-text">制作镜像</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#效果"><span class="toc-number">3.</span> <span class="toc-text">效果</span></a></li></ol>
 		
 		</div>
 		
-		<h4 id="准备">准备</h4><blockquote>
-<p>配置docker registry 加速docker</p>
+		<h4 id="背景">背景</h4><blockquote>
+<p>在Linux上执行history命令默认不现实命令执行时间，对于问题排查不是很友好.<br>通过设置，可以在history命令前面加上命令执行时间</p>
 </blockquote>
-<h4 id="配置">配置</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/docker/daemon.json</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"registry-mirrors"</span>: [<span class="string">"https://registry.docker-cn.com"</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启docker</span></span><br><span class="line">sudo systemctl restart docker</span><br><span class="line"><span class="comment"># 查看镜像是否加载，我本机没有加载成功</span></span><br><span class="line">sudo docker info</span><br></pre></td></tr></table></figure>
-<h4 id="拉取镜像">拉取镜像</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker pull ubuntu:<span class="number">14.04</span></span><br><span class="line">docker image ls <span class="comment"># 查看本地镜像</span></span><br></pre></td></tr></table></figure>
-<h4 id="启动实例">启动实例</h4><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="command">run</span> ubuntu:<span class="number">14.04</span> <span class="comment"># 如果本地没有这个image， 会从镜像仓库拉取并启动</span></span><br><span class="line">docker <span class="command">run</span> -<span class="keyword">it</span> ubuntu:<span class="number">14.04</span> /bin/bash  <span class="comment"># 启动并进入到实例</span></span><br></pre></td></tr></table></figure>
-<h4 id="退出实例">退出实例</h4><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入<span class="keyword">exit</span> 或者ctrl+<span class="keyword">d</span> 都会退出实例</span><br><span class="line">如果想退出且不停止实例， 使用ctrl+p+q组合键退出</span><br></pre></td></tr></table></figure>
-<h4 id="登录实例">登录实例</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker [container] <span class="built_in">exec</span> -it <span class="variable">$containerId</span> /bin/bash <span class="comment"># 新启动一个bash</span></span><br><span class="line">docker [container] attach <span class="variable">$containerId</span>  <span class="comment">#登录到旧的tty</span></span><br></pre></td></tr></table></figure>
-<h4 id="制作镜像">制作镜像</h4><p>新建一个目录，创建 Dockerfile</p>
-<p>docker build -t 镜像名 .<br>docker run -p4000:80 镜像名<br>docker tag 镜像名 用户名/repository:tag<br>docker login # 输入用户名不带邮箱后缀</p>
-<p>docker push 用户名/repository:tag</p>
+<h4 id="安装">安装</h4><p>bash</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HISTTIMEFORMAT=%Y-%m-%d %H:%M:%S</span><br><span class="line">HISTSIZE=<span class="number">1000</span> <span class="comment"># 历史命令数量</span></span><br></pre></td></tr></table></figure>
+<p>zsh</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HIST_STAMPS=<span class="string">"%Y-%m-%d %H:%M:%S"</span></span><br><span class="line">HISTSIZE=<span class="number">50000</span></span><br></pre></td></tr></table></figure>
+<p>加载配置</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bash</span></span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br><span class="line"></span><br><span class="line"><span class="comment">#zsh</span></span><br><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+<h4 id="效果">效果</h4><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">history</span><br><span class="line"><span class="number">1</span>  <span class="number">2018</span>-<span class="number">07</span>-<span class="number">28</span> <span class="number">16</span>:<span class="number">36</span>:<span class="number">10</span>  <span class="built_in">cd</span> /opt/workspace</span><br><span class="line"><span class="number">2</span>  <span class="number">2018</span>-<span class="number">07</span>-<span class="number">28</span> <span class="number">16</span>:<span class="number">36</span>:<span class="number">20</span>  vim linux_history.<span class="built_in">md</span></span><br><span class="line"><span class="number">3</span>  <span class="number">2018</span>-<span class="number">07</span>-<span class="number">28</span> <span class="number">16</span>:<span class="number">36</span>:<span class="number">33</span>  env</span><br><span class="line"><span class="number">4</span>  <span class="number">2018</span>-<span class="number">07</span>-<span class="number">28</span> <span class="number">16</span>:<span class="number">36</span>:<span class="number">40</span>  vim linux_history.<span class="built_in">md</span></span><br><span class="line"><span class="number">5</span>  <span class="number">2018</span>-<span class="number">07</span>-<span class="number">28</span> <span class="number">16</span>:<span class="number">37</span>:<span class="number">52</span>  ls</span><br><span class="line"><span class="number">6</span>  <span class="number">2018</span>-<span class="number">07</span>-<span class="number">28</span> <span class="number">16</span>:<span class="number">37</span>:<span class="number">56</span>  hexo server</span><br><span class="line"><span class="number">7</span>  <span class="number">2018</span>-<span class="number">07</span>-<span class="number">28</span> <span class="number">16</span>:<span class="number">38</span>:<span class="number">19</span>  ls</span><br><span class="line"><span class="number">8</span>  <span class="number">2018</span>-<span class="number">07</span>-<span class="number">28</span> <span class="number">16</span>:<span class="number">38</span>:<span class="number">21</span>  vim linux_history.<span class="built_in">md</span></span><br></pre></td></tr></table></figure>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -127,7 +141,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/docker-centos/">docker centos</a>
+  <span></span> <a href="/tags/linux-history-stamp/">linux history stamp</a>
   </div>
 
 </div>
@@ -136,7 +150,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://mihenkii.github.io/2017/11/13/docker_config/" data-title="Docker配置 | Mihenkii&#39;s tech blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://mihenkii.github.io/2018/07/28/linux_history/" data-title="linux history 添加时间 | Mihenkii&#39;s tech blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -149,19 +163,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2018/07/28/linux_history/" title="linux history 添加时间">
-  <strong>上一篇：</strong><br/>
-  <span>
-  linux history 添加时间</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/11/13/docker_install/"  title="Docker环境搭建">
+<a href="/2017/11/13/docker_config/"  title="Docker配置">
  <strong>下一篇：</strong><br/> 
- <span>Docker环境搭建
+ <span>Docker配置
 </span>
 </a>
 </div>
@@ -176,7 +182,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#准备"><span class="toc-number">1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置"><span class="toc-number">2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#拉取镜像"><span class="toc-number">3.</span> <span class="toc-text">拉取镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启动实例"><span class="toc-number">4.</span> <span class="toc-text">启动实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#退出实例"><span class="toc-number">5.</span> <span class="toc-text">退出实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#登录实例"><span class="toc-number">6.</span> <span class="toc-text">登录实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#制作镜像"><span class="toc-number">7.</span> <span class="toc-text">制作镜像</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#效果"><span class="toc-number">3.</span> <span class="toc-text">效果</span></a></li></ol>
  
   </div>
 
