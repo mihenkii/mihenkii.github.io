@@ -4,37 +4,34 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hello World | Mihenkii&#39;s tech blog</title>
+    <title>bashrc vs bash_profile | Mihenkii&#39;s tech blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="mihenkii">
     
 
     
-    <meta name="description" content="every progrommer had his “Hello World !” in mind, as list bellow, mine 
+    <meta name="description" content="背景
+使用Linux安装软件，有时候需要设置环境变量，有的文档建议设置在.bashrc里， 有的建议.bash_profile里一般都能生效，那么区别是什么呢？
 
-bash 
-12#!/bin/bash    echo &quot;Hello World!&quot;
-java 
-12345public class HelloWorld &amp;#123;    public static void main(String[] args)">
+介绍
+.bash_profile is executed for login shells, while .bashrc is executed for interactive non-login shells.bash_profile">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://mihenkii.github.io/2015/06/16/hello-world/index.html">
+<meta property="og:title" content="bashrc vs bash_profile">
+<meta property="og:url" content="http://mihenkii.github.io/2018/07/29/bashrc_vs_bash_profile/index.html">
 <meta property="og:site_name" content="Mihenkii's tech blog">
-<meta property="og:description" content="every progrommer had his “Hello World !” in mind, as list bellow, mine 
+<meta property="og:description" content="背景
+使用Linux安装软件，有时候需要设置环境变量，有的文档建议设置在.bashrc里， 有的建议.bash_profile里一般都能生效，那么区别是什么呢？
 
-bash 
-12#!/bin/bash    echo &quot;Hello World!&quot;
-java 
-12345public class HelloWorld &amp;#123;    public static void main(String[] args)">
+介绍
+.bash_profile is executed for login shells, while .bashrc is executed for interactive non-login shells.bash_profile">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="every progrommer had his “Hello World !” in mind, as list bellow, mine 
+<meta name="twitter:title" content="bashrc vs bash_profile">
+<meta name="twitter:description" content="背景
+使用Linux安装软件，有时候需要设置环境变量，有的文档建议设置在.bashrc里， 有的建议.bash_profile里一般都能生效，那么区别是什么呢？
 
-bash 
-12#!/bin/bash    echo &quot;Hello World!&quot;
-java 
-12345public class HelloWorld &amp;#123;    public static void main(String[] args)">
+介绍
+.bash_profile is executed for login shells, while .bashrc is executed for interactive non-login shells.bash_profile">
 
     
     <link rel="alternative" href="/atom.xml" title="Mihenkii&#39;s tech blog" type="application/atom+xml">
@@ -94,14 +91,14 @@ java
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/06/16/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/2018/07/29/bashrc_vs_bash_profile/" title="bashrc vs bash_profile" itemprop="url">bashrc vs bash_profile</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://mihenkii.github.io/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
 		
   <p class="article-time">
-    <time datetime="2015-06-15T19:46:38.000Z" itemprop="datePublished"> 發表於 2015-06-16</time>
+    <time datetime="2018-07-29T13:04:57.000Z" itemprop="datePublished"> 發表於 2018-07-29</time>
     
   </p>
 </header>
@@ -110,30 +107,21 @@ java
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#介绍"><span class="toc-number">2.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是(非)登录试shell"><span class="toc-number">3.</span> <span class="toc-text">什么是(非)登录试shell</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么会有这两个文件"><span class="toc-number">4.</span> <span class="toc-text">为什么会有这两个文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推荐做法"><span class="toc-number">5.</span> <span class="toc-text">推荐做法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考连接"><span class="toc-number">6.</span> <span class="toc-text">参考连接</span></a></li></ol>
 		
 		</div>
 		
-		<blockquote>
-<p>every progrommer had his “Hello World !” in mind, as list bellow, mine </p>
+		<h4 id="背景">背景</h4><blockquote>
+<p>使用Linux安装软件，有时候需要设置环境变量，有的文档建议设置在.bashrc里， 有的建议.bash_profile里<br>一般都能生效，那么区别是什么呢？</p>
 </blockquote>
-<p>bash </p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"Hello World!"</span></span><br></pre></td></tr></table></figure>
-<p>java </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	System.out.println(<span class="string">"Hello World!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>C </p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello World"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>python </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"Hello World"</span></span><br></pre></td></tr></table></figure>
-<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<h4 id="介绍">介绍</h4><blockquote>
+<p>.bash_profile is executed for login shells, while .bashrc is executed for interactive non-login shells.<br>bash_profile: 登录试shell执行<br>bashrc: 非登录式shell执行</p>
+</blockquote>
+<h4 id="什么是(非)登录试shell">什么是(非)登录试shell</h4><p>登录试： 当你敲入用户名和密码登录的终端， 或通过ssh登录机器. .bash_profile会被调用<br>非登录: 当你已经登录了机器，在桌面环境打开终端， 或者在终端里面调用了/bin/bash, 此时.bashrc会被调用</p>
+<h4 id="为什么会有这两个文件">为什么会有这两个文件</h4><p>比如，你希望第一次登录机器的时候，想看到机器的负载， 那么把uptime命令写到.bash_profile里面就可以了.<br>如果写到.bashrc里面， 你每次打开终端， 都会看到机器负载。</p>
+<h4 id="推荐做法">推荐做法</h4><p>当你设置PATH环境变量的时候， 把变量写到.bashrc<br>在.bash_profile里面加载.bashrc</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="operator">-f</span> ~/.bashrc ]; <span class="keyword">then</span></span><br><span class="line">   <span class="built_in">source</span> ~/.bashrc</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<h4 id="参考连接">参考连接</h4><p><a href="http://www.joshstaiger.org/archives/2005/07/bash_profile_vs.html" target="_blank" rel="external">bash_profile_vs</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -142,7 +130,7 @@ java
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/bash-java-c-python-Hello-World/">bash java c python Hello World</a>
+  <span></span> <a href="/tags/bashrc-bash-profile/">bashrc bash_profile</a>
   </div>
 
 </div>
@@ -151,7 +139,7 @@ java
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://mihenkii.github.io/2015/06/16/hello-world/" data-title="Hello World | Mihenkii&#39;s tech blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://mihenkii.github.io/2018/07/29/bashrc_vs_bash_profile/" data-title="bashrc vs bash_profile | Mihenkii&#39;s tech blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -164,19 +152,11 @@ java
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/09/14/use-gimp/" title="gimp">
-  <strong>上一篇：</strong><br/>
-  <span>
-  gimp</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/06/15/how-to-use-hexo/"  title="使用hexo创建静态blog">
+<a href="/2018/07/28/linux_history/"  title="linux history 添加时间">
  <strong>下一篇：</strong><br/> 
- <span>使用hexo创建静态blog
+ <span>linux history 添加时间
 </span>
 </a>
 </div>
@@ -191,7 +171,7 @@ java
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#介绍"><span class="toc-number">2.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是(非)登录试shell"><span class="toc-number">3.</span> <span class="toc-text">什么是(非)登录试shell</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么会有这两个文件"><span class="toc-number">4.</span> <span class="toc-text">为什么会有这两个文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推荐做法"><span class="toc-number">5.</span> <span class="toc-text">推荐做法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考连接"><span class="toc-number">6.</span> <span class="toc-text">参考连接</span></a></li></ol>
  
   </div>
 
