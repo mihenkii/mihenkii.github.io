@@ -1,0 +1,952 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh_CN.UTF-8">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Mihenkii&#39;s tech blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="mihenkii">
+    
+
+    
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Mihenkii&#39;s tech blog">
+<meta property="og:url" content="http://mihenkii.github.io/page/2/index.html">
+<meta property="og:site_name" content="Mihenkii&#39;s tech blog">
+<meta property="og:locale">
+<meta property="article:author" content="mihenkii">
+<meta name="twitter:card" content="summary">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Mihenkii&#39;s tech blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Mihenkii&#39;s tech blog" title="Mihenkii&#39;s tech blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Mihenkii&#39;s tech blog">Mihenkii&#39;s tech blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:mihenkii.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/06/11/win7centos7/" title="win7上安装centos7双系统" itemprop="url">win7上安装centos7双系统</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2017-06-11T03:04:57.000Z" itemprop="datePublished"> Published 2017-06-11</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <blockquote>
+<p>09年的笔记本电脑，CPU: 奔腾T4200不支持vt-x, 无法在Virtual Box中安装64位Centos系统</p>
+</blockquote>
+<h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><ol>
+<li>8G U盘</li>
+<li>UltraISO 用来制作启动盘</li>
+<li>CentOS.iso</li>
+<li>分区助手(其实没有真正用到)</li>
+</ol>
+<h4 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h4><ol>
+<li>清理一块硬盘分区来安装系统</li>
+<li>1 [计算机]-右键[管理]-[磁盘管理]-[删除卷]. 这个删除的卷，就是准备安装Centos的位置</li>
+<li>制作U盘系统盘</li>
+<li>1 将CentOS镜像下载到本地, 我选择的是：CentOS-7-x86_64-DVD-1611.iso</li>
+<li>2 将U盘插到电脑，打开UltraISO, 打开下载的ISO文件, 然后选择[启动] - [写入硬盘映像] 写入方式选择[USB-HDD+]</li>
+<li>3 等待10分钟左右系统盘制作完成</li>
+<li>安装系统</li>
+<li>1 开启按F2, 进入Bios页面, boot选择从usb启动, 如果运气好，就可以直接安装系统</li>
+</ol>
+<h4 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h4><ol>
+<li>centos7 failed to start switch root</li>
+</ol>
+<p>安装系统遇到上面的错误很常见, 网上给出的解决办法：<br>将 vmlinuz initrd=initrd.img inst.stage2=hd:LABEL=CentOS\x207\x20x86_64 quiet<br>改为 vmlinuz initrd=initrd.img inst.stage2=hd:/dev/sdb4 quiet</p>
+<blockquote>
+<p>/dev/sdb4代表你的U盘(有的文章说是准备安装系统的盘，描述不准确)<br>Note 引用RedHat官网介绍<br>By default, the inst.stage2= boot option is used on the installation media and set to a specific label (for example, inst.stage2=hd:LABEL=RHEL7\x20Server.x86_64). If you modify the default label of the file system containing the runtime image, or if using a customized procedure to boot the installation system, you must ensure this option is set to the correct value.</p>
+</blockquote>
+<p>如果不确定U盘到底是/dev/sdxx, 可以用另一种解决方法：<br>inst.stage2=hd:LABEL=分区卷标(注意LABEL这单词不能删除掉)<br>通过上面提到的分区助手可以修改[分区卷标], 打开软件，在U盘上[右键]-[设置卷标]即可</p>
+<p>我用的命令是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vmlinuz initrd=initrd.img inst.stage2=hd:LABEL=CentOS7 quiet   # 区分大小写</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="设置grub2"><a href="#设置grub2" class="headerlink" title="设置grub2"></a>设置grub2</h4><p>在centos的/boot/grub2/grub.cfg</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">menuentry <span class="string">&quot;Windows 7&quot;</span> &#123;   <span class="built_in">set</span> root=<span class="string">&#x27;(hd0,1)&#x27;</span></span><br><span class="line">   chainloader +1&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a target="_blank" rel="noopener" href="http://www.osyunwei.com/archives/7829.html">http://www.osyunwei.com/archives/7829.html</a><br><a target="_blank" rel="noopener" href="http://blog.csdn.net/txl199106/article/details/41344399">http://blog.csdn.net/txl199106/article/details/41344399</a><br><a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/chap-anaconda-boot-options.html#list-boot-options-sources">redhat</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/win7-centos7/">win7 centos7</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/02/favicon/" title="favicon" itemprop="url">favicon</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-02T03:33:32.000Z" itemprop="datePublished"> Published 2015-10-02</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="本文介绍如何使用gimp制作favcion"><a href="#本文介绍如何使用gimp制作favcion" class="headerlink" title="本文介绍如何使用gimp制作favcion"></a>本文介绍如何使用gimp制作favcion</h2><p>1, 选取素材, 在网上随便找一个截图</p>
+<p>2, 通过”剪刀”工具将所需的部分剪切出来， 并复制到一个透明的面板上</p>
+<p>2, 点击”图像” -&gt; “scale image” :将素材制作成多种大小的，比如：128x128 64x64 32x32 24x4 16x16<br>   我这里只是网站需要，就做成了32x32  24x24 16x16 三种大小的</p>
+<p>3,打开32*32的图像，然后通过”Open as Layers”的方式同时打开另外两个图片， 从大到小排列</p>
+<p>4, export as 选择ico格式， 上传都网站即可</p>
+<p>参考<a target="_blank" rel="noopener" href="http://thenewcode.com/467/Creating-Multi-Resolution-Favicons-For-Web-Pages-With-GIMP">Creating Multi-Resolution Favicons For Web Pages With GIMP</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/favicon/">favicon</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/28/gimp-golden-font/" title="gimp土豪金字体" itemprop="url">gimp土豪金字体</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-28T03:03:13.000Z" itemprop="datePublished"> Published 2015-09-28</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="gimp制作土豪金字体图像"><a href="#gimp制作土豪金字体图像" class="headerlink" title="gimp制作土豪金字体图像"></a>gimp制作土豪金字体图像</h2><p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_0.png" alt="效果图"></p>
+<p>在网上看到有人用PS做了漂亮的土豪金字体，决定用gimp也实现一个</p>
+<blockquote>
+<p>实现土豪金字体有两个点:<br>1, 制作出金色的渐变工具<br>2, 字体加上特效</p>
+</blockquote>
+<h4 id="Step-by-step"><a href="#Step-by-step" class="headerlink" title="Step by step"></a>Step by step</h4><p>1 Ctrl + o 打开模板, 通过“颜色拾取”工具选择实例图片中的颜色</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_2.png" alt="选择颜色"><br><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_3.png" alt="选择颜色2"></p>
+<p>2 记住这个颜色， 用作渐变的最左端点颜色</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_4.png" alt="新建渐变"><br><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_5.png" alt="编辑渐变"><br><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_6.png" alt="设置渐变颜色"></p>
+<p>3 用同样的方式选择示例中的深一点的金色，用到渐变的右端点颜色</p>
+<p>4 将新建的渐变规则命名“golden”</p>
+<p>5 选择文字工具写下文字，并设置大小</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_1.png" alt="编辑文字"></p>
+<p>6 使用“混合”工具, 并选择我们已经制作的“golden”规则， 设置合适的渐变， 此时图像基本可以用了</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_7.png" alt="设置土豪金渐变"></p>
+<p>7 最后给文字制作个投影或者其他效果</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_8.png" alt="投影特效"><br><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_9.png" alt="设置投影参数"> </p>
+<p>8 效果图</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_10.png" alt="效果"></p>
+<p>参考文档：<br><a target="_blank" rel="noopener" href="http://www.gimpology.com/submission/view/gold_text_effect/">http://www.gimpology.com/submission/view/gold_text_effect/</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/gimp/">gimp</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/27/gimp-reflection/" title="gimp 倒影效果" itemprop="url">gimp 倒影效果</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-27T03:24:57.000Z" itemprop="datePublished"> Published 2015-09-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="gimp-实现倒影效果"><a href="#gimp-实现倒影效果" class="headerlink" title="gimp 实现倒影效果"></a>gimp 实现倒影效果</h2><p>最终效果如下：</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_0.png" alt="gimp文字倒影"></p>
+<p>本文用了相对简单易懂的方式实现了文字倒影。<br>还有一种方式是在“倒影”图像是用“橡皮”擦出倒影效果，这里不推荐。</p>
+<h2 id="Step-by-step"><a href="#Step-by-step" class="headerlink" title="Step by step"></a>Step by step</h2><p>1 Ctrl + n  新建一个空白图形，设置合适的大小</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_1.png" alt="gimp 新建图像"></p>
+<p>2 选择文字工具， 写下自己想要设计的文字，并调整大小，个人喜欢用75的大小</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_2.png" alt="gimp文字工具"></p>
+<p>3 选中文字，设置文字颜色，并记住文字颜色(这个颜色后面会用到)</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_3.png" alt="gimp设置文字颜色"></p>
+<p>4 复制图层，用来做”倒影”</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_4.png" alt="复制图层"></p>
+<p>5 移动复制的图层到原图的正下方</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_5.png" alt="gimp移动工具"></p>
+<p>6 翻转图形， 并在此调整文字位置，移动翻转后的图形到原图的正下方</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_6.png" alt="gimp翻转图形"></p>
+<p>7 制作倒影, 如图：首先在倒影的图层上点击”锁定Alpha通道”, 然后点击”左侧黑色”, 设置颜色和文字一致。</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_7.png" alt="gimp混合工具"></p>
+<p>8 图像合并</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_8.png" alt="合并图像"></p>
+<p>参考连接：<br><a target="_blank" rel="noopener" href="http://gimp-tutorials.net/node/236">gimp-tutorials.net</a></p>
+<p><a target="_blank" rel="noopener" href="http://gimp-tutorials.net/node/91">gimp-tutorials.net</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/gimp/">gimp</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/14/gimp-feather/" title="gimp 羽化" itemprop="url">gimp 羽化</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-14T03:23:03.000Z" itemprop="datePublished"> Published 2015-09-14</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="GIMP-羽化"><a href="#GIMP-羽化" class="headerlink" title="GIMP 羽化"></a>GIMP 羽化</h2><p>羽化，就是将图片的四周制作成模糊的效果，感觉更柔和，类似PPT淡出(fade out)效果</p>
+<h4 id="step-by-step"><a href="#step-by-step" class="headerlink" title="step by step"></a>step by step</h4><ol>
+<li>Ctrl + o 打开需要制作的图片</li>
+</ol>
+<p><img src=""></p>
+<ol start="2">
+<li>Ctrl + d 复制需要制作的图片(一般都不直接编辑原图，都编辑复制的)</li>
+</ol>
+<p><img src=""></p>
+<ol start="3">
+<li>在工具箱，选择”矩形”工具, 然后在图片上选择想要实现效果的区域<br>注意： 双击鼠标才是选择了区域</li>
+</ol>
+<p><img src=""></p>
+<ol start="4">
+<li>“选择” -&gt; “反转”</li>
+</ol>
+<p><img src=""></p>
+<ol start="5">
+<li>“选择” -&gt; “羽化”</li>
+</ol>
+<p><img src=""></p>
+<ol start="6">
+<li>删除其他区域</li>
+</ol>
+<p><img src=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/gimp/">gimp</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/14/use-gimp/" title="gimp" itemprop="url">gimp</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-14T02:10:48.000Z" itemprop="datePublished"> Published 2015-09-14</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="开始使用-GIMP"><a href="#开始使用-GIMP" class="headerlink" title="开始使用 GIMP"></a>开始使用 <a target="_blank" rel="noopener" href="http://www.gimp.org/">GIMP</a></h2><p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_logo.png" alt="gimp-logo"><br>  gimp是一个款开源、免费的跨平台图像制作工具，和photoshop类似。<br>功能比PS要弱一些，不过那些功能， 对于非专业作图的人来说，应该不会接触到。<br>我只是想用GIMP做网站logo，和简单的图片处理. 目前就没有其他需求了.</p>
+<blockquote>
+<p>20%的功能，可以完成80%的任务</p>
+</blockquote>
+<p>gimp 对我来说功能足够，而且也是我一直以来都非常想学会的软件。<br>而且， 可以肯定，这货肯定不如VIM那么困难。<br>所以，初步定下的学习路线是，所有简单的作图需求，暂时都用这货来搞，<br>用一段时间，肯定就会熟悉.<br>  我也确实这样做的.</p>
+<p>GIMP目前中文教程太少, 2.8的文档就更少了. 而且很多文档都太陈旧，<br>感觉根本就是直接翻译的，或者是copy过来的， 没有经过实践.  我嚓.<br>比如：gimp 羽化处理. 这个找了好长时间才找到如何来实现.</p>
+<p>我会把学到的，用到的技能，都做成图文教程，定期发布到这里。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/gimp-GIMP-教程/">gimp GIMP 教程</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/06/15/how-to-use-hexo/" title="使用hexo创建静态blog" itemprop="url">使用hexo创建静态blog</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2015-06-15T12:44:07.000Z" itemprop="datePublished"> Published 2015-06-15</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="使用hexo创建blog"><a href="#使用hexo创建blog" class="headerlink" title="使用hexo创建blog"></a>使用hexo创建blog</h1><p>上一篇 <a target="_blank" rel="noopener" href="http://www.mihenkii.tk/">github pages</a>， 说明了如何在github pages上挂一个自己的”Hello World”页面， 了解最基本的以后，接下来就尝试使用hexo这个工具来搭建静态博客了.</p>
+<h3 id="名词解释："><a href="#名词解释：" class="headerlink" title="名词解释："></a>名词解释：</h3><p>静态博客 : 全部由静态页面组成的blog， 不需要和数据库交互的页面<br>hexo:  一个管理静态blog的工具<br>post:  发的一个文章，就是一个post<br>pages: 每一个单独的页面， 就是一个pages， 比如 个人介绍页面, </p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/blog_hexo_step4.png" alt="posts pages"></p>
+<p>首先，简单介绍一下hexo， 这个一个台湾同胞创建的工具， 可以方便的管理静态blog， 当然，最主要的功能，是这货支持Markdown.</p>
+<h3 id="系统要求："><a href="#系统要求：" class="headerlink" title="系统要求："></a>系统要求：</h3><p>git<br>node.js</p>
+<p>hexo的安装非常简单，就一条命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><p>如果你是第一次搭建blog， 那么请理解下面的步骤：</p>
+<h5 id="1，-创建工作空间-非必须-，-个人习惯，-我习惯把一些和代码相关的东西放到-opt-workspace"><a href="#1，-创建工作空间-非必须-，-个人习惯，-我习惯把一些和代码相关的东西放到-opt-workspace" class="headerlink" title="1， 创建工作空间(非必须)， 个人习惯， 我习惯把一些和代码相关的东西放到/opt/workspace"></a>1， 创建工作空间(非必须)， 个人习惯， 我习惯把一些和代码相关的东西放到/opt/workspace</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -pv /opt/workspace</span><br><span class="line">cd /opt/workspace</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-初始化blog空间"><a href="#2-初始化blog空间" class="headerlink" title="2,  初始化blog空间"></a>2,  初始化blog空间</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init blogtest</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/blog_hexo_step1.png" alt="初始化blog"></p>
+<h5 id="3-使用hexo创建第一篇hellowold"><a href="#3-使用hexo创建第一篇hellowold" class="headerlink" title="3,  使用hexo创建第一篇hellowold"></a>3,  使用hexo创建第一篇hellowold</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 进入到blog目录</span><br><span class="line">cd blogtest</span><br><span class="line">hexo new helloworld</span><br></pre></td></tr></table></figure>
+<p>如果看到下面的提示， 说明目前一切OK<br><img src="http://7xij29.com1.z0.glb.clouddn.com/blog_hexo_step2.png" alt="创建post"></p>
+<p>如果提示了hexo的usage， 请检查是否进入到了blog目录内，如果是，可能是hexo安装时没有加-g参数<br>执行下面命令，然后再重试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo --save</span><br></pre></td></tr></table></figure>
+<h5 id="4-编辑post"><a href="#4-编辑post" class="headerlink" title="4, 编辑post."></a>4, 编辑post.</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim <span class="built_in">source</span>/_posts/helloworld.md</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/blog_hexo_step3.png" alt="编辑文件，写下Hello World">5</p>
+<h5 id="5-下面是生成阶段，-也就是把你写的markdown文件转化成html文件"><a href="#5-下面是生成阶段，-也就是把你写的markdown文件转化成html文件" class="headerlink" title="5, 下面是生成阶段， 也就是把你写的markdown文件转化成html文件."></a>5, 下面是生成阶段， 也就是把你写的markdown文件转化成html文件.</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate </span><br></pre></td></tr></table></figure>
+<h5 id="6-本地预览"><a href="#6-本地预览" class="headerlink" title="6,  本地预览"></a>6,  本地预览</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 会在本地建立一个server， 端口一般是4000， 可以在浏览器访问看效果</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<h5 id="7-生成完以后提交到github-pages就完成了"><a href="#7-生成完以后提交到github-pages就完成了" class="headerlink" title="7, 生成完以后提交到github pages就完成了"></a>7, 生成完以后提交到github pages就完成了</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>此时，blog就被put到github pages上了.<br>如果不是在图形界面执行，此步骤可能出现git提交失败的问题，可以参考<a target="_blank" rel="noopener" href="http://www.mihenkii.tk/">上篇</a></p>
+<p>更多关于hexo的命令， 可以参考官网<a target="_blank" rel="noopener" href="https://hexo.io/docs/commands.html">https://hexo.io/docs/commands.html</a><br>个人建议不要把hexo命令都搞懂， 没必要，常用的命令熟悉了，其他的自然也就熟悉了.</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/hexo-posts-pages/">hexo posts pages</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/06/15/github-pages/" title="github pages" itemprop="url">github pages</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2015-06-15T04:54:37.000Z" itemprop="datePublished"> Published 2015-06-15</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="github-上搭建博客"><a href="#github-上搭建博客" class="headerlink" title="github 上搭建博客"></a>github 上搭建博客</h1><p>现在很流行在github上建立静态blog。 诸如hexo 、jekyll等工具，可以很方便的实现在github上建立静态blog的功能，<br>但是这些工具如何在github上建立blog的？之前一直没有弄明白。(PS: 之前git小白，一直没有真正用github)<br>今天简单看了一下github pages的介绍， 按照教程简单操作了一遍，实现了在github上<br>搭建hello world的过程，这里把过程记录下来。<br>操作系统 Centos 6</p>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>1， github账号<br>2， git工具</p>
+<h3 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h3><p>1 登录<a target="_blank" rel="noopener" href="https://pages.github.com/" title="github pages">pages.github.com/</a>,<br>  点击”create a new repository”<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pagesgithub_pages_step1.png" alt="pages.github.com step1" title="pages.github.com step1"> </p>
+<p>2 填写blog的入口地址yoursite.github.io<br>注意yoursite的名字要和你的github名字一致<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pagesgithub_pages_step1.png" alt="pages.github.com step2" title="pages github.com step2">  </p>
+<p>3 在工作空间执行git clone命令，把新建的资源库clone到本地</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step3.png" alt="git clone 到本地" title="git clone 资源库到本地"></p>
+<p>4 cd进入到资源库里面， 创建一个index.html</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;Hello World&quot; &gt; index.html</span><br></pre></td></tr></table></figure>
+
+<p>5 提交到github</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git add --all</span><br><span class="line">git commit -m &quot;hello world&quot;</span><br><span class="line">git push -u origin master</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>此时访问<a href="http://mihenkii.github.io/">mihenkii.github.io</a> 如果看到了无比可亲的“Hello World”。 你就可以下一步了.</p>
+<p>因为我们默认提交的是index.html， 所以不需要些文件名. 所以，此时可以联想到，hexo 、jekyll 应该是在index.html上做了些文章，给全站都加上了url路由.   下一步计划，搞起hexo.</p>
+<p>如果提示如下403 错误， 按照如下步骤解决:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: The requested URL returned error: 403 Forbidden while accessing https://github.com/mihenkii/mihenkii.github.io.git/info/refs</span><br></pre></td></tr></table></figure>
+
+<p>1  修改当前资源库下的.git/config文件如下：<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step4.png" alt="修改.git/config" title="修改.git/config"></p>
+<p>2 此时如果还是提示失败，那么可能就是ssh证书有问题了. 可以尝试重做证书</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -b 4096 -C &quot;mihenkii@github.com&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后把公钥添加到github上，再重试， 如果使用git的windows客户度，此时需要重启ssh-agent<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step5.png" alt="添加公钥到github" title="添加公钥到github"> </p>
+<p>关于详细的添加公钥到github的过程可以参考官网帮助连接<br><a target="_blank" rel="noopener" href="https://help.github.com/articles/generating-ssh-keys/">help.github.com</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/github-blog-hexo-jekyll/">github blog hexo jekyll</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/">&lt;span&gt;&lt;&#x2F;span&gt;Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/gimp/" title="gimp">gimp<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/docker-centos/" title="docker centos">docker centos<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bashrc-bash-profile/" title="bashrc bash_profile">bashrc bash_profile<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/docker-delete-image/" title="docker-delete-image">docker-delete-image<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/favicon/" title="favicon">favicon<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/golang/" title="golang">golang<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github-blog-hexo-jekyll/" title="github blog hexo jekyll">github blog hexo jekyll<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bash-java-c-python-Hello-World/" title="bash java c python Hello World">bash java c python Hello World<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo-posts-pages/" title="hexo posts pages">hexo posts pages<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/pyenv-virtualenv/" title="pyenv virtualenv">pyenv virtualenv<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux-history-stamp/" title="linux history stamp">linux history stamp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gimp-GIMP-教程/" title="gimp GIMP 教程">gimp GIMP 教程<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/win7-centos7/" title="win7 centos7">win7 centos7<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2021 
+		
+		<a href="/about" target="_blank" title="mihenkii">mihenkii</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+ </html>

@@ -1,0 +1,560 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh_CN.UTF-8">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Linux 目录颜色 | Mihenkii&#39;s tech blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="mihenkii">
+    
+
+    
+    <meta name="description" content="Linux 终端ls目录带有颜色 新装的Linux系统， 执行ls的时候默认没有颜色，不够美观  实现ls增加 —color&#x3D;auto 参数 1echo &quot;alias ls&#x3D;&amp;#x27;ls --color&#x3D;auto&amp;#x27;&quot; &gt;&gt; ~&#x2F;.bashrc  —color&#x3D;auto 这种方式会使部分文件显示带有色彩，但是仍然不够 12echo &quot;LS_CO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 目录颜色">
+<meta property="og:url" content="http://mihenkii.github.io/2017/06/11/dir-color/index.html">
+<meta property="og:site_name" content="Mihenkii&#39;s tech blog">
+<meta property="og:description" content="Linux 终端ls目录带有颜色 新装的Linux系统， 执行ls的时候默认没有颜色，不够美观  实现ls增加 —color&#x3D;auto 参数 1echo &quot;alias ls&#x3D;&amp;#x27;ls --color&#x3D;auto&amp;#x27;&quot; &gt;&gt; ~&#x2F;.bashrc  —color&#x3D;auto 这种方式会使部分文件显示带有色彩，但是仍然不够 12echo &quot;LS_CO">
+<meta property="og:locale">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_0.png">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_1.png">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_2.png">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_3.png">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_4.png">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_5.png">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_6.png">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_7.png">
+<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_8.png">
+<meta property="article:published_time" content="2017-06-11T03:24:57.000Z">
+<meta property="article:modified_time" content="2021-06-07T13:03:12.758Z">
+<meta property="article:author" content="mihenkii">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_0.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Mihenkii&#39;s tech blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Mihenkii&#39;s tech blog" title="Mihenkii&#39;s tech blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Mihenkii&#39;s tech blog">Mihenkii&#39;s tech blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:mihenkii.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/06/11/dir-color/" title="Linux 目录颜色" itemprop="url">Linux 目录颜色</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2017-06-11T03:24:57.000Z" itemprop="datePublished"> Published 2017-06-11</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E7%BB%88%E7%AB%AFls%E7%9B%AE%E5%BD%95%E5%B8%A6%E6%9C%89%E9%A2%9C%E8%89%B2"><span class="toc-number">1.</span> <span class="toc-text">Linux 终端ls目录带有颜色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-number">3.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%BF%9E%E6%8E%A5"><span class="toc-number">4.</span> <span class="toc-text">参考连接</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step-by-step"><span class="toc-number"></span> <span class="toc-text">Step by step</span></a>
+		
+		</div>
+		
+		<h4 id="Linux-终端ls目录带有颜色"><a href="#Linux-终端ls目录带有颜色" class="headerlink" title="Linux 终端ls目录带有颜色"></a>Linux 终端ls目录带有颜色</h4><blockquote>
+<p>新装的Linux系统， 执行ls的时候默认没有颜色，不够美观</p>
+</blockquote>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><p>ls增加 —color=auto 参数</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;alias ls=&#x27;ls --color=auto&#x27;&quot;</span> &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>—color=auto 这种方式会使部分文件显示带有色彩，但是仍然不够</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;LS_COLORS=<span class="variable">$LS_COLORS</span>:&#x27;fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.exe=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:*.md=00;32:&#x27;&quot;</span> &gt;&gt; ~/.bashrc &amp;&amp; <span class="built_in">source</span> ~/.bashrc</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>di=00;34:<br>[文件类型]=[字体];[颜色]:<br>详细可选参数列表<br>di = directory<br>fi = file<br>ln = symbolic link<br>pi = fifo file<br>so = socket file<br>bd = block (buffered) special file<br>cd = character (unbuffered) special file<br>or = symbolic link pointing to a non-existent file (orphan)<br>mi = non-existent file pointed to by a symbolic link (visible when you type ls -l)<br>ex = file which is executable (ie. has ‘x’ set in permissions).<br>0 = default colour<br>1 = bold<br>4 = underlined<br>5 = flashing text<br>7 = reverse field<br>31 = red<br>32 = green<br>33 = orange<br>34 = blue<br>35 = purple<br>36 = cyan<br>37 = grey<br>40 = black background<br>41 = red background<br>42 = green background<br>43 = orange background<br>44 = blue background<br>45 = purple background<br>46 = cyan background<br>47 = grey background<br>90 = dark grey<br>91 = light red<br>92 = light green<br>93 = yellow<br>94 = light blue<br>95 = light purple<br>96 = turquoise<br>100 = dark grey background<br>101 = light red background<br>102 = light green background<br>103 = yellow background<br>104 = light blue background<br>105 = light purple background<br>106 = turquoise background</p>
+<h4 id="参考连接"><a href="#参考连接" class="headerlink" title="参考连接"></a>参考连接</h4><p><a target="_blank" rel="noopener" href="https://askubuntu.com/questions/466198/how-do-i-change-the-color-for-directories-with-ls-in-the-console">askubuntu</a></p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_0.png" alt="gimp文字倒影"></p>
+<p>本文用了相对简单易懂的方式实现了文字倒影。<br>还有一种方式是在“倒影”图像是用“橡皮”擦出倒影效果，这里不推荐。</p>
+<h2 id="Step-by-step"><a href="#Step-by-step" class="headerlink" title="Step by step"></a>Step by step</h2><p>1 Ctrl + n  新建一个空白图形，设置合适的大小</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_1.png" alt="gimp 新建图像"></p>
+<p>2 选择文字工具， 写下自己想要设计的文字，并调整大小，个人喜欢用75的大小</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_2.png" alt="gimp文字工具"></p>
+<p>3 选中文字，设置文字颜色，并记住文字颜色(这个颜色后面会用到)</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_3.png" alt="gimp设置文字颜色"></p>
+<p>4 复制图层，用来做”倒影”</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_4.png" alt="复制图层"></p>
+<p>5 移动复制的图层到原图的正下方</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_5.png" alt="gimp移动工具"></p>
+<p>6 翻转图形， 并在此调整文字位置，移动翻转后的图形到原图的正下方</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_6.png" alt="gimp翻转图形"></p>
+<p>7 制作倒影, 如图：首先在倒影的图层上点击”锁定Alpha通道”, 然后点击”左侧黑色”, 设置颜色和文字一致。</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_7.png" alt="gimp混合工具"></p>
+<p>8 图像合并</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_8.png" alt="合并图像"></p>
+<p>参考连接：<br><a target="_blank" rel="noopener" href="http://gimp-tutorials.net/node/236">gimp-tutorials.net</a></p>
+<p><a target="_blank" rel="noopener" href="http://gimp-tutorials.net/node/91">gimp-tutorials.net</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/linux/">linux</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mihenkii.github.io/2017/06/11/dir-color/" data-title="Linux 目录颜色 | Mihenkii&#39;s tech blog" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/07/15/su-user-nopassword/" title="Linux su nopassword">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Linux su nopassword</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/06/11/win7centos7/"  title="win7上安装centos7双系统">
+ <strong>下一篇：</strong><br/> 
+ <span>win7上安装centos7双系统
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E7%BB%88%E7%AB%AFls%E7%9B%AE%E5%BD%95%E5%B8%A6%E6%9C%89%E9%A2%9C%E8%89%B2"><span class="toc-number">1.</span> <span class="toc-text">Linux 终端ls目录带有颜色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-number">3.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%BF%9E%E6%8E%A5"><span class="toc-number">4.</span> <span class="toc-text">参考连接</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step-by-step"><span class="toc-number"></span> <span class="toc-text">Step by step</span></a>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/gimp/" title="gimp">gimp<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/docker-centos/" title="docker centos">docker centos<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bashrc-bash-profile/" title="bashrc bash_profile">bashrc bash_profile<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/docker-delete-image/" title="docker-delete-image">docker-delete-image<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/favicon/" title="favicon">favicon<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/golang/" title="golang">golang<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github-blog-hexo-jekyll/" title="github blog hexo jekyll">github blog hexo jekyll<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bash-java-c-python-Hello-World/" title="bash java c python Hello World">bash java c python Hello World<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo-posts-pages/" title="hexo posts pages">hexo posts pages<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/pyenv-virtualenv/" title="pyenv virtualenv">pyenv virtualenv<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux-history-stamp/" title="linux history stamp">linux history stamp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gimp-GIMP-教程/" title="gimp GIMP 教程">gimp GIMP 教程<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/win7-centos7/" title="win7 centos7">win7 centos7<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2021 
+		
+		<a href="/about" target="_blank" title="mihenkii">mihenkii</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
