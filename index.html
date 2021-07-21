@@ -83,6 +83,217 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2021/07/16/number-is-prime/" title="number-is-prime" itemprop="url">number-is-prime</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2021-07-16T08:34:38.000Z" itemprop="datePublished"> Published 2021-07-16</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>如何判断一个数字是否是素数</p>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>普通方法：从2..√n，如果n可以被整除， 那么n就不是素数</p>
+<p>更高效方法:</p>
+<blockquote>
+<p>We can improve this method further. Observe that all primes greater than 3 are of the form 6k ± 1, where k is any integer greater than 0. This is because all integers can be expressed as (6k + i), where i = −1, 0, 1, 2, 3, or 4. Note that 2 divides (6k + 0), (6k + 2), and (6k + 4) and 3 divides (6k + 3). So, a more efficient method is to test whether n is divisible by 2 or 3, then to check through all numbers of the form 6k +-1. This is 3 times faster than testing all numbers up to √n.</p>
+</blockquote>
+<p>所有整数都可以用6k + i表示，其中i = -1, 0, 1, 2, 3, 4，其中6k + 0, 6k + 2, 6k + 4可以被2整除， 6k + 3 可以被3整除.<br>所以，素数一定是包含在 6k-1 或者 6k+1里</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;stdbool.h&gt;</span><br><span class="line"></span><br><span class="line">bool is_prime(int n) &#123;</span><br><span class="line"></span><br><span class="line">    if(n &lt; 2) &#123;</span><br><span class="line">        printf(&quot;Input number must greater than 2 what we got is %d\n&quot;, n);</span><br><span class="line">        exit(-1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if(n == 2 || n == 3) &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if(n%2 == 0 || n %3 == 0) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    for (int i=5; i*i&lt;n; i+=6) &#123;</span><br><span class="line">        if(n % i == 0 || n % (i+2) == 0) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    int n;</span><br><span class="line">    printf(&quot;please input a number: &quot;);</span><br><span class="line">    scanf(&quot;%d&quot;, &amp;n);</span><br><span class="line"></span><br><span class="line">    if (is_prime(n)) &#123;</span><br><span class="line">        printf(&quot;%d is prime number&quot;, n);</span><br><span class="line">        return 0;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        printf(&quot;%d is not prime number&quot;, n);</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/数据结构与算法/">数据结构与算法</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2021/07/15/webrtc-ios-video-orientation/" title="webrtc-ios-video-orientation" itemprop="url">webrtc-ios-video-orientation</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2021-07-15T07:32:03.000Z" itemprop="datePublished"> Published 2021-07-15</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>写了一个通过Webrtc加入视频会议的html页面，使用iPhone手机打开，发现摄像头采集的视频画面旋转了90度, 在视频会议里面人是横向的..<br>PC和Android都没有这个问题</p>
+<p>iPhone -&gt; Janus -&gt; OWT</p>
+<h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><ol>
+<li>手机采集的视频就不是正向的</li>
+<li>OWT服务端渲染时对视频进行了转向</li>
+</ol>
+<p>我这里手机采集到的是正向的，所以是服务端对视频进行了旋转.<br>在SDP协商里，通过<code>a=extmap:13 urn:3gpp:video-orientation</code> 控制视频旋转角度</p>
+<p><strong>注意：每个人遇到的extmap:后面的数字可能不一样</strong></p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>判断是iPhone手机，就去掉SDP里面的CVO(Coordination of Video Orientation)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function iOS() &#123;</span><br><span class="line"> return [</span><br><span class="line">    &#x27;iPhone Simulator&#x27;,</span><br><span class="line">    &#x27;iPhone&#x27;</span><br><span class="line"> ].includes(navigator.platform)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createdOffer(description) &#123;</span><br><span class="line">  if(iOS()) &#123;</span><br><span class="line">    var oldsdp = description[&quot;sdp&quot;];</span><br><span class="line">    var pattern=/a=extmap:13 urn:3gpp:video-orientation\r\n/gi;</span><br><span class="line">    var newsdp = oldsdp.replace(pattern,&quot;&quot;);</span><br><span class="line">    description[&quot;sdp&quot;]=newsdp;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>这个办法不是很好，会在真的有旋转画面需求的时候无法使用，在服务器合流的时候判断是否需要旋转应该更好一些。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/epubcn/article/details/101451547">https://blog.csdn.net/epubcn/article/details/101451547</a><br><a target="_blank" rel="noopener" href="https://docs.flashphoner.com/display/WCS52EN/WebRTC+stream+picture+rotation">https://docs.flashphoner.com/display/WCS52EN/WebRTC+stream+picture+rotation</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/9038625/detect-if-device-is-ios">https://stackoverflow.com/questions/9038625/detect-if-device-is-ios</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/webrtc-ios-video-orientation/">webrtc ios video orientation</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2021/07/15/ubuntu-vnc/" title="Ubuntu-VNC" itemprop="url">Ubuntu-VNC</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2021-07-15T02:21:05.000Z" itemprop="datePublished"> Published 2021-07-15</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>需要使用Easy Connect链接到某单位的VPN，公司电脑不允许安装VPN客户端，因此考虑在阿里云Ubuntu Server上安装VNC，本地Mac通过VNC链接到Ubuntu</p>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><p>我这里直接使用root账号进行的操作，普通账号命令前面加上sudo</p>
+<h4 id="安装桌面环境"><a href="#安装桌面环境" class="headerlink" title="安装桌面环境"></a>安装桌面环境</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install xfce4 xfce4-goodies</span><br><span class="line"></span><br><span class="line"># xdm 可能不需要安装</span><br><span class="line">apt install xdm</span><br></pre></td></tr></table></figure>
+
+<h4 id="安装tightvncserver"><a href="#安装tightvncserver" class="headerlink" title="安装tightvncserver"></a>安装tightvncserver</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt install tightvncserver</span><br><span class="line"># xrdp 也是一个远程桌面服务，支持usb，音频</span><br><span class="line">apt install xrdp</span><br></pre></td></tr></table></figure>
+
+<h4 id="启动vncserver"><a href="#启动vncserver" class="headerlink" title="启动vncserver"></a>启动vncserver</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vncserver</span><br></pre></td></tr></table></figure>
+<p>此时会提示设置密码, 设置一个自己熟悉的密码，如果需要更改密码，可以使用vncpasswd命令</p>
+<h2 id="配置vnc"><a href="#配置vnc" class="headerlink" title="配置vnc"></a>配置vnc</h2><p>需要配置VNC链接到哪个桌面环境<br>首先停掉当前的VNC实例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vncserver -kill :1</span><br></pre></td></tr></table></figure>
+<p>备份原始配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv ~/.vnc/xstartup ~/.vnc/xstartup.bak</span><br></pre></td></tr></table></figure>
+<p>编辑配置如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># cat ~/.vnc/xstartup</span><br><span class="line">#!/bin/sh</span><br><span class="line">unset SESSION_MANAGER</span><br><span class="line">unset DBUS_SESSION_BUS_ADDRESS</span><br><span class="line">startxfce4 &amp;</span><br></pre></td></tr></table></figure>
+
+<p><strong>如果没有unset那两个变量，通过VNC链接到Ubuntu是灰屏</strong></p>
+<h2 id="设置vnc安全链接"><a href="#设置vnc安全链接" class="headerlink" title="设置vnc安全链接"></a>设置vnc安全链接</h2><p>vnc默认没有使用加密通讯，需要使用SSH tunnel来建立安全链接</p>
+<p>在你的Mac本地执行如下命令, Windows用户见“参考链接”里面的putty配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 这条命令需要一直运行</span><br><span class="line">ssh -L 59000:localhost:5901 -C -N -l root 47.199.13.30</span><br></pre></td></tr></table></figure>
+
+<p>-L: 参数代表将我本地Mac的59000端口转发到目标机器(47.199.13.30)的IP：port上. 可以理解登录到目标机器以后，在目标机器上执行 localhost:5901<br>-C: 参数代表启用压缩传输<br>-N: 代表ssh只做端口转发，不会执行命令<br>-l: 代表login user</p>
+<h2 id="链接VNC"><a href="#链接VNC" class="headerlink" title="链接VNC"></a>链接VNC</h2><p>在Mac上打开Finder，点击Go，选择Connect to Server<br>链接到本机的59000端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vnc://localhost:59000</span><br></pre></td></tr></table></figure>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ol>
+<li>VNC安装成功以后，EasyConnect还是没有搞定，可能与xfce桌面环境有关系，建议使用Gnome </li>
+<li>Ubuntu默认的浏览器无法使用，提供input/output error<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br><span class="line">apt install ./google-chrome-stable_current_amd64.deb</span><br><span class="line"></span><br><span class="line"># 在设置里，找到Preferred Applications  -&gt; Web Browser -&gt; Other... 输入/usr/bin/google-chrome</span><br></pre></td></tr></table></figure></li>
+<li>浏览器显示中文乱码<br>安装中文字库<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get install ttf-wqy-zenhei</span><br><span class="line">apt-get install language-pack-zh-hans</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-20-04">https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-20-04</a><br><a target="_blank" rel="noopener" href="https://cat.pdx.edu/platforms/mac/remote-access/vnc-to-linux/">https://cat.pdx.edu/platforms/mac/remote-access/vnc-to-linux/</a><br><a target="_blank" rel="noopener" href="https://help.ubuntu.com/community/VNC/Servers">https://help.ubuntu.com/community/VNC/Servers</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Ubuntu20-04-VNC/">Ubuntu20.04 VNC</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2021/06/16/docker-commmon-error/" title="docker-commmon-error" itemprop="url">docker-commmon-error</a>
   </h1>
   <p class="article-author">By
@@ -545,223 +756,9 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/11/13/docker_install/" title="Docker环境搭建" itemprop="url">Docker环境搭建</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
-		
-  <p class="article-time">
-    <time datetime="2017-11-13T13:04:57.000Z" itemprop="datePublished"> Published 2017-11-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><blockquote>
-<p>Centos : Centos7 64位<br>docker-ce: Docker-ce-17</p>
-</blockquote>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>1.卸载本地原有docker</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum remove docker-common docker-selinux docker-engine</span><br></pre></td></tr></table></figure>
-
-<p>2.安装docker依赖软件和yum源</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install yum-utils</span><br><span class="line">sudo yum install device-mapper-persistent-data</span><br><span class="line">sodu yum instlal lvm2</span><br><span class="line">sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">sudo yum install docker-ce</span><br></pre></td></tr></table></figure>
-
-<p>3.启动docker</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start docker</span><br></pre></td></tr></table></figure>
-
-<p>4.验证docker</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run hello-world</span><br></pre></td></tr></table></figure>
-
-<p>5.添加运行docker账号</p>
-<blockquote>
-<p>docker的daemno会启动一个socket，只有root和docker组用户可以访问， 普通账号无法访问<br>所以需要把普通用户添加到docker组才可以访问</p>
-</blockquote>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo groupadd docker</span><br><span class="line">sudo usermod -aG docker work</span><br></pre></td></tr></table></figure>
-
-<p>6.设置开启启动</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> docker</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://docs.docker.com/">参考文档</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/docker-centos/">docker centos</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/10/23/pythonenv/" title="python 环境搭建" itemprop="url">python 环境搭建</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
-		
-  <p class="article-time">
-    <time datetime="2017-10-23T15:04:57.000Z" itemprop="datePublished"> Published 2017-10-23</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><blockquote>
-<p>pyenv : 管理多个Python版本， 是从rbevn(管理多个ruby版本)改造来的<br>virtualenv: 管理工作空间的python环境， 可以让每个app的python环境相互隔离, 相当于给每个app都复制一份python</p>
-</blockquote>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><blockquote>
-<p>pyenv 已经集成了 virtualenv， 所以不需要单独安装virtualenv了.</p>
-</blockquote>
-<p>安装pyenv比较简单</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载到本地:</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/pyenv/pyenv.git ~/.pyenv</span><br><span class="line"><span class="comment"># 设置环境变量</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&#x27;</span> &gt;&gt; ~/.bash_profile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&#x27;</span> &gt;&gt; ~/.bash_profile</span><br><span class="line"><span class="comment"># 加载环境变量</span></span><br><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>使用</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pyenv install --list <span class="comment">#查看可安装python版本</span></span><br><span class="line">pyenv install 2.7.12</span><br><span class="line">pyenv <span class="built_in">local</span> 2.7.12 <span class="comment"># 将本地设置成2.7.12版本</span></span><br><span class="line">pyenv global 2.7.12 <span class="comment"># 将系统设置成2.7.12版本</span></span><br><span class="line">pyenv <span class="built_in">local</span> system <span class="comment"># 将本地设置成系统默认版本</span></span><br></pre></td></tr></table></figure>
-
-<p>卸载 pyenv</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf $(pyenv root)</span><br></pre></td></tr></table></figure>
-
-<h4 id="virtualenv"><a href="#virtualenv" class="headerlink" title="virtualenv"></a>virtualenv</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pyenv virtualenv 2.7.12 VENV27 <span class="comment"># 将会在pyenv的version目录下新建一个VENV27的python环境</span></span><br><span class="line"></span><br><span class="line">pyenv activate VENV27 <span class="comment"># 使用VENV27环境</span></span><br><span class="line">pyenv deactivate VENV27 <span class="comment"># 退出VENV27环境</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="设置pip源"><a href="#设置pip源" class="headerlink" title="设置pip源"></a>设置pip源</h4><blockquote>
-<p>国内访问pip默认源超时严重， 建议设置阿里或豆瓣的pip源</p>
-</blockquote>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.pip/pip.conf</span><br><span class="line">[global]</span><br><span class="line">    trusted-host =  mirrors.aliyun.com</span><br><span class="line">    index-url = http://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/pyenv-virtualenv/">pyenv virtualenv</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/07/15/su-user-nopassword/" title="Linux su nopassword" itemprop="url">Linux su nopassword</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
-		
-  <p class="article-time">
-    <time datetime="2017-07-15T03:24:57.000Z" itemprop="datePublished"> Published 2017-07-15</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h4 id="Linux-普通用户su到另一个普通用户"><a href="#Linux-普通用户su到另一个普通用户" class="headerlink" title="Linux 普通用户su到另一个普通用户"></a>Linux 普通用户su到另一个普通用户</h4><blockquote>
-<p>工作中很少使用root用户，存在使用个人用户，切换到work账户的场景<br>比如我的个人账户是mihenkii， 要切换的目标账户是work</p>
-</blockquote>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo vim /etc/pam.d/su</span><br><span class="line"></span><br><span class="line">auth       [success=ignore default=1] pam_succeed_if.so user = work</span><br><span class="line">auth       sufficient   pam_succeed_if.so use_uid user = mihenkii</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解释:  第一行是确定目标用户是work，如果是work，且调用的用户是mihenkii，那么第二行mihenkii会成功授权切换到work</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="参考连接"><a href="#参考连接" class="headerlink" title="参考连接"></a>参考连接</h4><p><a target="_blank" rel="noopener" href="https://unix.stackexchange.com/questions/113754/allow-user1-to-su-user2-without-password">stackexchange</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/linux/">linux</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next&lt;span&gt;&lt;&#x2F;span&gt;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next&lt;span&gt;&lt;&#x2F;span&gt;</a>
   </nav>
 
 </div>
@@ -835,6 +832,18 @@
 		
 			
 				<li><a href="/tags/win7-centos7/" title="win7 centos7">win7 centos7<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Ubuntu20-04-VNC/" title="Ubuntu20.04 VNC">Ubuntu20.04 VNC<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/webrtc-ios-video-orientation/" title="webrtc ios video orientation">webrtc ios video orientation<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据结构与算法/" title="数据结构与算法">数据结构与算法<sup>1</sup></a></li>
 			
 		
 		</ul>

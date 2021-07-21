@@ -83,6 +83,220 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2017/11/13/docker_install/" title="Docker环境搭建" itemprop="url">Docker环境搭建</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2017-11-13T13:04:57.000Z" itemprop="datePublished"> Published 2017-11-13</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><blockquote>
+<p>Centos : Centos7 64位<br>docker-ce: Docker-ce-17</p>
+</blockquote>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>1.卸载本地原有docker</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum remove docker-common docker-selinux docker-engine</span><br></pre></td></tr></table></figure>
+
+<p>2.安装docker依赖软件和yum源</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install yum-utils</span><br><span class="line">sudo yum install device-mapper-persistent-data</span><br><span class="line">sodu yum instlal lvm2</span><br><span class="line">sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">sudo yum install docker-ce</span><br></pre></td></tr></table></figure>
+
+<p>3.启动docker</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start docker</span><br></pre></td></tr></table></figure>
+
+<p>4.验证docker</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run hello-world</span><br></pre></td></tr></table></figure>
+
+<p>5.添加运行docker账号</p>
+<blockquote>
+<p>docker的daemno会启动一个socket，只有root和docker组用户可以访问， 普通账号无法访问<br>所以需要把普通用户添加到docker组才可以访问</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo groupadd docker</span><br><span class="line">sudo usermod -aG docker work</span><br></pre></td></tr></table></figure>
+
+<p>6.设置开启启动</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> docker</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://docs.docker.com/">参考文档</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/docker-centos/">docker centos</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/10/23/pythonenv/" title="python 环境搭建" itemprop="url">python 环境搭建</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-23T15:04:57.000Z" itemprop="datePublished"> Published 2017-10-23</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><blockquote>
+<p>pyenv : 管理多个Python版本， 是从rbevn(管理多个ruby版本)改造来的<br>virtualenv: 管理工作空间的python环境， 可以让每个app的python环境相互隔离, 相当于给每个app都复制一份python</p>
+</blockquote>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><blockquote>
+<p>pyenv 已经集成了 virtualenv， 所以不需要单独安装virtualenv了.</p>
+</blockquote>
+<p>安装pyenv比较简单</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载到本地:</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/pyenv/pyenv.git ~/.pyenv</span><br><span class="line"><span class="comment"># 设置环境变量</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&#x27;</span> &gt;&gt; ~/.bash_profile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&#x27;</span> &gt;&gt; ~/.bash_profile</span><br><span class="line"><span class="comment"># 加载环境变量</span></span><br><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>使用</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pyenv install --list <span class="comment">#查看可安装python版本</span></span><br><span class="line">pyenv install 2.7.12</span><br><span class="line">pyenv <span class="built_in">local</span> 2.7.12 <span class="comment"># 将本地设置成2.7.12版本</span></span><br><span class="line">pyenv global 2.7.12 <span class="comment"># 将系统设置成2.7.12版本</span></span><br><span class="line">pyenv <span class="built_in">local</span> system <span class="comment"># 将本地设置成系统默认版本</span></span><br></pre></td></tr></table></figure>
+
+<p>卸载 pyenv</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf $(pyenv root)</span><br></pre></td></tr></table></figure>
+
+<h4 id="virtualenv"><a href="#virtualenv" class="headerlink" title="virtualenv"></a>virtualenv</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pyenv virtualenv 2.7.12 VENV27 <span class="comment"># 将会在pyenv的version目录下新建一个VENV27的python环境</span></span><br><span class="line"></span><br><span class="line">pyenv activate VENV27 <span class="comment"># 使用VENV27环境</span></span><br><span class="line">pyenv deactivate VENV27 <span class="comment"># 退出VENV27环境</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="设置pip源"><a href="#设置pip源" class="headerlink" title="设置pip源"></a>设置pip源</h4><blockquote>
+<p>国内访问pip默认源超时严重， 建议设置阿里或豆瓣的pip源</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.pip/pip.conf</span><br><span class="line">[global]</span><br><span class="line">    trusted-host =  mirrors.aliyun.com</span><br><span class="line">    index-url = http://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/pyenv-virtualenv/">pyenv virtualenv</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/07/15/su-user-nopassword/" title="Linux su nopassword" itemprop="url">Linux su nopassword</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2017-07-15T03:24:57.000Z" itemprop="datePublished"> Published 2017-07-15</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h4 id="Linux-普通用户su到另一个普通用户"><a href="#Linux-普通用户su到另一个普通用户" class="headerlink" title="Linux 普通用户su到另一个普通用户"></a>Linux 普通用户su到另一个普通用户</h4><blockquote>
+<p>工作中很少使用root用户，存在使用个人用户，切换到work账户的场景<br>比如我的个人账户是mihenkii， 要切换的目标账户是work</p>
+</blockquote>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo vim /etc/pam.d/su</span><br><span class="line"></span><br><span class="line">auth       [success=ignore default=1] pam_succeed_if.so user = work</span><br><span class="line">auth       sufficient   pam_succeed_if.so use_uid user = mihenkii</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解释:  第一行是确定目标用户是work，如果是work，且调用的用户是mihenkii，那么第二行mihenkii会成功授权切换到work</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="参考连接"><a href="#参考连接" class="headerlink" title="参考连接"></a>参考连接</h4><p><a target="_blank" rel="noopener" href="https://unix.stackexchange.com/questions/113754/allow-user1-to-su-user2-without-password">stackexchange</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/linux/">linux</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2017/06/11/dir-color/" title="Linux 目录颜色" itemprop="url">Linux 目录颜色</a>
   </h1>
   <p class="article-author">By
@@ -599,166 +813,9 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/06/15/how-to-use-hexo/" title="使用hexo创建静态blog" itemprop="url">使用hexo创建静态blog</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
-		
-  <p class="article-time">
-    <time datetime="2015-06-15T12:44:07.000Z" itemprop="datePublished"> Published 2015-06-15</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="使用hexo创建blog"><a href="#使用hexo创建blog" class="headerlink" title="使用hexo创建blog"></a>使用hexo创建blog</h1><p>上一篇 <a target="_blank" rel="noopener" href="http://www.mihenkii.tk/">github pages</a>， 说明了如何在github pages上挂一个自己的”Hello World”页面， 了解最基本的以后，接下来就尝试使用hexo这个工具来搭建静态博客了.</p>
-<h3 id="名词解释："><a href="#名词解释：" class="headerlink" title="名词解释："></a>名词解释：</h3><p>静态博客 : 全部由静态页面组成的blog， 不需要和数据库交互的页面<br>hexo:  一个管理静态blog的工具<br>post:  发的一个文章，就是一个post<br>pages: 每一个单独的页面， 就是一个pages， 比如 个人介绍页面, </p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/blog_hexo_step4.png" alt="posts pages"></p>
-<p>首先，简单介绍一下hexo， 这个一个台湾同胞创建的工具， 可以方便的管理静态blog， 当然，最主要的功能，是这货支持Markdown.</p>
-<h3 id="系统要求："><a href="#系统要求：" class="headerlink" title="系统要求："></a>系统要求：</h3><p>git<br>node.js</p>
-<p>hexo的安装非常简单，就一条命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><p>如果你是第一次搭建blog， 那么请理解下面的步骤：</p>
-<h5 id="1，-创建工作空间-非必须-，-个人习惯，-我习惯把一些和代码相关的东西放到-opt-workspace"><a href="#1，-创建工作空间-非必须-，-个人习惯，-我习惯把一些和代码相关的东西放到-opt-workspace" class="headerlink" title="1， 创建工作空间(非必须)， 个人习惯， 我习惯把一些和代码相关的东西放到/opt/workspace"></a>1， 创建工作空间(非必须)， 个人习惯， 我习惯把一些和代码相关的东西放到/opt/workspace</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -pv /opt/workspace</span><br><span class="line">cd /opt/workspace</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-初始化blog空间"><a href="#2-初始化blog空间" class="headerlink" title="2,  初始化blog空间"></a>2,  初始化blog空间</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init blogtest</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/blog_hexo_step1.png" alt="初始化blog"></p>
-<h5 id="3-使用hexo创建第一篇hellowold"><a href="#3-使用hexo创建第一篇hellowold" class="headerlink" title="3,  使用hexo创建第一篇hellowold"></a>3,  使用hexo创建第一篇hellowold</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 进入到blog目录</span><br><span class="line">cd blogtest</span><br><span class="line">hexo new helloworld</span><br></pre></td></tr></table></figure>
-<p>如果看到下面的提示， 说明目前一切OK<br><img src="http://7xij29.com1.z0.glb.clouddn.com/blog_hexo_step2.png" alt="创建post"></p>
-<p>如果提示了hexo的usage， 请检查是否进入到了blog目录内，如果是，可能是hexo安装时没有加-g参数<br>执行下面命令，然后再重试</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo --save</span><br></pre></td></tr></table></figure>
-<h5 id="4-编辑post"><a href="#4-编辑post" class="headerlink" title="4, 编辑post."></a>4, 编辑post.</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim <span class="built_in">source</span>/_posts/helloworld.md</span><br></pre></td></tr></table></figure>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/blog_hexo_step3.png" alt="编辑文件，写下Hello World">5</p>
-<h5 id="5-下面是生成阶段，-也就是把你写的markdown文件转化成html文件"><a href="#5-下面是生成阶段，-也就是把你写的markdown文件转化成html文件" class="headerlink" title="5, 下面是生成阶段， 也就是把你写的markdown文件转化成html文件."></a>5, 下面是生成阶段， 也就是把你写的markdown文件转化成html文件.</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate </span><br></pre></td></tr></table></figure>
-<h5 id="6-本地预览"><a href="#6-本地预览" class="headerlink" title="6,  本地预览"></a>6,  本地预览</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 会在本地建立一个server， 端口一般是4000， 可以在浏览器访问看效果</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
-<h5 id="7-生成完以后提交到github-pages就完成了"><a href="#7-生成完以后提交到github-pages就完成了" class="headerlink" title="7, 生成完以后提交到github pages就完成了"></a>7, 生成完以后提交到github pages就完成了</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>此时，blog就被put到github pages上了.<br>如果不是在图形界面执行，此步骤可能出现git提交失败的问题，可以参考<a target="_blank" rel="noopener" href="http://www.mihenkii.tk/">上篇</a></p>
-<p>更多关于hexo的命令， 可以参考官网<a target="_blank" rel="noopener" href="https://hexo.io/docs/commands.html">https://hexo.io/docs/commands.html</a><br>个人建议不要把hexo命令都搞懂， 没必要，常用的命令熟悉了，其他的自然也就熟悉了.</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/hexo-posts-pages/">hexo posts pages</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/06/15/github-pages/" title="github pages" itemprop="url">github pages</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
-		
-  <p class="article-time">
-    <time datetime="2015-06-15T04:54:37.000Z" itemprop="datePublished"> Published 2015-06-15</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="github-上搭建博客"><a href="#github-上搭建博客" class="headerlink" title="github 上搭建博客"></a>github 上搭建博客</h1><p>现在很流行在github上建立静态blog。 诸如hexo 、jekyll等工具，可以很方便的实现在github上建立静态blog的功能，<br>但是这些工具如何在github上建立blog的？之前一直没有弄明白。(PS: 之前git小白，一直没有真正用github)<br>今天简单看了一下github pages的介绍， 按照教程简单操作了一遍，实现了在github上<br>搭建hello world的过程，这里把过程记录下来。<br>操作系统 Centos 6</p>
-<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>1， github账号<br>2， git工具</p>
-<h3 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h3><p>1 登录<a target="_blank" rel="noopener" href="https://pages.github.com/" title="github pages">pages.github.com/</a>,<br>  点击”create a new repository”<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pagesgithub_pages_step1.png" alt="pages.github.com step1" title="pages.github.com step1"> </p>
-<p>2 填写blog的入口地址yoursite.github.io<br>注意yoursite的名字要和你的github名字一致<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pagesgithub_pages_step1.png" alt="pages.github.com step2" title="pages github.com step2">  </p>
-<p>3 在工作空间执行git clone命令，把新建的资源库clone到本地</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step3.png" alt="git clone 到本地" title="git clone 资源库到本地"></p>
-<p>4 cd进入到资源库里面， 创建一个index.html</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;Hello World&quot; &gt; index.html</span><br></pre></td></tr></table></figure>
-
-<p>5 提交到github</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git add --all</span><br><span class="line">git commit -m &quot;hello world&quot;</span><br><span class="line">git push -u origin master</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>此时访问<a href="http://mihenkii.github.io/">mihenkii.github.io</a> 如果看到了无比可亲的“Hello World”。 你就可以下一步了.</p>
-<p>因为我们默认提交的是index.html， 所以不需要些文件名. 所以，此时可以联想到，hexo 、jekyll 应该是在index.html上做了些文章，给全站都加上了url路由.   下一步计划，搞起hexo.</p>
-<p>如果提示如下403 错误， 按照如下步骤解决:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: The requested URL returned error: 403 Forbidden while accessing https://github.com/mihenkii/mihenkii.github.io.git/info/refs</span><br></pre></td></tr></table></figure>
-
-<p>1  修改当前资源库下的.git/config文件如下：<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step4.png" alt="修改.git/config" title="修改.git/config"></p>
-<p>2 此时如果还是提示失败，那么可能就是ssh证书有问题了. 可以尝试重做证书</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -b 4096 -C &quot;mihenkii@github.com&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>然后把公钥添加到github上，再重试， 如果使用git的windows客户度，此时需要重启ssh-agent<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step5.png" alt="添加公钥到github" title="添加公钥到github"> </p>
-<p>关于详细的添加公钥到github的过程可以参考官网帮助连接<br><a target="_blank" rel="noopener" href="https://help.github.com/articles/generating-ssh-keys/">help.github.com</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/github-blog-hexo-jekyll/">github blog hexo jekyll</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
-    <a class="extend prev" rel="prev" href="/">&lt;span&gt;&lt;&#x2F;span&gt;Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/">&lt;span&gt;&lt;&#x2F;span&gt;Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next&lt;span&gt;&lt;&#x2F;span&gt;</a>
   </nav>
 
 </div>
@@ -832,6 +889,18 @@
 		
 			
 				<li><a href="/tags/win7-centos7/" title="win7 centos7">win7 centos7<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Ubuntu20-04-VNC/" title="Ubuntu20.04 VNC">Ubuntu20.04 VNC<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/webrtc-ios-video-orientation/" title="webrtc ios video orientation">webrtc ios video orientation<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据结构与算法/" title="数据结构与算法">数据结构与算法<sup>1</sup></a></li>
 			
 		
 		</ul>

@@ -4,31 +4,20 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>github pages | Mihenkii&#39;s tech blog</title>
+    <title>Mihenkii&#39;s tech blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="mihenkii">
     
 
     
-    <meta name="description" content="github 上搭建博客现在很流行在github上建立静态blog。 诸如hexo 、jekyll等工具，可以很方便的实现在github上建立静态blog的功能，但是这些工具如何在github上建立blog的？之前一直没有弄明白。(PS: 之前git小白，一直没有真正用github)今天简单看了一下github pages的介绍， 按照教程简单操作了一遍，实现了在github上搭建hello wo">
-<meta property="og:type" content="article">
-<meta property="og:title" content="github pages">
-<meta property="og:url" content="http://mihenkii.github.io/2015/06/15/github-pages/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Mihenkii&#39;s tech blog">
+<meta property="og:url" content="http://mihenkii.github.io/page/3/index.html">
 <meta property="og:site_name" content="Mihenkii&#39;s tech blog">
-<meta property="og:description" content="github 上搭建博客现在很流行在github上建立静态blog。 诸如hexo 、jekyll等工具，可以很方便的实现在github上建立静态blog的功能，但是这些工具如何在github上建立blog的？之前一直没有弄明白。(PS: 之前git小白，一直没有真正用github)今天简单看了一下github pages的介绍， 按照教程简单操作了一遍，实现了在github上搭建hello wo">
 <meta property="og:locale">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pagesgithub_pages_step1.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pagesgithub_pages_step1.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step3.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step4.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step5.png">
-<meta property="article:published_time" content="2015-06-15T04:54:37.000Z">
-<meta property="article:modified_time" content="2021-06-07T13:03:12.759Z">
 <meta property="article:author" content="mihenkii">
-<meta property="article:tag" content="github blog hexo jekyll">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pagesgithub_pages_step1.png">
 
     
     <link rel="alternative" href="/atom.xml" title="Mihenkii&#39;s tech blog" type="application/atom+xml">
@@ -86,10 +75,92 @@
 </div>
     </header>
     <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
+      <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/06/15/how-to-use-hexo/" title="使用hexo创建静态blog" itemprop="url">使用hexo创建静态blog</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2015-06-15T12:44:07.000Z" itemprop="datePublished"> Published 2015-06-15</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="使用hexo创建blog"><a href="#使用hexo创建blog" class="headerlink" title="使用hexo创建blog"></a>使用hexo创建blog</h1><p>上一篇 <a target="_blank" rel="noopener" href="http://www.mihenkii.tk/">github pages</a>， 说明了如何在github pages上挂一个自己的”Hello World”页面， 了解最基本的以后，接下来就尝试使用hexo这个工具来搭建静态博客了.</p>
+<h3 id="名词解释："><a href="#名词解释：" class="headerlink" title="名词解释："></a>名词解释：</h3><p>静态博客 : 全部由静态页面组成的blog， 不需要和数据库交互的页面<br>hexo:  一个管理静态blog的工具<br>post:  发的一个文章，就是一个post<br>pages: 每一个单独的页面， 就是一个pages， 比如 个人介绍页面, </p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/blog_hexo_step4.png" alt="posts pages"></p>
+<p>首先，简单介绍一下hexo， 这个一个台湾同胞创建的工具， 可以方便的管理静态blog， 当然，最主要的功能，是这货支持Markdown.</p>
+<h3 id="系统要求："><a href="#系统要求：" class="headerlink" title="系统要求："></a>系统要求：</h3><p>git<br>node.js</p>
+<p>hexo的安装非常简单，就一条命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><p>如果你是第一次搭建blog， 那么请理解下面的步骤：</p>
+<h5 id="1，-创建工作空间-非必须-，-个人习惯，-我习惯把一些和代码相关的东西放到-opt-workspace"><a href="#1，-创建工作空间-非必须-，-个人习惯，-我习惯把一些和代码相关的东西放到-opt-workspace" class="headerlink" title="1， 创建工作空间(非必须)， 个人习惯， 我习惯把一些和代码相关的东西放到/opt/workspace"></a>1， 创建工作空间(非必须)， 个人习惯， 我习惯把一些和代码相关的东西放到/opt/workspace</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -pv /opt/workspace</span><br><span class="line">cd /opt/workspace</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-初始化blog空间"><a href="#2-初始化blog空间" class="headerlink" title="2,  初始化blog空间"></a>2,  初始化blog空间</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init blogtest</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/blog_hexo_step1.png" alt="初始化blog"></p>
+<h5 id="3-使用hexo创建第一篇hellowold"><a href="#3-使用hexo创建第一篇hellowold" class="headerlink" title="3,  使用hexo创建第一篇hellowold"></a>3,  使用hexo创建第一篇hellowold</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 进入到blog目录</span><br><span class="line">cd blogtest</span><br><span class="line">hexo new helloworld</span><br></pre></td></tr></table></figure>
+<p>如果看到下面的提示， 说明目前一切OK<br><img src="http://7xij29.com1.z0.glb.clouddn.com/blog_hexo_step2.png" alt="创建post"></p>
+<p>如果提示了hexo的usage， 请检查是否进入到了blog目录内，如果是，可能是hexo安装时没有加-g参数<br>执行下面命令，然后再重试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo --save</span><br></pre></td></tr></table></figure>
+<h5 id="4-编辑post"><a href="#4-编辑post" class="headerlink" title="4, 编辑post."></a>4, 编辑post.</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim <span class="built_in">source</span>/_posts/helloworld.md</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/blog_hexo_step3.png" alt="编辑文件，写下Hello World">5</p>
+<h5 id="5-下面是生成阶段，-也就是把你写的markdown文件转化成html文件"><a href="#5-下面是生成阶段，-也就是把你写的markdown文件转化成html文件" class="headerlink" title="5, 下面是生成阶段， 也就是把你写的markdown文件转化成html文件."></a>5, 下面是生成阶段， 也就是把你写的markdown文件转化成html文件.</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate </span><br></pre></td></tr></table></figure>
+<h5 id="6-本地预览"><a href="#6-本地预览" class="headerlink" title="6,  本地预览"></a>6,  本地预览</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 会在本地建立一个server， 端口一般是4000， 可以在浏览器访问看效果</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<h5 id="7-生成完以后提交到github-pages就完成了"><a href="#7-生成完以后提交到github-pages就完成了" class="headerlink" title="7, 生成完以后提交到github pages就完成了"></a>7, 生成完以后提交到github pages就完成了</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>此时，blog就被put到github pages上了.<br>如果不是在图形界面执行，此步骤可能出现git提交失败的问题，可以参考<a target="_blank" rel="noopener" href="http://www.mihenkii.tk/">上篇</a></p>
+<p>更多关于hexo的命令， 可以参考官网<a target="_blank" rel="noopener" href="https://hexo.io/docs/commands.html">https://hexo.io/docs/commands.html</a><br>个人建议不要把hexo命令都搞懂， 没必要，常用的命令熟悉了，其他的自然也就熟悉了.</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
   
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
+  <span></span> <a href="/tags/hexo-posts-pages/">hexo posts pages</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
   <h1 itemprop="name">
     
       <a href="/2015/06/15/github-pages/" title="github pages" itemprop="url">github pages</a>
@@ -103,16 +174,9 @@
     
   </p>
 </header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#github-%E4%B8%8A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2"><span class="toc-number">1.</span> <span class="toc-text">github 上搭建博客</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87"><span class="toc-number">1.0.1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-number">1.0.2.</span> <span class="toc-text">操作过程</span></a></li></ol></li></ol></li></ol>
-		
-		</div>
-		
-		<h1 id="github-上搭建博客"><a href="#github-上搭建博客" class="headerlink" title="github 上搭建博客"></a>github 上搭建博客</h1><p>现在很流行在github上建立静态blog。 诸如hexo 、jekyll等工具，可以很方便的实现在github上建立静态blog的功能，<br>但是这些工具如何在github上建立blog的？之前一直没有弄明白。(PS: 之前git小白，一直没有真正用github)<br>今天简单看了一下github pages的介绍， 按照教程简单操作了一遍，实现了在github上<br>搭建hello world的过程，这里把过程记录下来。<br>操作系统 Centos 6</p>
+    <div class="article-content">
+        
+        <h1 id="github-上搭建博客"><a href="#github-上搭建博客" class="headerlink" title="github 上搭建博客"></a>github 上搭建博客</h1><p>现在很流行在github上建立静态blog。 诸如hexo 、jekyll等工具，可以很方便的实现在github上建立静态blog的功能，<br>但是这些工具如何在github上建立blog的？之前一直没有弄明白。(PS: 之前git小白，一直没有真正用github)<br>今天简单看了一下github pages的介绍， 按照教程简单操作了一遍，实现了在github上<br>搭建hello world的过程，这里把过程记录下来。<br>操作系统 Centos 6</p>
 <h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>1， github账号<br>2， git工具</p>
 <h3 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h3><p>1 登录<a target="_blank" rel="noopener" href="https://pages.github.com/" title="github pages">pages.github.com/</a>,<br>  点击”create a new repository”<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pagesgithub_pages_step1.png" alt="pages.github.com step1" title="pages.github.com step1"> </p>
 <p>2 填写blog的入口地址yoursite.github.io<br>注意yoursite的名字要和你的github名字一致<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pagesgithub_pages_step1.png" alt="pages.github.com step2" title="pages github.com step2">  </p>
@@ -135,9 +199,14 @@
 
 <p>然后把公钥添加到github上，再重试， 如果使用git的windows客户度，此时需要重启ssh-agent<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step5.png" alt="添加公钥到github" title="添加公钥到github"> </p>
 <p>关于详细的添加公钥到github的过程可以参考官网帮助连接<br><a target="_blank" rel="noopener" href="https://help.github.com/articles/generating-ssh-keys/">help.github.com</a></p>
-  
-	</div>
-		<footer class="article-footer clearfix">
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
 <div class="article-catetags">
 
 
@@ -150,45 +219,28 @@
 
 
 
-	<div class="article-share" id="share">
-	
-	  <div data-url="http://mihenkii.github.io/2015/06/15/github-pages/" data-title="github pages | Mihenkii&#39;s tech blog" data-tsina="" class="share clearfix">
-	  </div>
-	
-	</div>
 
+<div class="comments-count">
+	
+</div>
 
 </footer>
 
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2015/06/15/how-to-use-hexo/" title="使用hexo创建静态blog">
-  <strong>上一篇：</strong><br/>
-  <span>
-  使用hexo创建静态blog</span>
-</a>
+
+    </article>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/2/">&lt;span&gt;&lt;&#x2F;span&gt;Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
 </div>
-
-
-</nav>
-
-	
-
-
-
-</div>  
       <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#github-%E4%B8%8A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2"><span class="toc-number">1.</span> <span class="toc-text">github 上搭建博客</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87"><span class="toc-number">1.0.1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-number">1.0.2.</span> <span class="toc-text">操作过程</span></a></li></ol></li></ol></li></ol>
- 
-  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
@@ -394,89 +446,12 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
-
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-
-  $('.hoverqrcode').hide();
-
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
 
 
 
@@ -549,4 +524,4 @@ var _hmt = _hmt || [];
 <!-- Tiny_search End -->
 
   </body>
-</html>
+ </html>

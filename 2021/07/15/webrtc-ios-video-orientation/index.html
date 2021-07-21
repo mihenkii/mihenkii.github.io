@@ -4,31 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>github pages | Mihenkii&#39;s tech blog</title>
+    <title>webrtc-ios-video-orientation | Mihenkii&#39;s tech blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="mihenkii">
     
 
     
-    <meta name="description" content="github 上搭建博客现在很流行在github上建立静态blog。 诸如hexo 、jekyll等工具，可以很方便的实现在github上建立静态blog的功能，但是这些工具如何在github上建立blog的？之前一直没有弄明白。(PS: 之前git小白，一直没有真正用github)今天简单看了一下github pages的介绍， 按照教程简单操作了一遍，实现了在github上搭建hello wo">
+    <meta name="description" content="问题写了一个通过Webrtc加入视频会议的html页面，使用iPhone手机打开，发现摄像头采集的视频画面旋转了90度, 在视频会议里面人是横向的..PC和Android都没有这个问题 iPhone -&gt; Janus -&gt; OWT 原因分析 手机采集的视频就不是正向的 OWT服务端渲染时对视频进行了转向  我这里手机采集到的是正向的，所以是服务端对视频进行了旋转.在SDP协商里，通过a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="github pages">
-<meta property="og:url" content="http://mihenkii.github.io/2015/06/15/github-pages/index.html">
+<meta property="og:title" content="webrtc-ios-video-orientation">
+<meta property="og:url" content="http://mihenkii.github.io/2021/07/15/webrtc-ios-video-orientation/index.html">
 <meta property="og:site_name" content="Mihenkii&#39;s tech blog">
-<meta property="og:description" content="github 上搭建博客现在很流行在github上建立静态blog。 诸如hexo 、jekyll等工具，可以很方便的实现在github上建立静态blog的功能，但是这些工具如何在github上建立blog的？之前一直没有弄明白。(PS: 之前git小白，一直没有真正用github)今天简单看了一下github pages的介绍， 按照教程简单操作了一遍，实现了在github上搭建hello wo">
+<meta property="og:description" content="问题写了一个通过Webrtc加入视频会议的html页面，使用iPhone手机打开，发现摄像头采集的视频画面旋转了90度, 在视频会议里面人是横向的..PC和Android都没有这个问题 iPhone -&gt; Janus -&gt; OWT 原因分析 手机采集的视频就不是正向的 OWT服务端渲染时对视频进行了转向  我这里手机采集到的是正向的，所以是服务端对视频进行了旋转.在SDP协商里，通过a">
 <meta property="og:locale">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pagesgithub_pages_step1.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pagesgithub_pages_step1.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step3.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step4.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step5.png">
-<meta property="article:published_time" content="2015-06-15T04:54:37.000Z">
-<meta property="article:modified_time" content="2021-06-07T13:03:12.759Z">
+<meta property="article:published_time" content="2021-07-15T07:32:03.000Z">
+<meta property="article:modified_time" content="2021-07-15T08:04:47.858Z">
 <meta property="article:author" content="mihenkii">
-<meta property="article:tag" content="github blog hexo jekyll">
+<meta property="article:tag" content="webrtc ios video orientation">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://7xij29.com1.z0.glb.clouddn.com/github_pagesgithub_pages_step1.png">
 
     
     <link rel="alternative" href="/atom.xml" title="Mihenkii&#39;s tech blog" type="application/atom+xml">
@@ -92,14 +86,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/06/15/github-pages/" title="github pages" itemprop="url">github pages</a>
+      <a href="/2021/07/15/webrtc-ios-video-orientation/" title="webrtc-ios-video-orientation" itemprop="url">webrtc-ios-video-orientation</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
 		
   <p class="article-time">
-    <time datetime="2015-06-15T04:54:37.000Z" itemprop="datePublished"> Published 2015-06-15</time>
+    <time datetime="2021-07-15T07:32:03.000Z" itemprop="datePublished"> Published 2021-07-15</time>
     
   </p>
 </header>
@@ -108,33 +102,22 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#github-%E4%B8%8A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2"><span class="toc-number">1.</span> <span class="toc-text">github 上搭建博客</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87"><span class="toc-number">1.0.1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-number">1.0.2.</span> <span class="toc-text">操作过程</span></a></li></ol></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">原因分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">解决办法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="toc-number">4.</span> <span class="toc-text">参考文档</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="github-上搭建博客"><a href="#github-上搭建博客" class="headerlink" title="github 上搭建博客"></a>github 上搭建博客</h1><p>现在很流行在github上建立静态blog。 诸如hexo 、jekyll等工具，可以很方便的实现在github上建立静态blog的功能，<br>但是这些工具如何在github上建立blog的？之前一直没有弄明白。(PS: 之前git小白，一直没有真正用github)<br>今天简单看了一下github pages的介绍， 按照教程简单操作了一遍，实现了在github上<br>搭建hello world的过程，这里把过程记录下来。<br>操作系统 Centos 6</p>
-<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>1， github账号<br>2， git工具</p>
-<h3 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h3><p>1 登录<a target="_blank" rel="noopener" href="https://pages.github.com/" title="github pages">pages.github.com/</a>,<br>  点击”create a new repository”<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pagesgithub_pages_step1.png" alt="pages.github.com step1" title="pages.github.com step1"> </p>
-<p>2 填写blog的入口地址yoursite.github.io<br>注意yoursite的名字要和你的github名字一致<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pagesgithub_pages_step1.png" alt="pages.github.com step2" title="pages github.com step2">  </p>
-<p>3 在工作空间执行git clone命令，把新建的资源库clone到本地</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step3.png" alt="git clone 到本地" title="git clone 资源库到本地"></p>
-<p>4 cd进入到资源库里面， 创建一个index.html</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;Hello World&quot; &gt; index.html</span><br></pre></td></tr></table></figure>
-
-<p>5 提交到github</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git add --all</span><br><span class="line">git commit -m &quot;hello world&quot;</span><br><span class="line">git push -u origin master</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>此时访问<a href="http://mihenkii.github.io/">mihenkii.github.io</a> 如果看到了无比可亲的“Hello World”。 你就可以下一步了.</p>
-<p>因为我们默认提交的是index.html， 所以不需要些文件名. 所以，此时可以联想到，hexo 、jekyll 应该是在index.html上做了些文章，给全站都加上了url路由.   下一步计划，搞起hexo.</p>
-<p>如果提示如下403 错误， 按照如下步骤解决:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: The requested URL returned error: 403 Forbidden while accessing https://github.com/mihenkii/mihenkii.github.io.git/info/refs</span><br></pre></td></tr></table></figure>
-
-<p>1  修改当前资源库下的.git/config文件如下：<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step4.png" alt="修改.git/config" title="修改.git/config"></p>
-<p>2 此时如果还是提示失败，那么可能就是ssh证书有问题了. 可以尝试重做证书</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -b 4096 -C &quot;mihenkii@github.com&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>然后把公钥添加到github上，再重试， 如果使用git的windows客户度，此时需要重启ssh-agent<br><img src="http://7xij29.com1.z0.glb.clouddn.com/github_pages_step5.png" alt="添加公钥到github" title="添加公钥到github"> </p>
-<p>关于详细的添加公钥到github的过程可以参考官网帮助连接<br><a target="_blank" rel="noopener" href="https://help.github.com/articles/generating-ssh-keys/">help.github.com</a></p>
+		<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>写了一个通过Webrtc加入视频会议的html页面，使用iPhone手机打开，发现摄像头采集的视频画面旋转了90度, 在视频会议里面人是横向的..<br>PC和Android都没有这个问题</p>
+<p>iPhone -&gt; Janus -&gt; OWT</p>
+<h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><ol>
+<li>手机采集的视频就不是正向的</li>
+<li>OWT服务端渲染时对视频进行了转向</li>
+</ol>
+<p>我这里手机采集到的是正向的，所以是服务端对视频进行了旋转.<br>在SDP协商里，通过<code>a=extmap:13 urn:3gpp:video-orientation</code> 控制视频旋转角度</p>
+<p><strong>注意：每个人遇到的extmap:后面的数字可能不一样</strong></p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>判断是iPhone手机，就去掉SDP里面的CVO(Coordination of Video Orientation)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function iOS() &#123;</span><br><span class="line"> return [</span><br><span class="line">    &#x27;iPhone Simulator&#x27;,</span><br><span class="line">    &#x27;iPhone&#x27;</span><br><span class="line"> ].includes(navigator.platform)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createdOffer(description) &#123;</span><br><span class="line">  if(iOS()) &#123;</span><br><span class="line">    var oldsdp = description[&quot;sdp&quot;];</span><br><span class="line">    var pattern=/a=extmap:13 urn:3gpp:video-orientation\r\n/gi;</span><br><span class="line">    var newsdp = oldsdp.replace(pattern,&quot;&quot;);</span><br><span class="line">    description[&quot;sdp&quot;]=newsdp;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>这个办法不是很好，会在真的有旋转画面需求的时候无法使用，在服务器合流的时候判断是否需要旋转应该更好一些。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/epubcn/article/details/101451547">https://blog.csdn.net/epubcn/article/details/101451547</a><br><a target="_blank" rel="noopener" href="https://docs.flashphoner.com/display/WCS52EN/WebRTC+stream+picture+rotation">https://docs.flashphoner.com/display/WCS52EN/WebRTC+stream+picture+rotation</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/9038625/detect-if-device-is-ios">https://stackoverflow.com/questions/9038625/detect-if-device-is-ios</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -143,7 +126,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/github-blog-hexo-jekyll/">github blog hexo jekyll</a>
+  <span></span> <a href="/tags/webrtc-ios-video-orientation/">webrtc ios video orientation</a>
   </div>
 
 </div>
@@ -152,7 +135,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://mihenkii.github.io/2015/06/15/github-pages/" data-title="github pages | Mihenkii&#39;s tech blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://mihenkii.github.io/2021/07/15/webrtc-ios-video-orientation/" data-title="webrtc-ios-video-orientation | Mihenkii&#39;s tech blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -166,13 +149,21 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/06/15/how-to-use-hexo/" title="使用hexo创建静态blog">
+ <a href="/2021/07/16/number-is-prime/" title="number-is-prime">
   <strong>上一篇：</strong><br/>
   <span>
-  使用hexo创建静态blog</span>
+  number-is-prime</span>
 </a>
 </div>
 
+
+<div class="next">
+<a href="/2021/07/15/ubuntu-vnc/"  title="Ubuntu-VNC">
+ <strong>下一篇：</strong><br/> 
+ <span>Ubuntu-VNC
+</span>
+</a>
+</div>
 
 </nav>
 
@@ -186,7 +177,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#github-%E4%B8%8A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2"><span class="toc-number">1.</span> <span class="toc-text">github 上搭建博客</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87"><span class="toc-number">1.0.1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-number">1.0.2.</span> <span class="toc-text">操作过程</span></a></li></ol></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">原因分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">解决办法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="toc-number">4.</span> <span class="toc-text">参考文档</span></a></li></ol>
  
   </div>
 
