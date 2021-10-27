@@ -4,35 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>gimp 倒影效果 | Mihenkii&#39;s tech blog</title>
+    <title>k8s-nginx-pod-mount-ssl | Mihenkii&#39;s tech blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="mihenkii">
     
 
     
-    <meta name="description" content="gimp 实现倒影效果最终效果如下：  本文用了相对简单易懂的方式实现了文字倒影。还有一种方式是在“倒影”图像是用“橡皮”擦出倒影效果，这里不推荐。 Step by step1 Ctrl + n  新建一个空白图形，设置合适的大小  2 选择文字工具， 写下自己想要设计的文字，并调整大小，个人喜欢用75的大小  3 选中文字，设置文字颜色，并记住文字颜色(这个颜色后面会用到)  4 复制图层，用来">
+    <meta name="description" content="0.背景 私有化部署的Tengine需要开启HTTPS，挂载自签名的证书  1.生成证书12# --nodes 不需要密码加密openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -keyout tls.key -out tls.crt 生成证书的几个字段说明 1234567Country Name (2 letter code) [AU]:U">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gimp 倒影效果">
-<meta property="og:url" content="http://mihenkii.github.io/2015/09/27/gimp-reflection/index.html">
+<meta property="og:title" content="k8s-nginx-pod-mount-ssl">
+<meta property="og:url" content="http://mihenkii.github.io/2021/10/27/k8s-nginx-pod-mount-ssl/index.html">
 <meta property="og:site_name" content="Mihenkii&#39;s tech blog">
-<meta property="og:description" content="gimp 实现倒影效果最终效果如下：  本文用了相对简单易懂的方式实现了文字倒影。还有一种方式是在“倒影”图像是用“橡皮”擦出倒影效果，这里不推荐。 Step by step1 Ctrl + n  新建一个空白图形，设置合适的大小  2 选择文字工具， 写下自己想要设计的文字，并调整大小，个人喜欢用75的大小  3 选中文字，设置文字颜色，并记住文字颜色(这个颜色后面会用到)  4 复制图层，用来">
+<meta property="og:description" content="0.背景 私有化部署的Tengine需要开启HTTPS，挂载自签名的证书  1.生成证书12# --nodes 不需要密码加密openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -keyout tls.key -out tls.crt 生成证书的几个字段说明 1234567Country Name (2 letter code) [AU]:U">
 <meta property="og:locale">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_0.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_1.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_2.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_3.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_4.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_5.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_6.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_7.png">
-<meta property="og:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_8.png">
-<meta property="article:published_time" content="2015-09-27T03:24:57.000Z">
-<meta property="article:modified_time" content="2021-06-07T13:03:12.759Z">
+<meta property="article:published_time" content="2021-10-27T11:55:02.000Z">
+<meta property="article:modified_time" content="2021-10-27T12:05:49.708Z">
 <meta property="article:author" content="mihenkii">
-<meta property="article:tag" content="gimp">
+<meta property="article:tag" content="secert ssl">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_0.png">
 
     
     <link rel="alternative" href="/atom.xml" title="Mihenkii&#39;s tech blog" type="application/atom+xml">
@@ -96,14 +86,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/09/27/gimp-reflection/" title="gimp 倒影效果" itemprop="url">gimp 倒影效果</a>
+      <a href="/2021/10/27/k8s-nginx-pod-mount-ssl/" title="k8s-nginx-pod-mount-ssl" itemprop="url">k8s-nginx-pod-mount-ssl</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
 		
   <p class="article-time">
-    <time datetime="2015-09-27T03:24:57.000Z" itemprop="datePublished"> Published 2015-09-27</time>
+    <time datetime="2021-10-27T11:55:02.000Z" itemprop="datePublished"> Published 2021-10-27</time>
     
   </p>
 </header>
@@ -112,31 +102,27 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#gimp-%E5%AE%9E%E7%8E%B0%E5%80%92%E5%BD%B1%E6%95%88%E6%9E%9C"><span class="toc-number">1.</span> <span class="toc-text">gimp 实现倒影效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step-by-step"><span class="toc-number">2.</span> <span class="toc-text">Step by step</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#0-%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">0.背景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%94%9F%E6%88%90%E8%AF%81%E4%B9%A6"><span class="toc-number">2.</span> <span class="toc-text">1.生成证书</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%AF%81%E4%B9%A6Base64%E7%BC%96%E7%A0%81"><span class="toc-number">3.</span> <span class="toc-text">2.证书Base64编码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BASecret%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.</span> <span class="toc-text">3.创建Secret对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%AE%9A%E4%B9%89Volume"><span class="toc-number">5.</span> <span class="toc-text">4.定义Volume</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%AE%9A%E4%B9%89volumeMount"><span class="toc-number">6.</span> <span class="toc-text">5.定义volumeMount</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="toc-number">7.</span> <span class="toc-text">6.参考文档</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="gimp-实现倒影效果"><a href="#gimp-实现倒影效果" class="headerlink" title="gimp 实现倒影效果"></a>gimp 实现倒影效果</h2><p>最终效果如下：</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_0.png" alt="gimp文字倒影"></p>
-<p>本文用了相对简单易懂的方式实现了文字倒影。<br>还有一种方式是在“倒影”图像是用“橡皮”擦出倒影效果，这里不推荐。</p>
-<h2 id="Step-by-step"><a href="#Step-by-step" class="headerlink" title="Step by step"></a>Step by step</h2><p>1 Ctrl + n  新建一个空白图形，设置合适的大小</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_1.png" alt="gimp 新建图像"></p>
-<p>2 选择文字工具， 写下自己想要设计的文字，并调整大小，个人喜欢用75的大小</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_2.png" alt="gimp文字工具"></p>
-<p>3 选中文字，设置文字颜色，并记住文字颜色(这个颜色后面会用到)</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_3.png" alt="gimp设置文字颜色"></p>
-<p>4 复制图层，用来做”倒影”</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_4.png" alt="复制图层"></p>
-<p>5 移动复制的图层到原图的正下方</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_5.png" alt="gimp移动工具"></p>
-<p>6 翻转图形， 并在此调整文字位置，移动翻转后的图形到原图的正下方</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_6.png" alt="gimp翻转图形"></p>
-<p>7 制作倒影, 如图：首先在倒影的图层上点击”锁定Alpha通道”, 然后点击”左侧黑色”, 设置颜色和文字一致。</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_7.png" alt="gimp混合工具"></p>
-<p>8 图像合并</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_8.png" alt="合并图像"></p>
-<p>参考连接：<br><a target="_blank" rel="noopener" href="http://gimp-tutorials.net/node/236">gimp-tutorials.net</a></p>
-<p><a target="_blank" rel="noopener" href="http://gimp-tutorials.net/node/91">gimp-tutorials.net</a></p>
+		<h4 id="0-背景"><a href="#0-背景" class="headerlink" title="0.背景"></a>0.背景</h4><blockquote>
+<p>私有化部署的Tengine需要开启HTTPS，挂载自签名的证书</p>
+</blockquote>
+<h4 id="1-生成证书"><a href="#1-生成证书" class="headerlink" title="1.生成证书"></a>1.生成证书</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># --nodes 不需要密码加密</span><br><span class="line">openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -keyout tls.key -out tls.crt</span><br></pre></td></tr></table></figure>
+<p>生成证书的几个字段说明</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Country Name (2 letter code) [AU]:US</span><br><span class="line">State or Province Name (full name) [Some-State]:New York</span><br><span class="line">Locality Name (eg, city) []:New York City</span><br><span class="line">Organization Name (eg, company) [Internet Widgits Pty Ltd]:Bouncy Castles, Inc.</span><br><span class="line">Organizational Unit Name (eg, section) []:Ministry of Water Slides</span><br><span class="line">Common Name (e.g. server FQDN or YOUR name) []:server_IP_address</span><br><span class="line">Email Address []:admin@your_domain.com</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-证书Base64编码"><a href="#2-证书Base64编码" class="headerlink" title="2.证书Base64编码"></a>2.证书Base64编码</h4><blockquote>
+<p>The values for all keys in the data field have to be base64-encoded strings. If the conversion to base64 string is not desirable, you can choose to specify the stringData field instead, which accepts arbitrary strings as values.</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat tls.crt | base64 | xargs -n 100 | sed &#x27;s/ //g&#x27;</span><br><span class="line">cat tls.key | base64 | xargs -n 100 | sed &#x27;s/ //g&#x27;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-创建Secret对象"><a href="#3-创建Secret对象" class="headerlink" title="3.创建Secret对象"></a>3.创建Secret对象</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Secret</span><br><span class="line">metadata:</span><br><span class="line">  name: tls-certs</span><br><span class="line">  namespace: &#123;&#123; .Release.Namespace &#125;&#125;</span><br><span class="line">type: kubernetes.io/tls</span><br><span class="line">data:</span><br><span class="line">  tls.crt: &quot;将第2步的crt字符串粘贴在这里&quot;</span><br><span class="line">  tls.key: &quot;将第2步的key字符串粘贴在这里&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="4-定义Volume"><a href="#4-定义Volume" class="headerlink" title="4.定义Volume"></a>4.定义Volume</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">volumes:</span><br><span class="line">- name: certs</span><br><span class="line">  secret:</span><br><span class="line">    secretName: tls-certs</span><br><span class="line">    defaultMode: 420</span><br><span class="line">- name: nginx-config</span><br><span class="line">  configMap:</span><br><span class="line">    name: tengine-config</span><br><span class="line">    items:</span><br><span class="line">    - key: nginx.conf</span><br><span class="line">      path: nginx.conf</span><br><span class="line">- name: logdir</span><br><span class="line">  emptyDir: &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="5-定义volumeMount"><a href="#5-定义volumeMount" class="headerlink" title="5.定义volumeMount"></a>5.定义volumeMount</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">volumeMounts:</span><br><span class="line">- mountPath: /etc/nginx/certs</span><br><span class="line">  name: certs</span><br><span class="line">- mountPath: /etc/nginx/nginx.conf</span><br><span class="line">  name: nginx-config</span><br><span class="line">  subPath: nginx.conf</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-参考文档"><a href="#6-参考文档" class="headerlink" title="6.参考文档"></a>6.参考文档</h4><p><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/concepts/configuration/secret/">https://kubernetes.io/docs/concepts/configuration/secret/</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/ljx1528/article/details/108491764">https://blog.csdn.net/ljx1528/article/details/108491764</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/micro-chen/p/11794248.html">https://www.cnblogs.com/micro-chen/p/11794248.html</a><br><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-18-04">https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-18-04</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -145,7 +131,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/gimp/">gimp</a>
+  <span></span> <a href="/tags/secert-ssl/">secert ssl</a>
   </div>
 
 </div>
@@ -154,7 +140,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://mihenkii.github.io/2015/09/27/gimp-reflection/" data-title="gimp 倒影效果 | Mihenkii&#39;s tech blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://mihenkii.github.io/2021/10/27/k8s-nginx-pod-mount-ssl/" data-title="k8s-nginx-pod-mount-ssl | Mihenkii&#39;s tech blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -167,19 +153,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/09/28/gimp-golden-font/" title="gimp土豪金字体">
-  <strong>上一篇：</strong><br/>
-  <span>
-  gimp土豪金字体</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/09/14/gimp-feather/"  title="gimp 羽化">
+<a href="/2021/07/16/number-is-prime/"  title="number-is-prime">
  <strong>下一篇：</strong><br/> 
- <span>gimp 羽化
+ <span>number-is-prime
 </span>
 </a>
 </div>
@@ -196,7 +174,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#gimp-%E5%AE%9E%E7%8E%B0%E5%80%92%E5%BD%B1%E6%95%88%E6%9E%9C"><span class="toc-number">1.</span> <span class="toc-text">gimp 实现倒影效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step-by-step"><span class="toc-number">2.</span> <span class="toc-text">Step by step</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#0-%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">0.背景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%94%9F%E6%88%90%E8%AF%81%E4%B9%A6"><span class="toc-number">2.</span> <span class="toc-text">1.生成证书</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%AF%81%E4%B9%A6Base64%E7%BC%96%E7%A0%81"><span class="toc-number">3.</span> <span class="toc-text">2.证书Base64编码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BASecret%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.</span> <span class="toc-text">3.创建Secret对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%AE%9A%E4%B9%89Volume"><span class="toc-number">5.</span> <span class="toc-text">4.定义Volume</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%AE%9A%E4%B9%89volumeMount"><span class="toc-number">6.</span> <span class="toc-text">5.定义volumeMount</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="toc-number">7.</span> <span class="toc-text">6.参考文档</span></a></li></ol>
  
   </div>
 

@@ -83,6 +83,77 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2021/10/27/k8s-nginx-pod-mount-ssl/" title="k8s-nginx-pod-mount-ssl" itemprop="url">k8s-nginx-pod-mount-ssl</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2021-10-27T11:55:02.000Z" itemprop="datePublished"> Published 2021-10-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h4 id="0-背景"><a href="#0-背景" class="headerlink" title="0.背景"></a>0.背景</h4><blockquote>
+<p>私有化部署的Tengine需要开启HTTPS，挂载自签名的证书</p>
+</blockquote>
+<h4 id="1-生成证书"><a href="#1-生成证书" class="headerlink" title="1.生成证书"></a>1.生成证书</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># --nodes 不需要密码加密</span><br><span class="line">openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -keyout tls.key -out tls.crt</span><br></pre></td></tr></table></figure>
+<p>生成证书的几个字段说明</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Country Name (2 letter code) [AU]:US</span><br><span class="line">State or Province Name (full name) [Some-State]:New York</span><br><span class="line">Locality Name (eg, city) []:New York City</span><br><span class="line">Organization Name (eg, company) [Internet Widgits Pty Ltd]:Bouncy Castles, Inc.</span><br><span class="line">Organizational Unit Name (eg, section) []:Ministry of Water Slides</span><br><span class="line">Common Name (e.g. server FQDN or YOUR name) []:server_IP_address</span><br><span class="line">Email Address []:admin@your_domain.com</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-证书Base64编码"><a href="#2-证书Base64编码" class="headerlink" title="2.证书Base64编码"></a>2.证书Base64编码</h4><blockquote>
+<p>The values for all keys in the data field have to be base64-encoded strings. If the conversion to base64 string is not desirable, you can choose to specify the stringData field instead, which accepts arbitrary strings as values.</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat tls.crt | base64 | xargs -n 100 | sed &#x27;s/ //g&#x27;</span><br><span class="line">cat tls.key | base64 | xargs -n 100 | sed &#x27;s/ //g&#x27;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-创建Secret对象"><a href="#3-创建Secret对象" class="headerlink" title="3.创建Secret对象"></a>3.创建Secret对象</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Secret</span><br><span class="line">metadata:</span><br><span class="line">  name: tls-certs</span><br><span class="line">  namespace: &#123;&#123; .Release.Namespace &#125;&#125;</span><br><span class="line">type: kubernetes.io/tls</span><br><span class="line">data:</span><br><span class="line">  tls.crt: &quot;将第2步的crt字符串粘贴在这里&quot;</span><br><span class="line">  tls.key: &quot;将第2步的key字符串粘贴在这里&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="4-定义Volume"><a href="#4-定义Volume" class="headerlink" title="4.定义Volume"></a>4.定义Volume</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">volumes:</span><br><span class="line">- name: certs</span><br><span class="line">  secret:</span><br><span class="line">    secretName: tls-certs</span><br><span class="line">    defaultMode: 420</span><br><span class="line">- name: nginx-config</span><br><span class="line">  configMap:</span><br><span class="line">    name: tengine-config</span><br><span class="line">    items:</span><br><span class="line">    - key: nginx.conf</span><br><span class="line">      path: nginx.conf</span><br><span class="line">- name: logdir</span><br><span class="line">  emptyDir: &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="5-定义volumeMount"><a href="#5-定义volumeMount" class="headerlink" title="5.定义volumeMount"></a>5.定义volumeMount</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">volumeMounts:</span><br><span class="line">- mountPath: /etc/nginx/certs</span><br><span class="line">  name: certs</span><br><span class="line">- mountPath: /etc/nginx/nginx.conf</span><br><span class="line">  name: nginx-config</span><br><span class="line">  subPath: nginx.conf</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-参考文档"><a href="#6-参考文档" class="headerlink" title="6.参考文档"></a>6.参考文档</h4><p><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/concepts/configuration/secret/">https://kubernetes.io/docs/concepts/configuration/secret/</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/ljx1528/article/details/108491764">https://blog.csdn.net/ljx1528/article/details/108491764</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/micro-chen/p/11794248.html">https://www.cnblogs.com/micro-chen/p/11794248.html</a><br><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-18-04">https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-18-04</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/secert-ssl/">secert ssl</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2021/07/16/number-is-prime/" title="number-is-prime" itemprop="url">number-is-prime</a>
   </h1>
   <p class="article-author">By
@@ -688,76 +759,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/11/13/docker_config/" title="Docker配置" itemprop="url">Docker配置</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
-		
-  <p class="article-time">
-    <time datetime="2017-11-13T14:04:57.000Z" itemprop="datePublished"> Published 2017-11-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><blockquote>
-<p>配置docker registry 加速docker</p>
-</blockquote>
-<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/docker/daemon.json</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://registry.docker-cn.com&quot;</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启docker</span></span><br><span class="line">sudo systemctl restart docker</span><br><span class="line"><span class="comment"># 查看镜像是否加载，我本机没有加载成功</span></span><br><span class="line">sudo docker info</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker pull ubuntu:14.04</span><br><span class="line">docker image ls <span class="comment"># 查看本地镜像</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="启动实例"><a href="#启动实例" class="headerlink" title="启动实例"></a>启动实例</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run ubuntu:14.04 # 如果本地没有这个image， 会从镜像仓库拉取并启动</span><br><span class="line">docker run -it ubuntu:14.04 /bin/bash  # 启动并进入到实例</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="退出实例"><a href="#退出实例" class="headerlink" title="退出实例"></a>退出实例</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入exit 或者ctrl+d 都会退出实例</span><br><span class="line">如果想退出且不停止实例， 使用ctrl+p+q组合键退出</span><br></pre></td></tr></table></figure>
-
-<h4 id="登录实例"><a href="#登录实例" class="headerlink" title="登录实例"></a>登录实例</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker [container] exec -it $containerId /bin/bash # 新启动一个bash</span><br><span class="line">docker [container] attach $containerId  #登录到旧的tty</span><br></pre></td></tr></table></figure>
-
-<h4 id="制作镜像"><a href="#制作镜像" class="headerlink" title="制作镜像"></a>制作镜像</h4><p>新建一个目录，创建 Dockerfile</p>
-<p>docker build -t 镜像名 .<br>docker run -p4000:80 镜像名<br>docker tag 镜像名 用户名/repository:tag<br>docker login # 输入用户名不带邮箱后缀</p>
-<p>docker push 用户名/repository:tag</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/docker-centos/">docker centos</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next&lt;span&gt;&lt;&#x2F;span&gt;</a>
@@ -846,6 +847,10 @@
 		
 			
 				<li><a href="/tags/数据结构与算法/" title="数据结构与算法">数据结构与算法<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/secert-ssl/" title="secert ssl">secert ssl<sup>1</sup></a></li>
 			
 		
 		</ul>
