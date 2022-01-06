@@ -83,6 +83,73 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2018/07/28/linux_history/" title="linux history 添加时间" itemprop="url">linux history 添加时间</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2018-07-28T13:04:57.000Z" itemprop="datePublished"> Published 2018-07-28</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><blockquote>
+<p>在Linux上执行history命令默认不现实命令执行时间，对于问题排查不是很友好.<br>通过设置，可以在history命令前面加上命令执行时间</p>
+</blockquote>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>bash</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HISTTIMEFORMAT=%Y-%m-%d %H:%M:%S</span><br><span class="line">HISTSIZE=1000 <span class="comment"># 历史命令数量</span></span><br></pre></td></tr></table></figure>
+
+<p>zsh</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HIST_STAMPS=<span class="string">&quot;%Y-%m-%d %H:%M:%S&quot;</span></span><br><span class="line">HISTSIZE=50000</span><br></pre></td></tr></table></figure>
+
+<p>加载配置</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bash</span></span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br><span class="line"></span><br><span class="line"><span class="comment">#zsh</span></span><br><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">history</span><br><span class="line">1  2018-07-28 16:36:10  cd /opt/workspace</span><br><span class="line">2  2018-07-28 16:36:20  vim linux_history.md</span><br><span class="line">3  2018-07-28 16:36:33  env</span><br><span class="line">4  2018-07-28 16:36:40  vim linux_history.md</span><br><span class="line">5  2018-07-28 16:37:52  ls</span><br><span class="line">6  2018-07-28 16:37:56  hexo server</span><br><span class="line">7  2018-07-28 16:38:19  ls</span><br><span class="line">8  2018-07-28 16:38:21  vim linux_history.md</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/linux-history-stamp/">linux history stamp</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2017/11/13/docker_config/" title="Docker配置" itemprop="url">Docker配置</a>
   </h1>
   <p class="article-author">By
@@ -743,85 +810,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/09/14/gimp-feather/" title="gimp 羽化" itemprop="url">gimp 羽化</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
-		
-  <p class="article-time">
-    <time datetime="2015-09-14T03:23:03.000Z" itemprop="datePublished"> Published 2015-09-14</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="GIMP-羽化"><a href="#GIMP-羽化" class="headerlink" title="GIMP 羽化"></a>GIMP 羽化</h2><p>羽化，就是将图片的四周制作成模糊的效果，感觉更柔和，类似PPT淡出(fade out)效果</p>
-<h4 id="step-by-step"><a href="#step-by-step" class="headerlink" title="step by step"></a>step by step</h4><ol>
-<li>Ctrl + o 打开需要制作的图片</li>
-</ol>
-<p><img src=""></p>
-<ol start="2">
-<li>Ctrl + d 复制需要制作的图片(一般都不直接编辑原图，都编辑复制的)</li>
-</ol>
-<p><img src=""></p>
-<ol start="3">
-<li>在工具箱，选择”矩形”工具, 然后在图片上选择想要实现效果的区域<br>注意： 双击鼠标才是选择了区域</li>
-</ol>
-<p><img src=""></p>
-<ol start="4">
-<li>“选择” -&gt; “反转”</li>
-</ol>
-<p><img src=""></p>
-<ol start="5">
-<li>“选择” -&gt; “羽化”</li>
-</ol>
-<p><img src=""></p>
-<ol start="6">
-<li>删除其他区域</li>
-</ol>
-<p><img src=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/gimp/">gimp</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/">&lt;span&gt;&lt;&#x2F;span&gt;Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next&lt;span&gt;&lt;&#x2F;span&gt;</a>
@@ -916,6 +904,10 @@
 				<li><a href="/tags/secert-ssl/" title="secert ssl">secert ssl<sup>1</sup></a></li>
 			
 		
+			
+				<li><a href="/tags/nginx/" title="nginx">nginx<sup>1</sup></a></li>
+			
+		
 		</ul>
 </div>
 
@@ -986,7 +978,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2021 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2022 
 		
 		<a href="/about" target="_blank" title="mihenkii">mihenkii</a>
 		
