@@ -70,6 +70,7 @@ stylus:
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  # repo: https://github.com/mihenkii/mihenkii.github.io.git
-  repo: ssh://git@github.com/mihenkii/mihenkii.github.io.git
+  repo: https://github.com/mihenkii/mihenkii.github.io.git
+    # repo: ssh://git@github.com/mihenkii/mihenkii.github.io.git
   branch: master
+    # token: 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
