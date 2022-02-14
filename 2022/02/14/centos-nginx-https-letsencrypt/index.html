@@ -1,0 +1,569 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh_CN.UTF-8">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>centos-nginx-https-letsencrypt | Mihenkii&#39;s tech blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="mihenkii">
+    
+
+    
+    <meta name="description" content="介绍早在2014年，Google就鼓励网站使用HTTPS协议，并优先考虑使用HTTPS的网站，从2017年开始，Google Chrome浏览器将非HTTPS的网站标记为不安全。Let’s Encrypt 面向公众提供免费的HTTPS证书, 这里记录Nginx 开启https的过程。 注意点我最初用Docker运行Tengine，希望将证书申请下来后mount到Docker里，目标是没有问题，但是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centos-nginx-https-letsencrypt">
+<meta property="og:url" content="http://mihenkii.github.io/2022/02/14/centos-nginx-https-letsencrypt/index.html">
+<meta property="og:site_name" content="Mihenkii&#39;s tech blog">
+<meta property="og:description" content="介绍早在2014年，Google就鼓励网站使用HTTPS协议，并优先考虑使用HTTPS的网站，从2017年开始，Google Chrome浏览器将非HTTPS的网站标记为不安全。Let’s Encrypt 面向公众提供免费的HTTPS证书, 这里记录Nginx 开启https的过程。 注意点我最初用Docker运行Tengine，希望将证书申请下来后mount到Docker里，目标是没有问题，但是">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-02-14T06:26:01.000Z">
+<meta property="article:modified_time" content="2022-02-14T08:33:41.069Z">
+<meta property="article:author" content="mihenkii">
+<meta property="article:tag" content="nginx https letsencrypt">
+<meta name="twitter:card" content="summary">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Mihenkii&#39;s tech blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Mihenkii&#39;s tech blog" title="Mihenkii&#39;s tech blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Mihenkii&#39;s tech blog">Mihenkii&#39;s tech blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:mihenkii.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2022/02/14/centos-nginx-https-letsencrypt/" title="centos-nginx-https-letsencrypt" itemprop="url">centos-nginx-https-letsencrypt</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2022-02-14T06:26:01.000Z" itemprop="datePublished"> Published 2022-02-14</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">注意点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.</span> <span class="toc-text">操作步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Certbot"><span class="toc-number">3.0.1.</span> <span class="toc-text">安装Certbot</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Nginx"><span class="toc-number">3.0.2.</span> <span class="toc-text">安装Nginx</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AENginx"><span class="toc-number">3.0.3.</span> <span class="toc-text">配置Nginx</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEvhost"><span class="toc-number">3.0.4.</span> <span class="toc-text">配置vhost</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cikii-com-conf"><span class="toc-number"></span> <span class="toc-text">cikii.com.conf</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jiu-cikii-com-conf"><span class="toc-number"></span> <span class="toc-text">jiu.cikii.com.conf</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B3%E8%AF%B7%E8%AF%81%E4%B9%A6"><span class="toc-number">0.0.1.</span> <span class="toc-text">申请证书</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="toc-number">1.</span> <span class="toc-text">参考文档</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>早在2014年，Google就鼓励网站使用HTTPS协议，并优先考虑使用HTTPS的网站，从2017年开始，Google Chrome浏览器将非HTTPS的网站标记为不安全。<br><a target="_blank" rel="noopener" href="https://letsencrypt.org/zh-cn/getting-started/">Let’s Encrypt</a> 面向公众提供免费的HTTPS证书, 这里记录Nginx 开启https的过程。</p>
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p>我最初用Docker运行Tengine，希望将证书申请下来后mount到Docker里，目标是没有问题，但是操作起来过于麻烦，而且没成功，浪费了很多时间。<br>后来改用服务器直接跑Nginx， 并使用最基础的nginx.conf，一切都变得非常容易。</p>
+<p><em><strong>尝试新事物的时候，最好是先“跑”起来，然后再研究更优的办法。</strong></em></p>
+<ol>
+<li>申请HTTPS证书的域名需要可以被公网访问</li>
+<li>如果使用Nginx，需要支持ssl, 编译的时候添加<code>--with-http_ssl_module</code></li>
+</ol>
+<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><h4 id="安装Certbot"><a href="#安装Certbot" class="headerlink" title="安装Certbot"></a>安装Certbot</h4><p>服务器需要使用ACME协议从Let’s Encrypt获取证书，我们使用官方推荐的 Certbot ACME客户端。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install epel-release</span><br><span class="line">yum -y install certbot-nginx</span><br></pre></td></tr></table></figure>
+
+<h4 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h4><p>我的服务器无法通过yum安装Nginx，只好自己编译一个。</p>
+<p>下载Tengine(Nginx) 源码, 编译</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr/local/nginx \</span><br><span class="line">      --conf-path=/usr/local/nginx/conf/nginx.conf \</span><br><span class="line">      --sbin-path=/usr/local/nginx/sbin/nginx \</span><br><span class="line">      --pid-path=/var/run/nginx.pid \</span><br><span class="line">      --lock-path=/var/run/lock/nginx.lock \</span><br><span class="line">      --user=www \</span><br><span class="line">      --group=www \</span><br><span class="line">      --http-log-path=/var/log/nginx/access.log \</span><br><span class="line">      --error-log-path=/var/log/nginx/error.log \</span><br><span class="line">      --http-client-body-temp-path=/var/lib/nginx/client-body \</span><br><span class="line">      --http-proxy-temp-path=/var/lib/nginx/proxy \</span><br><span class="line">      --http-fastcgi-temp-path=/var/lib/nginx/fastcgi \</span><br><span class="line">      --http-scgi-temp-path=/var/lib/nginx/scgi \</span><br><span class="line">      --http-uwsgi-temp-path=/var/lib/nginx/uwsgi \</span><br><span class="line">      --with-pcre-jit \</span><br><span class="line">      --with-http_dav_module \</span><br><span class="line">      --with-http_geoip_module \</span><br><span class="line">      --with-http_gunzip_module \</span><br><span class="line">      --with-http_gzip_static_module \</span><br><span class="line">      --with-http_random_index_module \</span><br><span class="line">      --with-http_realip_module \</span><br><span class="line">      --with-http_stub_status_module \</span><br><span class="line">      --with-http_secure_link_module \</span><br><span class="line">      --with-http_ssl_module \</span><br><span class="line">      --with-stream \</span><br><span class="line">      --with-stream_ssl_module \</span><br><span class="line">      --with-http_v2_module \</span><br><span class="line">      --with-http_stub_status_module \</span><br><span class="line">      --with-http_addition_module \</span><br><span class="line">      --with-http_degradation_module \</span><br><span class="line">      --with-http_flv_module \</span><br><span class="line">      --with-http_mp4_module \</span><br><span class="line">      --with-http_sub_module \</span><br><span class="line">      --with-file-aio \</span><br><span class="line">      --with-mail \</span><br><span class="line">      --with-mail_ssl_module \</span><br><span class="line">      --with-jemalloc</span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line"># certbot会在PATH下找nginx，这里通过软连把nginx放到PATH下</span><br><span class="line">ln -s /usr/local/nginx/sbin/nginx /usr/local/bin/nginx</span><br><span class="line">ln -s /usr/local/nginx/conf /etc/nginx</span><br></pre></td></tr></table></figure>
+
+<p>增加www用户</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -s /sbin/nologin www</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置Nginx"><a href="#配置Nginx" class="headerlink" title="配置Nginx"></a>配置Nginx</h4><p>在网上随便找了个nginx.conf, 通过最低下的<code>include /etc/nginx/conf.d/*.conf;</code> 加载个人的配置段。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">user  www;</span><br><span class="line"># This number should be, at maximum, the number of CPU cores on your system.</span><br><span class="line">worker_processes auto;</span><br><span class="line"></span><br><span class="line">error_log  /var/log/nginx/error.log error;</span><br><span class="line">pid        /var/run/nginx.pid;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    # The effective method, used on Linux 2.6+, optmized to serve many clients with each thread.</span><br><span class="line">    use epoll;</span><br><span class="line">    # Determines how many clients will be served by each worker process.</span><br><span class="line">    worker_connections 4000;</span><br><span class="line">    # Accept as many connections as possible, after nginx gets notification about a new connection.</span><br><span class="line">    multi_accept on;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       /etc/nginx/mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    # Allow the server to close the connection after a client stops responding.</span><br><span class="line">    reset_timedout_connection on;</span><br><span class="line">    client_header_timeout 15;</span><br><span class="line">    # Send the client a &quot;request timed out&quot; if the body is not loaded by this time.</span><br><span class="line">    client_body_timeout 10;</span><br><span class="line">    # If the client stops reading data, free up the stale client connection after this much time.</span><br><span class="line">    send_timeout 15;</span><br><span class="line">    # Timeout for keep-alive connections. Server will close connections after this time.</span><br><span class="line">    keepalive_timeout 30;</span><br><span class="line">    # Number of requests a client can make over the keep-alive connection.</span><br><span class="line">    keepalive_requests 30;</span><br><span class="line"></span><br><span class="line">    log_format  main  &#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span><br><span class="line">                      &#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span><br><span class="line">                      &#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    client_body_buffer_size 128k;</span><br><span class="line">    client_max_body_size 10m;</span><br><span class="line">    proxy_read_timeout 180s;</span><br><span class="line"></span><br><span class="line">    # Compression.</span><br><span class="line">    gzip on;</span><br><span class="line">    gzip_min_length 10240;</span><br><span class="line">    gzip_proxied expired no-cache no-store private auth;</span><br><span class="line">    gzip_types text/plain text/css text/xml text/javascript application/x-javascript application/xml;</span><br><span class="line">    gzip_disable &quot;msie6&quot;;</span><br><span class="line"></span><br><span class="line">    # Sendfile copies data between one FD and other from within the kernel.</span><br><span class="line">    sendfile on;</span><br><span class="line">    # Don&#x27;t buffer data-sends (disable Nagle algorithm).</span><br><span class="line">    tcp_nodelay on;</span><br><span class="line">    # Causes nginx to attempt to send its HTTP response head in one packet,  instead of using partial frames.</span><br><span class="line">    tcp_nopush on;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    # Hide web server information</span><br><span class="line">    server_tokens off;</span><br><span class="line">    server_info off;</span><br><span class="line">    server_tag off;</span><br><span class="line"></span><br><span class="line">    # redirect server error pages to the static page</span><br><span class="line">    error_page 404             /404.html;</span><br><span class="line">    error_page 500 502 503 504 /50x.html;</span><br><span class="line"></span><br><span class="line">    include /etc/nginx/conf.d/*.conf;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置vhost"><a href="#配置vhost" class="headerlink" title="配置vhost"></a>配置vhost</h4><p>下面是我的vhost配置文件, 使用最基础的配置文件</p>
+<h1 id="cikii-com-conf"><a href="#cikii-com-conf" class="headerlink" title="cikii.com.conf"></a>cikii.com.conf</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80 default_server;</span><br><span class="line">    listen [::]:80 default_server;</span><br><span class="line">    server_name     cikii.com www.cikii.com;</span><br><span class="line">    root /usr/local/nginx/html/;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="jiu-cikii-com-conf"><a href="#jiu-cikii-com-conf" class="headerlink" title="jiu.cikii.com.conf"></a>jiu.cikii.com.conf</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    listen [::]:80;</span><br><span class="line">    server_name     jiu.cikii.com;</span><br><span class="line">    root /usr/local/nginx/html/;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>重启一次Nginx</p>
+<h4 id="申请证书"><a href="#申请证书" class="headerlink" title="申请证书"></a>申请证书</h4><p>给3个域名同时申请证书, 3个证书会写在同一个pem文件里</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certbot --nginx -d cikii.com -d www.cikii.com -d jiu.cikii.com</span><br></pre></td></tr></table></figure>
+
+<p>如果没有报错的话， 我们自己的vhost配置文件已经被certbot改成支持HTTPS的配置了。</p>
+<p>最后, 记得在crontab里定时renew证书</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 12 * * * /usr/bin/certbot renew --quiet</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/">https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/nginx-https-letsencrypt/">nginx https letsencrypt</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mihenkii.github.io/2022/02/14/centos-nginx-https-letsencrypt/" data-title="centos-nginx-https-letsencrypt | Mihenkii&#39;s tech blog" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2022/01/06/nginx-basic-auth/"  title="nginx-basic-auth">
+ <strong>下一篇：</strong><br/> 
+ <span>nginx-basic-auth
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">注意点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.</span> <span class="toc-text">操作步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Certbot"><span class="toc-number">3.0.1.</span> <span class="toc-text">安装Certbot</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Nginx"><span class="toc-number">3.0.2.</span> <span class="toc-text">安装Nginx</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AENginx"><span class="toc-number">3.0.3.</span> <span class="toc-text">配置Nginx</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEvhost"><span class="toc-number">3.0.4.</span> <span class="toc-text">配置vhost</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cikii-com-conf"><span class="toc-number"></span> <span class="toc-text">cikii.com.conf</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jiu-cikii-com-conf"><span class="toc-number"></span> <span class="toc-text">jiu.cikii.com.conf</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B3%E8%AF%B7%E8%AF%81%E4%B9%A6"><span class="toc-number">0.0.1.</span> <span class="toc-text">申请证书</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="toc-number">1.</span> <span class="toc-text">参考文档</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/gimp/" title="gimp">gimp<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/docker-centos/" title="docker centos">docker centos<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bashrc-bash-profile/" title="bashrc bash_profile">bashrc bash_profile<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/docker-delete-image/" title="docker-delete-image">docker-delete-image<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/favicon/" title="favicon">favicon<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/golang/" title="golang">golang<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github-blog-hexo-jekyll/" title="github blog hexo jekyll">github blog hexo jekyll<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bash-java-c-python-Hello-World/" title="bash java c python Hello World">bash java c python Hello World<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo-posts-pages/" title="hexo posts pages">hexo posts pages<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/pyenv-virtualenv/" title="pyenv virtualenv">pyenv virtualenv<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux-history-stamp/" title="linux history stamp">linux history stamp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gimp-GIMP-教程/" title="gimp GIMP 教程">gimp GIMP 教程<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/win7-centos7/" title="win7 centos7">win7 centos7<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Ubuntu20-04-VNC/" title="Ubuntu20.04 VNC">Ubuntu20.04 VNC<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/webrtc-ios-video-orientation/" title="webrtc ios video orientation">webrtc ios video orientation<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据结构与算法/" title="数据结构与算法">数据结构与算法<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/secert-ssl/" title="secert ssl">secert ssl<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/nginx/" title="nginx">nginx<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/nginx-https-letsencrypt/" title="nginx https letsencrypt">nginx https letsencrypt<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2022 
+		
+		<a href="/about" target="_blank" title="mihenkii">mihenkii</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

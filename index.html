@@ -83,6 +83,94 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2022/02/14/centos-nginx-https-letsencrypt/" title="centos-nginx-https-letsencrypt" itemprop="url">centos-nginx-https-letsencrypt</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2022-02-14T06:26:01.000Z" itemprop="datePublished"> Published 2022-02-14</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>早在2014年，Google就鼓励网站使用HTTPS协议，并优先考虑使用HTTPS的网站，从2017年开始，Google Chrome浏览器将非HTTPS的网站标记为不安全。<br><a target="_blank" rel="noopener" href="https://letsencrypt.org/zh-cn/getting-started/">Let’s Encrypt</a> 面向公众提供免费的HTTPS证书, 这里记录Nginx 开启https的过程。</p>
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p>我最初用Docker运行Tengine，希望将证书申请下来后mount到Docker里，目标是没有问题，但是操作起来过于麻烦，而且没成功，浪费了很多时间。<br>后来改用服务器直接跑Nginx， 并使用最基础的nginx.conf，一切都变得非常容易。</p>
+<p><em><strong>尝试新事物的时候，最好是先“跑”起来，然后再研究更优的办法。</strong></em></p>
+<ol>
+<li>申请HTTPS证书的域名需要可以被公网访问</li>
+<li>如果使用Nginx，需要支持ssl, 编译的时候添加<code>--with-http_ssl_module</code></li>
+</ol>
+<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><h4 id="安装Certbot"><a href="#安装Certbot" class="headerlink" title="安装Certbot"></a>安装Certbot</h4><p>服务器需要使用ACME协议从Let’s Encrypt获取证书，我们使用官方推荐的 Certbot ACME客户端。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install epel-release</span><br><span class="line">yum -y install certbot-nginx</span><br></pre></td></tr></table></figure>
+
+<h4 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h4><p>我的服务器无法通过yum安装Nginx，只好自己编译一个。</p>
+<p>下载Tengine(Nginx) 源码, 编译</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr/local/nginx \</span><br><span class="line">      --conf-path=/usr/local/nginx/conf/nginx.conf \</span><br><span class="line">      --sbin-path=/usr/local/nginx/sbin/nginx \</span><br><span class="line">      --pid-path=/var/run/nginx.pid \</span><br><span class="line">      --lock-path=/var/run/lock/nginx.lock \</span><br><span class="line">      --user=www \</span><br><span class="line">      --group=www \</span><br><span class="line">      --http-log-path=/var/log/nginx/access.log \</span><br><span class="line">      --error-log-path=/var/log/nginx/error.log \</span><br><span class="line">      --http-client-body-temp-path=/var/lib/nginx/client-body \</span><br><span class="line">      --http-proxy-temp-path=/var/lib/nginx/proxy \</span><br><span class="line">      --http-fastcgi-temp-path=/var/lib/nginx/fastcgi \</span><br><span class="line">      --http-scgi-temp-path=/var/lib/nginx/scgi \</span><br><span class="line">      --http-uwsgi-temp-path=/var/lib/nginx/uwsgi \</span><br><span class="line">      --with-pcre-jit \</span><br><span class="line">      --with-http_dav_module \</span><br><span class="line">      --with-http_geoip_module \</span><br><span class="line">      --with-http_gunzip_module \</span><br><span class="line">      --with-http_gzip_static_module \</span><br><span class="line">      --with-http_random_index_module \</span><br><span class="line">      --with-http_realip_module \</span><br><span class="line">      --with-http_stub_status_module \</span><br><span class="line">      --with-http_secure_link_module \</span><br><span class="line">      --with-http_ssl_module \</span><br><span class="line">      --with-stream \</span><br><span class="line">      --with-stream_ssl_module \</span><br><span class="line">      --with-http_v2_module \</span><br><span class="line">      --with-http_stub_status_module \</span><br><span class="line">      --with-http_addition_module \</span><br><span class="line">      --with-http_degradation_module \</span><br><span class="line">      --with-http_flv_module \</span><br><span class="line">      --with-http_mp4_module \</span><br><span class="line">      --with-http_sub_module \</span><br><span class="line">      --with-file-aio \</span><br><span class="line">      --with-mail \</span><br><span class="line">      --with-mail_ssl_module \</span><br><span class="line">      --with-jemalloc</span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line"># certbot会在PATH下找nginx，这里通过软连把nginx放到PATH下</span><br><span class="line">ln -s /usr/local/nginx/sbin/nginx /usr/local/bin/nginx</span><br><span class="line">ln -s /usr/local/nginx/conf /etc/nginx</span><br></pre></td></tr></table></figure>
+
+<p>增加www用户</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -s /sbin/nologin www</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置Nginx"><a href="#配置Nginx" class="headerlink" title="配置Nginx"></a>配置Nginx</h4><p>在网上随便找了个nginx.conf, 通过最低下的<code>include /etc/nginx/conf.d/*.conf;</code> 加载个人的配置段。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">user  www;</span><br><span class="line"># This number should be, at maximum, the number of CPU cores on your system.</span><br><span class="line">worker_processes auto;</span><br><span class="line"></span><br><span class="line">error_log  /var/log/nginx/error.log error;</span><br><span class="line">pid        /var/run/nginx.pid;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    # The effective method, used on Linux 2.6+, optmized to serve many clients with each thread.</span><br><span class="line">    use epoll;</span><br><span class="line">    # Determines how many clients will be served by each worker process.</span><br><span class="line">    worker_connections 4000;</span><br><span class="line">    # Accept as many connections as possible, after nginx gets notification about a new connection.</span><br><span class="line">    multi_accept on;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       /etc/nginx/mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    # Allow the server to close the connection after a client stops responding.</span><br><span class="line">    reset_timedout_connection on;</span><br><span class="line">    client_header_timeout 15;</span><br><span class="line">    # Send the client a &quot;request timed out&quot; if the body is not loaded by this time.</span><br><span class="line">    client_body_timeout 10;</span><br><span class="line">    # If the client stops reading data, free up the stale client connection after this much time.</span><br><span class="line">    send_timeout 15;</span><br><span class="line">    # Timeout for keep-alive connections. Server will close connections after this time.</span><br><span class="line">    keepalive_timeout 30;</span><br><span class="line">    # Number of requests a client can make over the keep-alive connection.</span><br><span class="line">    keepalive_requests 30;</span><br><span class="line"></span><br><span class="line">    log_format  main  &#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span><br><span class="line">                      &#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span><br><span class="line">                      &#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    client_body_buffer_size 128k;</span><br><span class="line">    client_max_body_size 10m;</span><br><span class="line">    proxy_read_timeout 180s;</span><br><span class="line"></span><br><span class="line">    # Compression.</span><br><span class="line">    gzip on;</span><br><span class="line">    gzip_min_length 10240;</span><br><span class="line">    gzip_proxied expired no-cache no-store private auth;</span><br><span class="line">    gzip_types text/plain text/css text/xml text/javascript application/x-javascript application/xml;</span><br><span class="line">    gzip_disable &quot;msie6&quot;;</span><br><span class="line"></span><br><span class="line">    # Sendfile copies data between one FD and other from within the kernel.</span><br><span class="line">    sendfile on;</span><br><span class="line">    # Don&#x27;t buffer data-sends (disable Nagle algorithm).</span><br><span class="line">    tcp_nodelay on;</span><br><span class="line">    # Causes nginx to attempt to send its HTTP response head in one packet,  instead of using partial frames.</span><br><span class="line">    tcp_nopush on;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    # Hide web server information</span><br><span class="line">    server_tokens off;</span><br><span class="line">    server_info off;</span><br><span class="line">    server_tag off;</span><br><span class="line"></span><br><span class="line">    # redirect server error pages to the static page</span><br><span class="line">    error_page 404             /404.html;</span><br><span class="line">    error_page 500 502 503 504 /50x.html;</span><br><span class="line"></span><br><span class="line">    include /etc/nginx/conf.d/*.conf;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置vhost"><a href="#配置vhost" class="headerlink" title="配置vhost"></a>配置vhost</h4><p>下面是我的vhost配置文件, 使用最基础的配置文件</p>
+<h1 id="cikii-com-conf"><a href="#cikii-com-conf" class="headerlink" title="cikii.com.conf"></a>cikii.com.conf</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80 default_server;</span><br><span class="line">    listen [::]:80 default_server;</span><br><span class="line">    server_name     cikii.com www.cikii.com;</span><br><span class="line">    root /usr/local/nginx/html/;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="jiu-cikii-com-conf"><a href="#jiu-cikii-com-conf" class="headerlink" title="jiu.cikii.com.conf"></a>jiu.cikii.com.conf</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    listen [::]:80;</span><br><span class="line">    server_name     jiu.cikii.com;</span><br><span class="line">    root /usr/local/nginx/html/;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>重启一次Nginx</p>
+<h4 id="申请证书"><a href="#申请证书" class="headerlink" title="申请证书"></a>申请证书</h4><p>给3个域名同时申请证书, 3个证书会写在同一个pem文件里</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certbot --nginx -d cikii.com -d www.cikii.com -d jiu.cikii.com</span><br></pre></td></tr></table></figure>
+
+<p>如果没有报错的话， 我们自己的vhost配置文件已经被certbot改成支持HTTPS的配置了。</p>
+<p>最后, 记得在crontab里定时renew证书</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 12 * * * /usr/bin/certbot renew --quiet</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/">https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/nginx-https-letsencrypt/">nginx https letsencrypt</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2022/01/06/nginx-basic-auth/" title="nginx-basic-auth" itemprop="url">nginx-basic-auth</a>
   </h1>
   <p class="article-author">By
@@ -696,73 +784,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2018/07/29/bashrc_vs_bash_profile/" title="bashrc vs bash_profile" itemprop="url">bashrc vs bash_profile</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
-		
-  <p class="article-time">
-    <time datetime="2018-07-29T13:04:57.000Z" itemprop="datePublished"> Published 2018-07-29</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><blockquote>
-<p>使用Linux安装软件，有时候需要设置环境变量，有的文档建议设置在.bashrc里， 有的建议.bash_profile里<br>一般都能生效，那么区别是什么呢？</p>
-</blockquote>
-<h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><blockquote>
-<p>.bash_profile is executed for login shells, while .bashrc is executed for interactive non-login shells.</p>
-</blockquote>
-<p>bash_profile: 登录试shell执行<br>bashrc: 非登录式shell执行</p>
-<h4 id="什么是-非-登录试shell"><a href="#什么是-非-登录试shell" class="headerlink" title="什么是(非)登录试shell"></a>什么是(非)登录试shell</h4><p>登录试： 当你敲入用户名和密码登录的终端， 或通过ssh登录机器. .bash_profile会被调用<br>非登录: 当你已经登录了机器，在桌面环境打开终端， 或者在终端里面调用了/bin/bash, 此时.bashrc会被调用</p>
-<h4 id="为什么会有这两个文件"><a href="#为什么会有这两个文件" class="headerlink" title="为什么会有这两个文件"></a>为什么会有这两个文件</h4><p>比如，你希望第一次登录机器的时候，想看到机器的负载， 那么把uptime命令写到.bash_profile里面就可以了.<br>如果写到.bashrc里面， 你每次打开终端， 都会看到机器负载。</p>
-<h4 id="推荐方法"><a href="#推荐方法" class="headerlink" title="推荐方法"></a>推荐方法</h4><p>当你设置PATH环境变量的时候， 把变量写到.bashrc<br>在.bash_profile里面加载.bashrc</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f ~/.bashrc ]; <span class="keyword">then</span></span><br><span class="line">   <span class="built_in">source</span> ~/.bashrc</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="参考连接"><a href="#参考连接" class="headerlink" title="参考连接"></a>参考连接</h4><p><a target="_blank" rel="noopener" href="http://www.joshstaiger.org/archives/2005/07/bash_profile_vs.html">bash_profile_vs</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/bashrc-bash-profile/">bashrc bash_profile</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next&lt;span&gt;&lt;&#x2F;span&gt;</a>
@@ -859,6 +880,10 @@
 		
 			
 				<li><a href="/tags/nginx/" title="nginx">nginx<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/nginx-https-letsencrypt/" title="nginx https letsencrypt">nginx https letsencrypt<sup>1</sup></a></li>
 			
 		
 		</ul>

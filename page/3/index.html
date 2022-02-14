@@ -83,6 +83,81 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/09/27/gimp-reflection/" title="gimp 倒影效果" itemprop="url">gimp 倒影效果</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-27T03:24:57.000Z" itemprop="datePublished"> Published 2015-09-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="gimp-实现倒影效果"><a href="#gimp-实现倒影效果" class="headerlink" title="gimp 实现倒影效果"></a>gimp 实现倒影效果</h2><p>最终效果如下：</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_0.png" alt="gimp文字倒影"></p>
+<p>本文用了相对简单易懂的方式实现了文字倒影。<br>还有一种方式是在“倒影”图像是用“橡皮”擦出倒影效果，这里不推荐。</p>
+<h2 id="Step-by-step"><a href="#Step-by-step" class="headerlink" title="Step by step"></a>Step by step</h2><p>1 Ctrl + n  新建一个空白图形，设置合适的大小</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_1.png" alt="gimp 新建图像"></p>
+<p>2 选择文字工具， 写下自己想要设计的文字，并调整大小，个人喜欢用75的大小</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_2.png" alt="gimp文字工具"></p>
+<p>3 选中文字，设置文字颜色，并记住文字颜色(这个颜色后面会用到)</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_3.png" alt="gimp设置文字颜色"></p>
+<p>4 复制图层，用来做”倒影”</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_4.png" alt="复制图层"></p>
+<p>5 移动复制的图层到原图的正下方</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_5.png" alt="gimp移动工具"></p>
+<p>6 翻转图形， 并在此调整文字位置，移动翻转后的图形到原图的正下方</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_6.png" alt="gimp翻转图形"></p>
+<p>7 制作倒影, 如图：首先在倒影的图层上点击”锁定Alpha通道”, 然后点击”左侧黑色”, 设置颜色和文字一致。</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_7.png" alt="gimp混合工具"></p>
+<p>8 图像合并</p>
+<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_8.png" alt="合并图像"></p>
+<p>参考连接：<br><a target="_blank" rel="noopener" href="http://gimp-tutorials.net/node/236">gimp-tutorials.net</a></p>
+<p><a target="_blank" rel="noopener" href="http://gimp-tutorials.net/node/91">gimp-tutorials.net</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/gimp/">gimp</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/09/14/gimp-feather/" title="gimp 羽化" itemprop="url">gimp 羽化</a>
   </h1>
   <p class="article-author">By
@@ -470,6 +545,10 @@
 		
 			
 				<li><a href="/tags/nginx/" title="nginx">nginx<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/nginx-https-letsencrypt/" title="nginx https letsencrypt">nginx https letsencrypt<sup>1</sup></a></li>
 			
 		
 		</ul>

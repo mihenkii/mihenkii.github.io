@@ -83,6 +83,73 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2018/07/29/bashrc_vs_bash_profile/" title="bashrc vs bash_profile" itemprop="url">bashrc vs bash_profile</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2018-07-29T13:04:57.000Z" itemprop="datePublished"> Published 2018-07-29</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><blockquote>
+<p>使用Linux安装软件，有时候需要设置环境变量，有的文档建议设置在.bashrc里， 有的建议.bash_profile里<br>一般都能生效，那么区别是什么呢？</p>
+</blockquote>
+<h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><blockquote>
+<p>.bash_profile is executed for login shells, while .bashrc is executed for interactive non-login shells.</p>
+</blockquote>
+<p>bash_profile: 登录试shell执行<br>bashrc: 非登录式shell执行</p>
+<h4 id="什么是-非-登录试shell"><a href="#什么是-非-登录试shell" class="headerlink" title="什么是(非)登录试shell"></a>什么是(非)登录试shell</h4><p>登录试： 当你敲入用户名和密码登录的终端， 或通过ssh登录机器. .bash_profile会被调用<br>非登录: 当你已经登录了机器，在桌面环境打开终端， 或者在终端里面调用了/bin/bash, 此时.bashrc会被调用</p>
+<h4 id="为什么会有这两个文件"><a href="#为什么会有这两个文件" class="headerlink" title="为什么会有这两个文件"></a>为什么会有这两个文件</h4><p>比如，你希望第一次登录机器的时候，想看到机器的负载， 那么把uptime命令写到.bash_profile里面就可以了.<br>如果写到.bashrc里面， 你每次打开终端， 都会看到机器负载。</p>
+<h4 id="推荐方法"><a href="#推荐方法" class="headerlink" title="推荐方法"></a>推荐方法</h4><p>当你设置PATH环境变量的时候， 把变量写到.bashrc<br>在.bash_profile里面加载.bashrc</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f ~/.bashrc ]; <span class="keyword">then</span></span><br><span class="line">   <span class="built_in">source</span> ~/.bashrc</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="参考连接"><a href="#参考连接" class="headerlink" title="参考连接"></a>参考连接</h4><p><a target="_blank" rel="noopener" href="http://www.joshstaiger.org/archives/2005/07/bash_profile_vs.html">bash_profile_vs</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/bashrc-bash-profile/">bashrc bash_profile</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2018/07/28/linux_history/" title="linux history 添加时间" itemprop="url">linux history 添加时间</a>
   </h1>
   <p class="article-author">By
@@ -735,81 +802,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/09/27/gimp-reflection/" title="gimp 倒影效果" itemprop="url">gimp 倒影效果</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
-		
-  <p class="article-time">
-    <time datetime="2015-09-27T03:24:57.000Z" itemprop="datePublished"> Published 2015-09-27</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="gimp-实现倒影效果"><a href="#gimp-实现倒影效果" class="headerlink" title="gimp 实现倒影效果"></a>gimp 实现倒影效果</h2><p>最终效果如下：</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_0.png" alt="gimp文字倒影"></p>
-<p>本文用了相对简单易懂的方式实现了文字倒影。<br>还有一种方式是在“倒影”图像是用“橡皮”擦出倒影效果，这里不推荐。</p>
-<h2 id="Step-by-step"><a href="#Step-by-step" class="headerlink" title="Step by step"></a>Step by step</h2><p>1 Ctrl + n  新建一个空白图形，设置合适的大小</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_1.png" alt="gimp 新建图像"></p>
-<p>2 选择文字工具， 写下自己想要设计的文字，并调整大小，个人喜欢用75的大小</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_2.png" alt="gimp文字工具"></p>
-<p>3 选中文字，设置文字颜色，并记住文字颜色(这个颜色后面会用到)</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_3.png" alt="gimp设置文字颜色"></p>
-<p>4 复制图层，用来做”倒影”</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_4.png" alt="复制图层"></p>
-<p>5 移动复制的图层到原图的正下方</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_5.png" alt="gimp移动工具"></p>
-<p>6 翻转图形， 并在此调整文字位置，移动翻转后的图形到原图的正下方</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_6.png" alt="gimp翻转图形"></p>
-<p>7 制作倒影, 如图：首先在倒影的图层上点击”锁定Alpha通道”, 然后点击”左侧黑色”, 设置颜色和文字一致。</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_7.png" alt="gimp混合工具"></p>
-<p>8 图像合并</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_reflect_8.png" alt="合并图像"></p>
-<p>参考连接：<br><a target="_blank" rel="noopener" href="http://gimp-tutorials.net/node/236">gimp-tutorials.net</a></p>
-<p><a target="_blank" rel="noopener" href="http://gimp-tutorials.net/node/91">gimp-tutorials.net</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/gimp/">gimp</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/">&lt;span&gt;&lt;&#x2F;span&gt;Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next&lt;span&gt;&lt;&#x2F;span&gt;</a>
@@ -906,6 +898,10 @@
 		
 			
 				<li><a href="/tags/nginx/" title="nginx">nginx<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/nginx-https-letsencrypt/" title="nginx https letsencrypt">nginx https letsencrypt<sup>1</sup></a></li>
 			
 		
 		</ul>
