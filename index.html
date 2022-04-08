@@ -83,6 +83,66 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2022/04/08/fibonacci/" title="fibonacci" itemprop="url">fibonacci</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2022-04-08T09:49:04.000Z" itemprop="datePublished"> Published 2022-04-08</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>fibonacci数列: 1 1 2 3 5 8 13 21…</p>
+<p>今天看到了fibonacci的非递归写法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">func fibonacci(n int) int &#123;</span><br><span class="line">	a, b := 0, 1</span><br><span class="line">	for i := 2; i &lt; n; i++ &#123;</span><br><span class="line">		a, b = b, a+b</span><br><span class="line">	&#125;</span><br><span class="line">	return a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func fibonacci(n int) int &#123;</span><br><span class="line">	a, b := 0, 1</span><br><span class="line">	for i := 2; i &lt; n; i++ &#123;</span><br><span class="line">        // 有的编程语言不支持上面的那种a, b = b, a+b写法</span><br><span class="line">        sum := a + b</span><br><span class="line">        a = b</span><br><span class="line">        b = sum</span><br><span class="line">	&#125;</span><br><span class="line">	return a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>递归写法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">func fibonacci(n int) int &#123;</span><br><span class="line">    if n == 1 || n == 2 &#123;</span><br><span class="line">        return 1</span><br><span class="line">    &#125;</span><br><span class="line">    return fibonacci(n-1) + fibonacci(n-2)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/数据结构与算法/">数据结构与算法</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2022/02/14/centos-nginx-https-letsencrypt/" title="centos-nginx-https-letsencrypt" itemprop="url">centos-nginx-https-letsencrypt</a>
   </h1>
   <p class="article-author">By
@@ -724,66 +784,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2020/03/14/golang-struct-init/" title="golang strcut 初始化" itemprop="url">golang strcut 初始化</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
-		
-  <p class="article-time">
-    <time datetime="2020-03-14T10:04:57.000Z" itemprop="datePublished"> Published 2020-03-14</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><blockquote>
-<p>刚刚接触golang, 准备用golang gin mongodb写一个CRUD小Demo，把遇到的知识点记录下来, 给自己以后参考</p>
-</blockquote>
-<h4 id="定义Post-struct"><a href="#定义Post-struct" class="headerlink" title="定义Post struct"></a>定义Post struct</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># module/post.go</span><br><span class="line">type Post struct &#123;</span><br><span class="line">    ID       primitive.ObjectID `bson:&quot;_id,omitempty&quot; json:&quot;id,omitempty&quot;`</span><br><span class="line">    Title    string             `bson:&quot;title,omitempty&quot; json:&quot;title,omitempty&quot;`</span><br><span class="line">    Content  string             `bson:&quot;content,omitempty&quot; json:&quot;content,omitempty&quot;`</span><br><span class="line">    Type     int                `bson:&quot;type,omitempty&quot; json:&quot;type,omitempty&quot;`</span><br><span class="line">    Ctime    int64              `bson:&quot;ctime,omitempty&quot; json:&quot;ctime,omitempty&quot;`</span><br><span class="line">    Utime    int64              `bson:&quot;utime,omitempty&quot; json:&quot;utime,omitempty&quot;`</span><br><span class="line">    UserID   int                `bson:&quot;user_id,omitempty&quot; json:&quot;user_id,omitempty&quot;`</span><br><span class="line">    ReferURL string             `bson:&quot;refer_url,omitempty&quot; json:&quot;refer_url,omitempty&quot;`</span><br><span class="line">    Extra    string             `bson:&quot;extra,omitempty&quot; json:&quot;extra,omitempty&quot;`</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 方法一</span><br><span class="line">post := models.Post&#123;primitive.NewObjectID(), &quot;title&quot;, &quot;content&quot;, 1, time.Now().Unix(), time.Now().Unix(), 1, &quot;http://www.baidu.com&quot;, &quot;&quot;&#125;</span><br><span class="line">models.CreatePost(post)</span><br><span class="line"></span><br><span class="line"># 方法二</span><br><span class="line">var post models.Post</span><br><span class="line">post.ID = primitive.NewObjectID()</span><br><span class="line">post.Title = &quot;这是一个title4&quot;</span><br><span class="line">post.Content = &quot;这是content，有长度&quot;</span><br><span class="line">post.Type = 1</span><br><span class="line">post.Ctime = time.Now().Unix()</span><br><span class="line">post.Utime = time.Now().Unix()</span><br><span class="line">post.UserID = 1</span><br><span class="line">post.ReferURL = &quot;http://www.baidu.com&quot;</span><br><span class="line">post.Extra = &quot;&quot;</span><br><span class="line"></span><br><span class="line">models.CreatePost(post)</span><br></pre></td></tr></table></figure>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/golang/">golang</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next&lt;span&gt;&lt;&#x2F;span&gt;</a>
@@ -816,6 +816,10 @@
 		
 			
 				<li><a href="/tags/docker-centos/" title="docker centos">docker centos<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据结构与算法/" title="数据结构与算法">数据结构与算法<sup>2</sup></a></li>
 			
 		
 			
@@ -860,10 +864,6 @@
 		
 			
 				<li><a href="/tags/nginx/" title="nginx">nginx<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/数据结构与算法/" title="数据结构与算法">数据结构与算法<sup>1</sup></a></li>
 			
 		
 			

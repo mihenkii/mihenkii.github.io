@@ -83,6 +83,66 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2020/03/14/golang-struct-init/" title="golang strcut 初始化" itemprop="url">golang strcut 初始化</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2020-03-14T10:04:57.000Z" itemprop="datePublished"> Published 2020-03-14</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><blockquote>
+<p>刚刚接触golang, 准备用golang gin mongodb写一个CRUD小Demo，把遇到的知识点记录下来, 给自己以后参考</p>
+</blockquote>
+<h4 id="定义Post-struct"><a href="#定义Post-struct" class="headerlink" title="定义Post struct"></a>定义Post struct</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># module/post.go</span><br><span class="line">type Post struct &#123;</span><br><span class="line">    ID       primitive.ObjectID `bson:&quot;_id,omitempty&quot; json:&quot;id,omitempty&quot;`</span><br><span class="line">    Title    string             `bson:&quot;title,omitempty&quot; json:&quot;title,omitempty&quot;`</span><br><span class="line">    Content  string             `bson:&quot;content,omitempty&quot; json:&quot;content,omitempty&quot;`</span><br><span class="line">    Type     int                `bson:&quot;type,omitempty&quot; json:&quot;type,omitempty&quot;`</span><br><span class="line">    Ctime    int64              `bson:&quot;ctime,omitempty&quot; json:&quot;ctime,omitempty&quot;`</span><br><span class="line">    Utime    int64              `bson:&quot;utime,omitempty&quot; json:&quot;utime,omitempty&quot;`</span><br><span class="line">    UserID   int                `bson:&quot;user_id,omitempty&quot; json:&quot;user_id,omitempty&quot;`</span><br><span class="line">    ReferURL string             `bson:&quot;refer_url,omitempty&quot; json:&quot;refer_url,omitempty&quot;`</span><br><span class="line">    Extra    string             `bson:&quot;extra,omitempty&quot; json:&quot;extra,omitempty&quot;`</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 方法一</span><br><span class="line">post := models.Post&#123;primitive.NewObjectID(), &quot;title&quot;, &quot;content&quot;, 1, time.Now().Unix(), time.Now().Unix(), 1, &quot;http://www.baidu.com&quot;, &quot;&quot;&#125;</span><br><span class="line">models.CreatePost(post)</span><br><span class="line"></span><br><span class="line"># 方法二</span><br><span class="line">var post models.Post</span><br><span class="line">post.ID = primitive.NewObjectID()</span><br><span class="line">post.Title = &quot;这是一个title4&quot;</span><br><span class="line">post.Content = &quot;这是content，有长度&quot;</span><br><span class="line">post.Type = 1</span><br><span class="line">post.Ctime = time.Now().Unix()</span><br><span class="line">post.Utime = time.Now().Unix()</span><br><span class="line">post.UserID = 1</span><br><span class="line">post.ReferURL = &quot;http://www.baidu.com&quot;</span><br><span class="line">post.Extra = &quot;&quot;</span><br><span class="line"></span><br><span class="line">models.CreatePost(post)</span><br></pre></td></tr></table></figure>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/golang/">golang</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2018/07/29/bashrc_vs_bash_profile/" title="bashrc vs bash_profile" itemprop="url">bashrc vs bash_profile</a>
   </h1>
   <p class="article-author">By
@@ -728,80 +788,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/09/28/gimp-golden-font/" title="gimp土豪金字体" itemprop="url">gimp土豪金字体</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
-		
-  <p class="article-time">
-    <time datetime="2015-09-28T03:03:13.000Z" itemprop="datePublished"> Published 2015-09-28</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="gimp制作土豪金字体图像"><a href="#gimp制作土豪金字体图像" class="headerlink" title="gimp制作土豪金字体图像"></a>gimp制作土豪金字体图像</h2><p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_0.png" alt="效果图"></p>
-<p>在网上看到有人用PS做了漂亮的土豪金字体，决定用gimp也实现一个</p>
-<blockquote>
-<p>实现土豪金字体有两个点:<br>1, 制作出金色的渐变工具<br>2, 字体加上特效</p>
-</blockquote>
-<h4 id="Step-by-step"><a href="#Step-by-step" class="headerlink" title="Step by step"></a>Step by step</h4><p>1 Ctrl + o 打开模板, 通过“颜色拾取”工具选择实例图片中的颜色</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_2.png" alt="选择颜色"><br><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_3.png" alt="选择颜色2"></p>
-<p>2 记住这个颜色， 用作渐变的最左端点颜色</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_4.png" alt="新建渐变"><br><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_5.png" alt="编辑渐变"><br><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_6.png" alt="设置渐变颜色"></p>
-<p>3 用同样的方式选择示例中的深一点的金色，用到渐变的右端点颜色</p>
-<p>4 将新建的渐变规则命名“golden”</p>
-<p>5 选择文字工具写下文字，并设置大小</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_1.png" alt="编辑文字"></p>
-<p>6 使用“混合”工具, 并选择我们已经制作的“golden”规则， 设置合适的渐变， 此时图像基本可以用了</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_7.png" alt="设置土豪金渐变"></p>
-<p>7 最后给文字制作个投影或者其他效果</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_8.png" alt="投影特效"><br><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_9.png" alt="设置投影参数"> </p>
-<p>8 效果图</p>
-<p><img src="http://7xij29.com1.z0.glb.clouddn.com/gimp_golden_font_10.png" alt="效果"></p>
-<p>参考文档：<br><a target="_blank" rel="noopener" href="http://www.gimpology.com/submission/view/gold_text_effect/">http://www.gimpology.com/submission/view/gold_text_effect/</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/gimp/">gimp</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/">&lt;span&gt;&lt;&#x2F;span&gt;Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next&lt;span&gt;&lt;&#x2F;span&gt;</a>
@@ -834,6 +820,10 @@
 		
 			
 				<li><a href="/tags/docker-centos/" title="docker centos">docker centos<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据结构与算法/" title="数据结构与算法">数据结构与算法<sup>2</sup></a></li>
 			
 		
 			
@@ -878,10 +868,6 @@
 		
 			
 				<li><a href="/tags/nginx/" title="nginx">nginx<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/数据结构与算法/" title="数据结构与算法">数据结构与算法<sup>1</sup></a></li>
 			
 		
 			
