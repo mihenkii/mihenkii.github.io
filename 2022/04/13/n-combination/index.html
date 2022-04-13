@@ -4,22 +4,22 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>fibonacci | Mihenkii&#39;s tech blog</title>
+    <title>N个数的全排列 | Mihenkii&#39;s tech blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="mihenkii">
     
 
     
-    <meta name="description" content="fibonacci数列: 1 1 2 3 5 8 13 21… 今天看到了fibonacci的非递归写法 123456789101112131415161718func fibonacci(n int) int &amp;#123;	a, b :&#x3D; 0, 1	for i :&#x3D; 2; i &lt; n; i++ &amp;#123;		a, b &#x3D; b, a+b	&amp;#125;	return a + b&amp;#125;f">
+    <meta name="description" content="问题: 输入一个数N，打印出1到N的全排列比如输入数字是 3 123456123132213231312321  思路想象成老虎机上的N个格子，每个格子都是在进行1-N的循环，并且不能重复。 12345678910111213141516171819202122232425262728293031323334353637383940414243package mainimport &quot;fm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="fibonacci">
-<meta property="og:url" content="http://mihenkii.github.io/2022/04/08/fibonacci/index.html">
+<meta property="og:title" content="N个数的全排列">
+<meta property="og:url" content="http://mihenkii.github.io/2022/04/13/n-combination/index.html">
 <meta property="og:site_name" content="Mihenkii&#39;s tech blog">
-<meta property="og:description" content="fibonacci数列: 1 1 2 3 5 8 13 21… 今天看到了fibonacci的非递归写法 123456789101112131415161718func fibonacci(n int) int &amp;#123;	a, b :&#x3D; 0, 1	for i :&#x3D; 2; i &lt; n; i++ &amp;#123;		a, b &#x3D; b, a+b	&amp;#125;	return a + b&amp;#125;f">
+<meta property="og:description" content="问题: 输入一个数N，打印出1到N的全排列比如输入数字是 3 123456123132213231312321  思路想象成老虎机上的N个格子，每个格子都是在进行1-N的循环，并且不能重复。 12345678910111213141516171819202122232425262728293031323334353637383940414243package mainimport &quot;fm">
 <meta property="og:locale">
-<meta property="article:published_time" content="2022-04-08T09:49:04.000Z">
-<meta property="article:modified_time" content="2022-04-08T11:57:46.327Z">
+<meta property="article:published_time" content="2022-04-13T11:45:18.000Z">
+<meta property="article:modified_time" content="2022-04-13T12:02:20.255Z">
 <meta property="article:author" content="mihenkii">
 <meta property="article:tag" content="数据结构与算法">
 <meta name="twitter:card" content="summary">
@@ -86,14 +86,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2022/04/08/fibonacci/" title="fibonacci" itemprop="url">fibonacci</a>
+      <a href="/2022/04/13/n-combination/" title="N个数的全排列" itemprop="url">N个数的全排列</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
 		
   <p class="article-time">
-    <time datetime="2022-04-08T09:49:04.000Z" itemprop="datePublished"> Published 2022-04-08</time>
+    <time datetime="2022-04-13T11:45:18.000Z" itemprop="datePublished"> Published 2022-04-13</time>
     
   </p>
 </header>
@@ -102,16 +102,15 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">1.</span> <span class="toc-text">思路</span></a></li></ol>
 		
 		</div>
 		
-		<p>fibonacci数列: 1 1 2 3 5 8 13 21…</p>
-<p>今天看到了fibonacci的非递归写法</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">func fibonacci(n int) int &#123;</span><br><span class="line">	a, b := 0, 1</span><br><span class="line">	for i := 2; i &lt; n; i++ &#123;</span><br><span class="line">		a, b = b, a+b</span><br><span class="line">	&#125;</span><br><span class="line">	return a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func fibonacci(n int) int &#123;</span><br><span class="line">	a, b := 0, 1</span><br><span class="line">	for i := 2; i &lt; n; i++ &#123;</span><br><span class="line">        // 有的编程语言不支持上面的那种a, b = b, a+b写法</span><br><span class="line">        sum := a + b</span><br><span class="line">        a = b</span><br><span class="line">        b = sum</span><br><span class="line">	&#125;</span><br><span class="line">	return a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+		<p>问题: 输入一个数N，打印出1到N的全排列<br>比如输入数字是 3</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">123</span><br><span class="line">132</span><br><span class="line">213</span><br><span class="line">231</span><br><span class="line">312</span><br><span class="line">321</span><br></pre></td></tr></table></figure>
 
-<p>递归写法</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">func fibonacci(n int) int &#123;</span><br><span class="line">    if n == 1 || n == 2 &#123;</span><br><span class="line">        return 1</span><br><span class="line">    &#125;</span><br><span class="line">    return fibonacci(n-1) + fibonacci(n-2)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>想象成老虎机上的N个格子，每个格子都是在进行1-N的循环，并且不能重复。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">var (</span><br><span class="line">	num    int</span><br><span class="line">	bucket []int // 格子</span><br><span class="line">	flag   []int // 用来记录1-N的数字是否已经使用，防止重复出现</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func fill_bucket(n int) &#123;</span><br><span class="line">	if n &gt; num &#123; //当所有格子都填满，打印一次</span><br><span class="line">		pretty_print(bucket)</span><br><span class="line">		return</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	for i := 1; i &lt;= num; i++ &#123;</span><br><span class="line">		if flag[i] == 1 &#123;</span><br><span class="line">			continue</span><br><span class="line">		&#125;</span><br><span class="line">		bucket[n] = i</span><br><span class="line">		flag[i] = 1</span><br><span class="line">		fill_bucket(n + 1)</span><br><span class="line">		flag[i] = 0</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func pretty_print(bucket []int) &#123;</span><br><span class="line">	for _, s := range bucket &#123;</span><br><span class="line">		if s != 0 &#123;</span><br><span class="line">			fmt.Print(s)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	fmt.Println(&quot;please input a number&quot;)</span><br><span class="line">	fmt.Scanf(&quot;%d&quot;, &amp;num)</span><br><span class="line">	bucket = make([]int, num+1) // 用不到第0个元素</span><br><span class="line">	flag = make([]int, num+1)   // 用不到第0个元素</span><br><span class="line">	fill_bucket(1)              // 从左到右遍历</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -129,7 +128,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://mihenkii.github.io/2022/04/08/fibonacci/" data-title="fibonacci | Mihenkii&#39;s tech blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://mihenkii.github.io/2022/04/13/n-combination/" data-title="N个数的全排列 | Mihenkii&#39;s tech blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -142,19 +141,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2022/04/13/n-combination/" title="N个数的全排列">
-  <strong>上一篇：</strong><br/>
-  <span>
-  N个数的全排列</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2022/02/14/centos-nginx-https-letsencrypt/"  title="centos-nginx-https-letsencrypt">
+<a href="/2022/04/08/fibonacci/"  title="fibonacci">
  <strong>下一篇：</strong><br/> 
- <span>centos-nginx-https-letsencrypt
+ <span>fibonacci
 </span>
 </a>
 </div>
@@ -171,7 +162,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">1.</span> <span class="toc-text">思路</span></a></li></ol>
  
   </div>
 
