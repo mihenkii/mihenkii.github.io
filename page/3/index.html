@@ -83,6 +83,94 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2017/06/11/win7centos7/" title="win7上安装centos7双系统" itemprop="url">win7上安装centos7双系统</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2017-06-11T03:04:57.000Z" itemprop="datePublished"> Published 2017-06-11</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <blockquote>
+<p>09年的笔记本电脑，CPU: 奔腾T4200不支持vt-x, 无法在Virtual Box中安装64位Centos系统</p>
+</blockquote>
+<h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><ol>
+<li>8G U盘</li>
+<li>UltraISO 用来制作启动盘</li>
+<li>CentOS.iso</li>
+<li>分区助手(其实没有真正用到)</li>
+</ol>
+<h4 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h4><ol>
+<li>清理一块硬盘分区来安装系统</li>
+<li>1 [计算机]-右键[管理]-[磁盘管理]-[删除卷]. 这个删除的卷，就是准备安装Centos的位置</li>
+<li>制作U盘系统盘</li>
+<li>1 将CentOS镜像下载到本地, 我选择的是：CentOS-7-x86_64-DVD-1611.iso</li>
+<li>2 将U盘插到电脑，打开UltraISO, 打开下载的ISO文件, 然后选择[启动] - [写入硬盘映像] 写入方式选择[USB-HDD+]</li>
+<li>3 等待10分钟左右系统盘制作完成</li>
+<li>安装系统</li>
+<li>1 开启按F2, 进入Bios页面, boot选择从usb启动, 如果运气好，就可以直接安装系统</li>
+</ol>
+<h4 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h4><ol>
+<li>centos7 failed to start switch root</li>
+</ol>
+<p>安装系统遇到上面的错误很常见, 网上给出的解决办法：<br>将 vmlinuz initrd=initrd.img inst.stage2=hd:LABEL=CentOS\x207\x20x86_64 quiet<br>改为 vmlinuz initrd=initrd.img inst.stage2=hd:/dev/sdb4 quiet</p>
+<blockquote>
+<p>/dev/sdb4代表你的U盘(有的文章说是准备安装系统的盘，描述不准确)<br>Note 引用RedHat官网介绍<br>By default, the inst.stage2= boot option is used on the installation media and set to a specific label (for example, inst.stage2=hd:LABEL=RHEL7\x20Server.x86_64). If you modify the default label of the file system containing the runtime image, or if using a customized procedure to boot the installation system, you must ensure this option is set to the correct value.</p>
+</blockquote>
+<p>如果不确定U盘到底是/dev/sdxx, 可以用另一种解决方法：<br>inst.stage2=hd:LABEL=分区卷标(注意LABEL这单词不能删除掉)<br>通过上面提到的分区助手可以修改[分区卷标], 打开软件，在U盘上[右键]-[设置卷标]即可</p>
+<p>我用的命令是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vmlinuz initrd=initrd.img inst.stage2=hd:LABEL=CentOS7 quiet   # 区分大小写</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="设置grub2"><a href="#设置grub2" class="headerlink" title="设置grub2"></a>设置grub2</h4><p>在centos的/boot/grub2/grub.cfg</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">menuentry <span class="string">&quot;Windows 7&quot;</span> &#123;   <span class="built_in">set</span> root=<span class="string">&#x27;(hd0,1)&#x27;</span></span><br><span class="line">   chainloader +1&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a target="_blank" rel="noopener" href="http://www.osyunwei.com/archives/7829.html">http://www.osyunwei.com/archives/7829.html</a><br><a target="_blank" rel="noopener" href="http://blog.csdn.net/txl199106/article/details/41344399">http://blog.csdn.net/txl199106/article/details/41344399</a><br><a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/chap-anaconda-boot-options.html#list-boot-options-sources">redhat</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/win7-centos7/">win7 centos7</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/10/02/favicon/" title="favicon" itemprop="url">favicon</a>
   </h1>
   <p class="article-author">By

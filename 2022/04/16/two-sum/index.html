@@ -4,24 +4,24 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>N个数的全排列 | Mihenkii&#39;s tech blog</title>
+    <title>two-sum | Mihenkii&#39;s tech blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="mihenkii">
     
 
     
-    <meta name="description" content="问题: 输入一个数N，打印出1到N的全排列比如输入数字是 3 123456123132213231312321  思路想象成老虎机上的N个格子，每个格子都是在进行1-N的循环，并且不能重复。 12345678910111213141516171819202122232425262728293031323334353637383940414243package mainimport &quot;fm">
+    <meta name="description" content="第一题很早之前就知道Leetcode的第一题叫two-sum  给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。你可以按任意顺序返回答案。示例 1：  123输入：nums &#x3D; [2,7,11,15], target &#x3D;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="N个数的全排列">
-<meta property="og:url" content="http://mihenkii.github.io/2022/04/13/n-combination/index.html">
+<meta property="og:title" content="two-sum">
+<meta property="og:url" content="http://mihenkii.github.io/2022/04/16/two-sum/index.html">
 <meta property="og:site_name" content="Mihenkii&#39;s tech blog">
-<meta property="og:description" content="问题: 输入一个数N，打印出1到N的全排列比如输入数字是 3 123456123132213231312321  思路想象成老虎机上的N个格子，每个格子都是在进行1-N的循环，并且不能重复。 12345678910111213141516171819202122232425262728293031323334353637383940414243package mainimport &quot;fm">
+<meta property="og:description" content="第一题很早之前就知道Leetcode的第一题叫two-sum  给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。你可以按任意顺序返回答案。示例 1：  123输入：nums &#x3D; [2,7,11,15], target &#x3D;">
 <meta property="og:locale">
-<meta property="article:published_time" content="2022-04-13T11:45:18.000Z">
-<meta property="article:modified_time" content="2022-04-13T12:02:20.255Z">
+<meta property="article:published_time" content="2022-04-16T09:18:06.000Z">
+<meta property="article:modified_time" content="2022-04-16T09:30:49.850Z">
 <meta property="article:author" content="mihenkii">
-<meta property="article:tag" content="数据结构与算法">
+<meta property="article:tag" content="数据结构和算法">
 <meta name="twitter:card" content="summary">
 
     
@@ -86,14 +86,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2022/04/13/n-combination/" title="N个数的全排列" itemprop="url">N个数的全排列</a>
+      <a href="/2022/04/16/two-sum/" title="two-sum" itemprop="url">two-sum</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
 		
   <p class="article-time">
-    <time datetime="2022-04-13T11:45:18.000Z" itemprop="datePublished"> Published 2022-04-13</time>
+    <time datetime="2022-04-16T09:18:06.000Z" itemprop="datePublished"> Published 2022-04-16</time>
     
   </p>
 </header>
@@ -102,15 +102,24 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">1.</span> <span class="toc-text">思路</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">第一题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E8%A7%A3%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">我的解法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%AB%E4%BA%BA%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="toc-number">3.</span> <span class="toc-text">别人的思路</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%80%9D%E8%80%83"><span class="toc-number">3.1.</span> <span class="toc-text">思考</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<p>问题: 输入一个数N，打印出1到N的全排列<br>比如输入数字是 3</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">123</span><br><span class="line">132</span><br><span class="line">213</span><br><span class="line">231</span><br><span class="line">312</span><br><span class="line">321</span><br></pre></td></tr></table></figure>
+		<h4 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h4><p>很早之前就知道Leetcode的第一题叫two-sum</p>
+<blockquote>
+<p>给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。<br>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。<br>你可以按任意顺序返回答案。<br>示例 1：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [2,7,11,15], target = 9</span><br><span class="line">输出：[0,1]</span><br><span class="line">解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。</span><br></pre></td></tr></table></figure>
 
-<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>想象成老虎机上的N个格子，每个格子都是在进行1-N的循环，并且不能重复。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">var (</span><br><span class="line">	num    int</span><br><span class="line">	bucket []int // 格子</span><br><span class="line">	flag   []int // 用来记录1-N的数字是否已经使用，防止重复出现</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func fill_bucket(n int) &#123;</span><br><span class="line">	if n &gt; num &#123; //当所有格子都填满，打印一次</span><br><span class="line">		pretty_print(bucket)</span><br><span class="line">		return</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	for i := 1; i &lt;= num; i++ &#123;</span><br><span class="line">		if flag[i] == 1 &#123;</span><br><span class="line">			continue</span><br><span class="line">		&#125;</span><br><span class="line">		bucket[n] = i</span><br><span class="line">		flag[i] = 1</span><br><span class="line">		fill_bucket(n + 1)</span><br><span class="line">		flag[i] = 0</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func pretty_print(bucket []int) &#123;</span><br><span class="line">	for _, s := range bucket &#123;</span><br><span class="line">		if s != 0 &#123;</span><br><span class="line">			fmt.Print(s)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	fmt.Println(&quot;please input a number&quot;)</span><br><span class="line">	fmt.Scanf(&quot;%d&quot;, &amp;num)</span><br><span class="line">	bucket = make([]int, num+1) // 用不到第0个元素</span><br><span class="line">	flag = make([]int, num+1)   // 用不到第0个元素</span><br><span class="line">	fill_bucket(1)              // 从左到右遍历</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="我的解法"><a href="#我的解法" class="headerlink" title="我的解法"></a>我的解法</h4><p>两层for循环, 时间复杂度是O(n2)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">func twoSum(arr []int, target int) []int &#123;</span><br><span class="line"></span><br><span class="line">	for i := 0; i &lt; len(arr); i++ &#123;</span><br><span class="line">		temp := arr[i]</span><br><span class="line">		if temp &gt;= target &#123;</span><br><span class="line">			continue</span><br><span class="line">		&#125;</span><br><span class="line">		another := target - temp</span><br><span class="line"></span><br><span class="line">		for j := len(arr) - 1; j &gt; i; j-- &#123;</span><br><span class="line">			if arr[j] == another &#123;</span><br><span class="line">				return []int&#123;i, j&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return []int&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	s := []int&#123;2, 7, 11, 15&#125;</span><br><span class="line">	ans := twoSum(s, 9)</span><br><span class="line">	fmt.Println(ans)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="别人的思路"><a href="#别人的思路" class="headerlink" title="别人的思路"></a>别人的思路</h4><p>构造一个HashMap，通过O(n)的时间复杂度即可找到结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">func twoSum(arr []int, target int) []int &#123;</span><br><span class="line">	var table = make(map[int]int)</span><br><span class="line">	for k, v := range arr &#123;</span><br><span class="line">	    if v &gt;= target &#123;</span><br><span class="line">	        continue</span><br><span class="line">	   	&#125;</span><br><span class="line">	    table[v] = k</span><br><span class="line">	    another := target - v</span><br><span class="line">	    if table[another] &gt; 0 &#123;</span><br><span class="line">	        return []int&#123;table[another], k&#125;</span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return []int&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h5><p>开始只考虑从左到右先找到第一个值，然后遍历找到另一个值，思维比较固化</p>
+<p>这种一边构造hashmap一边找another的方法, 先找到的是another，然后再hashmap里找另一个。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -119,7 +128,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/数据结构与算法/">数据结构与算法</a>
+  <span></span> <a href="/tags/数据结构和算法/">数据结构和算法</a>
   </div>
 
 </div>
@@ -128,7 +137,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://mihenkii.github.io/2022/04/13/n-combination/" data-title="N个数的全排列 | Mihenkii&#39;s tech blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://mihenkii.github.io/2022/04/16/two-sum/" data-title="two-sum | Mihenkii&#39;s tech blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -141,19 +150,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2022/04/16/two-sum/" title="two-sum">
-  <strong>上一篇：</strong><br/>
-  <span>
-  two-sum</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2022/04/08/fibonacci/"  title="fibonacci">
+<a href="/2022/04/13/n-combination/"  title="N个数的全排列">
  <strong>下一篇：</strong><br/> 
- <span>fibonacci
+ <span>N个数的全排列
 </span>
 </a>
 </div>
@@ -170,7 +171,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">1.</span> <span class="toc-text">思路</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">第一题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E8%A7%A3%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">我的解法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%AB%E4%BA%BA%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="toc-number">3.</span> <span class="toc-text">别人的思路</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%80%9D%E8%80%83"><span class="toc-number">3.1.</span> <span class="toc-text">思考</span></a></li></ol></li></ol>
  
   </div>
 

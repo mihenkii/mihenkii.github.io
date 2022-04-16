@@ -83,6 +83,74 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2022/04/16/two-sum/" title="two-sum" itemprop="url">two-sum</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2022-04-16T09:18:06.000Z" itemprop="datePublished"> Published 2022-04-16</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h4 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h4><p>很早之前就知道Leetcode的第一题叫two-sum</p>
+<blockquote>
+<p>给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。<br>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。<br>你可以按任意顺序返回答案。<br>示例 1：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [2,7,11,15], target = 9</span><br><span class="line">输出：[0,1]</span><br><span class="line">解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。</span><br></pre></td></tr></table></figure>
+
+<h4 id="我的解法"><a href="#我的解法" class="headerlink" title="我的解法"></a>我的解法</h4><p>两层for循环, 时间复杂度是O(n2)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">func twoSum(arr []int, target int) []int &#123;</span><br><span class="line"></span><br><span class="line">	for i := 0; i &lt; len(arr); i++ &#123;</span><br><span class="line">		temp := arr[i]</span><br><span class="line">		if temp &gt;= target &#123;</span><br><span class="line">			continue</span><br><span class="line">		&#125;</span><br><span class="line">		another := target - temp</span><br><span class="line"></span><br><span class="line">		for j := len(arr) - 1; j &gt; i; j-- &#123;</span><br><span class="line">			if arr[j] == another &#123;</span><br><span class="line">				return []int&#123;i, j&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return []int&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	s := []int&#123;2, 7, 11, 15&#125;</span><br><span class="line">	ans := twoSum(s, 9)</span><br><span class="line">	fmt.Println(ans)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="别人的思路"><a href="#别人的思路" class="headerlink" title="别人的思路"></a>别人的思路</h4><p>构造一个HashMap，通过O(n)的时间复杂度即可找到结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">func twoSum(arr []int, target int) []int &#123;</span><br><span class="line">	var table = make(map[int]int)</span><br><span class="line">	for k, v := range arr &#123;</span><br><span class="line">	    if v &gt;= target &#123;</span><br><span class="line">	        continue</span><br><span class="line">	   	&#125;</span><br><span class="line">	    table[v] = k</span><br><span class="line">	    another := target - v</span><br><span class="line">	    if table[another] &gt; 0 &#123;</span><br><span class="line">	        return []int&#123;table[another], k&#125;</span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return []int&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h5><p>开始只考虑从左到右先找到第一个值，然后遍历找到另一个值，思维比较固化</p>
+<p>这种一边构造hashmap一边找another的方法, 先找到的是another，然后再hashmap里找另一个。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/数据结构和算法/">数据结构和算法</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2022/04/13/n-combination/" title="N个数的全排列" itemprop="url">N个数的全排列</a>
   </h1>
   <p class="article-author">By
@@ -672,75 +740,6 @@
     <footer class="article-footer clearfix">
 <div class="article-catetags">
 
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2021/06/07/docker-registry-delete-image/" title="docker_registry_delete_image" itemprop="url">docker_registry_delete_image</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
-		
-  <p class="article-time">
-    <time datetime="2021-06-07T13:24:52.000Z" itemprop="datePublished"> Published 2021-06-07</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>自己搭建的docker registry， docker pull 报错</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filesystem layer verification failed for digest sha256:xxx</span><br></pre></td></tr></table></figure>
-
-<h4 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h4><p>应该是镜像的某一层layer校验不通过，参考:<br><a target="_blank" rel="noopener" href="https://github.com/distribution/distribution/issues/2168">https://github.com/distribution/distribution/issues/2168</a></p>
-<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4><p>删除镜像，重新上传一次镜像</p>
-<h6 id="打开registry删除功能"><a href="#打开registry删除功能" class="headerlink" title="打开registry删除功能"></a>打开registry删除功能</h6><p>进入到registry容器里，打开delete配置</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker container exec -it registry sh</span><br><span class="line"></span><br><span class="line">vi /etc/docker/registry/config.yml</span><br><span class="line"></span><br><span class="line"># 添加以下配置</span><br><span class="line">storage:</span><br><span class="line">  delete:</span><br><span class="line">    enabled: true</span><br></pre></td></tr></table></figure>
-<p>重启容器</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container restart registry</span><br></pre></td></tr></table></figure>
-
-<h6 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h6><p>这里以 zcloud/calico:v3.8.2 举例</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 查看镜像列表</span><br><span class="line">curl -XGET 10.38.4.212:5000/v2/_catalog</span><br><span class="line"># 查看镜像的tags</span><br><span class="line">curl -XGET 10.38.4.212:5000/v2/zcloud/calico/tags/list</span><br><span class="line"># 查看镜像详情</span><br><span class="line">curl -XGET 10.38.4.212:5000/v2/zcloud/calico/manifests/v3.8.2</span><br><span class="line"></span><br><span class="line"># 获取镜像digest</span><br><span class="line">curl --header &quot;Accept: application/vnd.docker.distribution.manifest.v2+json&quot; -I -X GET 10.38.4.212:5000/v2/zcloud/calico/manifests/v3.8.2</span><br><span class="line"></span><br><span class="line"># 删除镜像manifest</span><br><span class="line">curl -I -X DELETE http://registry-internal.adp.aliyuncs.com:5000/v2/zcloud/calico/manifests/sha256:106a5b6fe7da462a562949c44d83a6327fea91bac93da1b61263113e7504963a</span><br><span class="line"></span><br><span class="line"># 删除镜像文件</span><br><span class="line">docker exec registry bin/registry garbage-collect /etc/docker/registry/config.yml</span><br></pre></td></tr></table></figure>
-
-<p>重启<br><code>docker container restart registry</code></p>
-<p>** 如果此时重新push同名镜像， 要等几分钟才才能pull到 **</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/docker-delete-image/">docker-delete-image</a>
-  </div>
 
 </div>
 
