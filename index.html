@@ -83,6 +83,78 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2022/11/28/count-bit-bits-in-an-binary/" title="count-bit-bits-in-an-binary" itemprop="url">count-bit-bits-in-an-binary</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
+		
+  <p class="article-time">
+    <time datetime="2022-11-28T11:25:36.000Z" itemprop="datePublished"> Published 2022-11-28</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h4 id="统计一个二进制数里面1的个数"><a href="#统计一个二进制数里面1的个数" class="headerlink" title="统计一个二进制数里面1的个数"></a>统计一个二进制数里面1的个数</h4><p><a target="_blank" rel="noopener" href="http://www.robalni.org/posts/20220428-counting-set-bits-in-an-interesting-way.txt">原题</a></p>
+<blockquote>
+<p>This is not the fastest but maybe the most interesting way to count<br>how many bits are 1 in a binary number.</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：3</span><br><span class="line">输出：2</span><br><span class="line">解释：3的二进制是101， 里面有2个1</span><br></pre></td></tr></table></figure>
+
+<h4 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h4><p>这个文章里面的算法不太通用，主要用了2个特性：</p>
+<ol>
+<li>整数的除法，会向下取整。 比如 7/2结果是3</li>
+<li>x/2 + x/4 + x/8… == x</li>
+</ol>
+<p>向右移位，刚好等于除以2.  满足上面第二个特性.<br>x - (x/2 + x/4 + x/8..) 在float情况下，应该刚好等于0，<br>但是在整型的情况下，就等于被向下取整的1的总和，也就是1的个数.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func countbit(num int) int &#123;</span><br><span class="line">	temp := num</span><br><span class="line">	sum := 0</span><br><span class="line">	for temp &gt; 0 &#123;</span><br><span class="line">		temp = temp &gt;&gt; 1</span><br><span class="line">		sum += temp</span><br><span class="line">	&#125;</span><br><span class="line">	return num - sum</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	fmt.Println(countbit(11))</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="普通解法"><a href="#普通解法" class="headerlink" title="普通解法"></a>普通解法</h4><p>将数据的最后一位求和</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>原作者给了如下解释。我觉得这个题比较巧，不太通用，意义不是特别大</p>
+<blockquote>
+<p>The interesting thing about this algorithm is that we calculate<br>something that we can’t calculate directly, by calculating everything<br>except for that, and then looking at the difference.</p>
+</blockquote>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/数据结构与算法/">数据结构与算法</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2022/04/16/two-sum/" title="two-sum" itemprop="url">two-sum</a>
   </h1>
   <p class="article-author">By
@@ -123,7 +195,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/数据结构和算法/">数据结构和算法</a>
+  <span></span> <a href="/tags/数据结构与算法/">数据结构与算法</a>
   </div>
 
 </div>
@@ -707,59 +779,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2021/06/16/docker-commmon-error/" title="docker-commmon-error" itemprop="url">docker-commmon-error</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="mihenkii" target="_blank" itemprop="author">mihenkii</a>
-		
-  <p class="article-time">
-    <time datetime="2021-06-16T02:50:32.000Z" itemprop="datePublished"> Published 2021-06-16</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h4 id="1-docker-registiry-pull-Error-http-server-gave-HTTP-response-to-HTTPS-client"><a href="#1-docker-registiry-pull-Error-http-server-gave-HTTP-response-to-HTTPS-client" class="headerlink" title="1. docker registiry pull Error http: server gave HTTP response to HTTPS client"></a>1. docker registiry pull Error http: server gave HTTP response to HTTPS client</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull 192.168.0.10:5000/centos</span><br><span class="line">Error response from daemon: Get https://192.168.0.10:5000/v2/: http: server gave HTTP response to HTTPS client</span><br></pre></td></tr></table></figure>
-<p>解决办法: 在daemon.json里面添加insecure-registries</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Mac ~/.docker/daemon.json </span><br><span class="line"># Centos: /etc/docker/daemon.json </span><br><span class="line"></span><br><span class="line">&#123;&quot;experimental&quot;:false,&quot;debug&quot;:true,&quot;insecure-registries&quot;:[&quot;192.168.0.10:5000&quot;]&#125;</span><br></pre></td></tr></table></figure>
-<p>重启docker</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next&lt;span&gt;&lt;&#x2F;span&gt;</a>
@@ -783,11 +802,11 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/gimp/" title="gimp">gimp<sup>3</sup></a></li>
+				<li><a href="/tags/数据结构与算法/" title="数据结构与算法">数据结构与算法<sup>5</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/数据结构与算法/" title="数据结构与算法">数据结构与算法<sup>3</sup></a></li>
+				<li><a href="/tags/gimp/" title="gimp">gimp<sup>3</sup></a></li>
 			
 		
 			
